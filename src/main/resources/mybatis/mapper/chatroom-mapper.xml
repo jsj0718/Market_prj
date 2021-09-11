@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat_room">
+  <resultMap type="chatRoom" id="chatRoomResultMap">
+    <result property="roomId" column="roomid"/>
+    <result property="boardId" column="boardid"/>
+    <result property="author" column="author"/>
+    <result property="sender" column="sender"/>
+  </resultMap>
+  
+  
+  <select id="selectChatRoom" resultType="int">
+    SELECT COUNT(*)
+    FROM CHATROOM
+    WHERE BOARDID = #{boardId}
+    AND (AUTHOR = #{author} AND SENDER = #{sender})
+  </select>
+  
+  <insert id="insertChatRoom" parameterType="chatRoom">
+    INSERT INTO CHATROOM (ROOMID, BOARDID, AUTHOR, SENDER)
+    VALUES (CHATROOM_ROOMID_SEQ.NEXTVAL, #{boardId}, #{author}, #{sender})
+  </insert>
+  
+  
+</mapper>
