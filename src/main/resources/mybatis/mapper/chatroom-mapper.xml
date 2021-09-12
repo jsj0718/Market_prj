@@ -8,7 +8,7 @@
     <result property="sender" column="sender"/>
   </resultMap>
   
-  
+  <!-- 채팅방 존재 여부 확인 -->  
   <select id="selectChatRoom" resultType="int">
     SELECT COUNT(*)
     FROM CHATROOM
@@ -16,10 +16,26 @@
     AND (AUTHOR = #{author} AND SENDER = #{sender})
   </select>
   
+  <!-- 채팅방 정보 조회 -->
+  <select id="selectChatRoomInfo" resultType="chatRoom">
+    SELECT *
+    FROM CHATROOM
+    WHERE ROOMID = #{roomId}
+  </select>
+  
+  <!-- 전체 채팅방 리스트 조회 -->
+  <select id="selectChatRoomInfos" resultType="chatRoom">
+    SELECT *
+    FROM CHATROOM
+    WHERE AUTHOR = #{sender}
+    OR SENDER = #{sender}
+    
+  </select>
+  
+  <!-- 채팅방 생성 -->
   <insert id="insertChatRoom" parameterType="chatRoom">
     INSERT INTO CHATROOM (ROOMID, BOARDID, AUTHOR, SENDER)
     VALUES (CHATROOM_ROOMID_SEQ.NEXTVAL, #{boardId}, #{author}, #{sender})
   </insert>
-  
   
 </mapper>

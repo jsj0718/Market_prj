@@ -107,6 +107,11 @@ img {
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
   padding: 18px 16px 10px;
+  
+}
+
+.chat_list:hover {
+  background-color: gray;
 }
 
 .inbox_chat {

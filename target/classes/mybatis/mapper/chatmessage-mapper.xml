@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chat_message">
-
+  <resultMap type="chatMessage" id="chatMessageResultMap">
+    <result property="chatId" column="chatid" />
+    <result property="roomId" column="roomid" />
+    <result property="fromId" column="fromid" />
+    <result property="toId" column="toid" />
+    <result property="chatContent" column="chatcontent" />
+    <result property="chatTime" column="chattime" />
+  </resultMap>
+  
+  <select id="selectChatDialog" resultType="chatMessage">
+    SELECT *
+    FROM CHATMESSAGE
+    WHERE ROOMID = #{roomId}
+    ORDER BY CHATTIME
+  </select>
+  
+  <insert id="insertChatDialog" parameterType="chatMessage">
+    INSERT INTO CHATMESSAGE (CHATID, ROOMID, FROMID, TOID, CHATCONTENT)
+    VALUES (CHATMESSAGE_CHATID_SEQ.NEXTVAL, #{roomId}, #{fromId}, #{toId}, #{chatContent})
+  </insert>
+  
+  <select id="selectRecentChatDialog" resultType="chatMessage">
+    SELECT *
+    FROM CHATMESSAGE
+    WHERE CHATID IN (SELECT MAX(CHATID)
+                      FROM CHATROOM CR, CHATMESSAGE CM
+                      WHERE CR.ROOMID = CM.ROOMID
+                      AND CM.ROOMID IN (SELECT DISTINCT ROOMID
+                                        FROM CHATMESSAGE
+                                        WHERE (FROMID = #{id} OR TOID = #{id}))
+                     GROUP BY CR.ROOMID)
+    ORDER BY CHATTIME DESC
+  </select>
 </mapper>

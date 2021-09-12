@@ -1,14 +1,12 @@
 package com.kitri.market.chat.vo;
 
-import java.util.Date;
-
 public class ChatMessageVO {
     private int chatId;
     private int roomId;
     private String fromId;
     private String toId;
     private String chatContent;
-    private Date chatTime;
+    private String chatTime;
     
     public int getChatId() {
         return chatId;
@@ -40,10 +38,10 @@ public class ChatMessageVO {
     public void setChatContent(String chatContent) {
         this.chatContent = chatContent;
     }
-    public Date getChatTime() {
+    public String getChatTime() {
         return chatTime;
     }
-    public void setChatTime(Date chatTime) {
+    public void setChatTime(String chatTime) {
         this.chatTime = chatTime;
     }
     

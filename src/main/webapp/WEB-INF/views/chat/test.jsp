@@ -11,8 +11,9 @@
   <h1>상세 페이지</h1>
   <form action="chatroom" method="POST">
     BOARDID : <input type="text" name="boardId"> <br>
-    ID : <input type="text" name="author"> <br>
+    author : <input type="text" name="author"> <br>
     <input type="submit" value="채팅하기">
   </form>
+    아이디 : ${sessionScope.id } <br>
 </body>
 </html>
