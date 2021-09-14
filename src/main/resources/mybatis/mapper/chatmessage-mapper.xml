@@ -10,6 +10,7 @@
     <result property="chatTime" column="chattime" />
   </resultMap>
   
+  <!-- 방 아이디를 통해 채팅 내용 불러오기-->
   <select id="selectChatDialog" resultType="chatMessage">
     SELECT *
     FROM CHATMESSAGE
@@ -17,11 +18,13 @@
     ORDER BY CHATTIME
   </select>
   
+  <!-- 채팅 입력하기 -->
   <insert id="insertChatDialog" parameterType="chatMessage">
     INSERT INTO CHATMESSAGE (CHATID, ROOMID, FROMID, TOID, CHATCONTENT)
     VALUES (CHATMESSAGE_CHATID_SEQ.NEXTVAL, #{roomId}, #{fromId}, #{toId}, #{chatContent})
   </insert>
   
+  <!-- 해당 아이디의 최근 메시지들 내용 가져오기 -->
   <select id="selectRecentChatDialog" resultType="chatMessage">
     SELECT *
     FROM CHATMESSAGE
@@ -33,5 +36,22 @@
                                         WHERE (FROMID = #{id} OR TOID = #{id}))
                      GROUP BY CR.ROOMID)
     ORDER BY CHATTIME DESC
+  </select>
+  
+  <!-- 읽지 않은 메시지 개수 조회 -->
+  <select id="selectNotReadMsgCount" resultType="int">
+    SELECT COUNT(*)
+    FROM CHATMESSAGE
+    WHERE TOID = #{id}
+    AND ROOMID = #{roomId}
+    AND CHATREAD = 'F'
+  </select>
+  
+  <!-- 읽은 메시지 업데이트 -->
+  <select id="updateReadMsg">
+    UPDATE CHATMESSAGE
+    SET CHATREAD = 'T'
+    WHERE ROOMID = #{roomId}
+    AND TOID = #{id}
   </select>
 </mapper>

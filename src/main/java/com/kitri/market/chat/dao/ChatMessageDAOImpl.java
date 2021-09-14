@@ -1,6 +1,8 @@
 package com.kitri.market.chat.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,23 @@ public class ChatMessageDAOImpl implements ChatMessageDAO {
     public List<ChatMessageVO> selectRecentChatDialog(String id) {
         return sqlSession.selectList("chat_message.selectRecentChatDialog", id);
     }
+    
+    @Override
+    public int selectNotReadMsgCount(String id, int roomId) {
+        Map<String, String> infoMap = new HashMap<>();
+        infoMap.put("id", id);
+        infoMap.put("roomId", roomId+"");
+        return sqlSession.selectOne("chat_message.selectNotReadMsgCount", infoMap);
+    }
+
+    @Override
+    public int updateReadMsg(String id, int roomId) {
+        Map<String, String> infoMap = new HashMap<>();
+        infoMap.put("id", id);
+        infoMap.put("roomId", roomId+"");
+        return sqlSession.update("chat_message.updateReadMsg", infoMap);
+    }
+    
+    
     
 }

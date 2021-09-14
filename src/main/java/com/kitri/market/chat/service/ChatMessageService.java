@@ -8,4 +8,6 @@ public interface ChatMessageService {
     public List<ChatMessageVO> searchChatDialog(int roomId);
     public int registChatDialog(ChatMessageVO cmvo);
     public List<ChatMessageVO> searchRecentChatDialog(String id);
+    public int searchNotReadMsgCount(String id, int roomId);
+    public int changeReadMsg(String id, int roomId);
 }

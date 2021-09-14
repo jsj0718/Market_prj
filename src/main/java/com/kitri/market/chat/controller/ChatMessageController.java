@@ -30,7 +30,7 @@ public class ChatMessageController {
     // 채팅 기록 가져오기
     @RequestMapping(value="/chatdialog", method=RequestMethod.POST)
     @ResponseBody
-    public List<ChatMessageVO> chatdialog(@RequestParam int roomId) {
+    public List<ChatMessageVO> chatdialog(@RequestParam int roomId, HttpSession session) {
         List<ChatMessageVO> cmList = cmservice.searchChatDialog(roomId);
         
         return cmList;
@@ -62,4 +62,11 @@ public class ChatMessageController {
         return cmList;
     }
     
+    @RequestMapping(value="/refresh", method=RequestMethod.POST)
+    @ResponseBody
+    public void refresh(HttpSession session, int roomId) {
+        String id = (String) session.getAttribute("id");
+        cmservice.changeReadMsg(id, roomId);
+        return;
+    }
 }

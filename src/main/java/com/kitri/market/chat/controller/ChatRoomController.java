@@ -64,6 +64,10 @@ public class ChatRoomController {
         String id = (String) session.getAttribute("id");
         
         List<ChatMessageVO> cmvoList = cmservice.searchRecentChatDialog(id);
+        for (ChatMessageVO cmvo : cmvoList) {
+            int notReadMsgCount = cmservice.searchNotReadMsgCount(id, cmvo.getRoomId());
+            cmvo.setNotReadMsgCount(notReadMsgCount);
+        }
         
         return cmvoList;
     }

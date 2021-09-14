@@ -7,6 +7,9 @@ public class ChatMessageVO {
     private String toId;
     private String chatContent;
     private String chatTime;
+    private String chatRead;
+    private String dataState;
+    private int notReadMsgCount;
     
     public int getChatId() {
         return chatId;
@@ -44,6 +47,25 @@ public class ChatMessageVO {
     public void setChatTime(String chatTime) {
         this.chatTime = chatTime;
     }
+    public String getChatRead() {
+        return chatRead;
+    }
+    public void setChatRead(String chatRead) {
+        this.chatRead = chatRead;
+    }
+    public String getDataState() {
+        return dataState;
+    }
+    public void setDataState(String dataState) {
+        this.dataState = dataState;
+    }
+    public int getNotReadMsgCount() {
+        return notReadMsgCount;
+    }
+    public void setNotReadMsgCount(int notReadMsgCount) {
+        this.notReadMsgCount = notReadMsgCount;
+    }
+    
     
     
 }

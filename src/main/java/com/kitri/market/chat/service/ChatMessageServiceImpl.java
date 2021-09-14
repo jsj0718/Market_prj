@@ -28,5 +28,18 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     public List<ChatMessageVO> searchRecentChatDialog(String id) {
         return cmdao.selectRecentChatDialog(id);
     }
+
+    @Override
+    public int searchNotReadMsgCount(String id, int roomId) {
+        return cmdao.selectNotReadMsgCount(id, roomId);
+    }
+
+    @Override
+    public int changeReadMsg(String id, int roomId) {
+        return cmdao.updateReadMsg(id, roomId);
+    }
+    
+    
+    
     
 }
