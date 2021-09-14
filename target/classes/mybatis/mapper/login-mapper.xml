@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="login">
+
+	<resultMap id="loginMap" type="com.kitri.market.user.vo.UserVO">
+		<result property="userid" column="userId" />
+		<result property="userpw" column="userPw" />
+		<result property="name" column="name" />
+		<result property="address" column="address" />
+		<result property="gender" column="gender" />
+		<result property="birth" column="birth" />
+		<result property="img" column="img" />
+		<result property="report" column="report" />
+		<result property="flag" column="flag" />
+	</resultMap>
+	
+	<select id="selectUser" resultMap="loginMap">
+		SELECT * FROM MUSER
+		WHERE USERID = #{userid}
+		AND USERPW = #{userpw}
+	</select>
+	
+	<select id="selectIdCheck" resultType="int"> 
+		SELECT COUNT(*) FROM MUSER
+		WHERE USERID = #{userid}
+	</select>
+	
+	<insert id="insertUser" parameterType="com.kitri.market.user.vo.UserVO">
+		INSERT INTO MUSER (USERID, USERPW, NAME, ADDRESS, GENDER, BIRTH, IMG)
+		VALUES (#{userid}, #{userpw}, #{name}, #{address}, #{gender}, #{birth, jdbcType=VARCHAR}, #{img})
+	</insert>
+	
+</mapper>
