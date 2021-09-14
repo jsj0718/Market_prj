@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="blacklist">
+
+
+<!-- 페이징처리, 신고 게시물들 -->	
+	<select id="pagingList" resultType="com.kitri.market.admin.vo.AdminBlacklistVO">
+			SELECT REPORTID, REPORT_TITLE,USERID,REPORT_CONTENT,BOARDID,TITLE
+			FROM (SELECT R.REPORTID, R.REPORT_TITLE,R.USERID,R.REPORT_CONTENT,R.BOARDID, B.TITLE, 
+			            ROW_NUMBER() OVER(ORDER BY R.REPORTID DESC)AS RNUM
+			            FROM USER_REPORT R, BOARD B
+			            WHERE R.BOARDID = B.BOARDID
+			            )MB
+			WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+			ORDER BY REPORTID DESC
+
+	</select>
+	
+<!-- 페이징처리, 신고 내역 총 갯수 -->	
+	<select id="reportCount" resultType="int">
+			SELECT COUNT(*)
+			FROM USER_REPORT
+	</select>
+	
+<!-- 신고내역란 확인 -테이블에서 삭제 -->	
+	<delete id="deleteReport" parameterType="com.kitri.market.admin.vo.AdminBlacklistVO">
+		DELETE FROM USER_REPORT
+		WHERE REPORTID= #{reportid}
+	</delete>
+	
+<!--                 블랙리스트 처리 내용                   -->	
+
+<!-- 페이징처리, 신고 5회이상 유저 총 갯수 -->	
+	<select id="fiveCount" resultType="int" >
+		SELECT COUNT(*)
+		FROM (
+		        SELECT USERID, REPORT
+		        FROM MUSER
+		        WHERE REPORT >= 5)
+	</select>
+	
+<!--페이징처리, 신고 5회 이상인 유저리스트 -->
+	<select id="fiveList" resultType="com.kitri.market.admin.vo.AdminBlacklistVO">
+		SELECT USERID, REPORT,FLAG
+		FROM (SELECT USERID, REPORT, FLAG,
+		            ROW_NUMBER() OVER(ORDER BY REPORT DESC)AS RNUM
+		            FROM MUSER
+		            WHERE REPORT >= 5
+		            )MB
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY REPORT DESC    
+	</select>
+<!-- 신고 5회 이상인 유저 삭제 -->
+	<delete id="fiveDelete">
+			DELETE FROM MUSER
+			WHERE USERID= #{userid}
+	</delete>	
+	
+<!--페이징처리, 신고 3회 이상인 유저리스트 -->
+	<select id="threeList" resultType="com.kitri.market.admin.vo.AdminBlacklistVO">
+		SELECT USERID, REPORT,FLAG
+		FROM (SELECT USERID, REPORT, FLAG,
+		            ROW_NUMBER() OVER(ORDER BY REPORT DESC)AS RNUM
+		            FROM MUSER
+		            WHERE FLAG= 'T'
+		            AND REPORT BETWEEN 3 AND 4
+		            )MB
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY REPORT DESC 
+	</select>
+	
+<!-- 페이징처리, 신고 3회 이상 유저 총 갯수 -->	
+	<select id="threeCount" resultType="int" >
+	SELECT COUNT(*)
+		FROM (
+		        SELECT USERID, REPORT
+		        FROM MUSER
+		        WHERE FLAG = 'T'
+		        AND REPORT BETWEEN 3 AND 4)
+	</select>
+	
+<!-- 신고 3회 이상 유저 경고 update -->
+	<update id="threeUpdate" parameterType="com.kitri.market.admin.vo.AdminBlacklistVO">
+		UPDATE MUSER SET
+		FLAG = 'F'
+		WHERE USERID = #{userid}
+	
+	</update>	
+	
+<!-- ===BLACKLIST 유저 구분 차트=== -->		
+	<select id="blackListChart" resultType="com.kitri.market.admin.vo.AdminBlacklistVO">
+		SELECT USERF, COUNT(*) AS COUNT
+		FROM(             
+		     SELECT
+		         REPORT
+		         , CASE WHEN REPORT <![CDATA[<]]> 3 THEN '일반 유저'
+		               WHEN REPORT BETWEEN 3 AND 4 THEN '경고 유저'
+		               ELSE '비활성화 유저'
+		         END AS USERF
+		    FROM MUSER
+		    )
+		GROUP BY USERF
+	</select>
+	
+<!-- ====카테고리 등록===== -->	
+	<insert id="insertCategory" parameterType="com.kitri.market.admin.vo.AdminBlacklistVO">
+		INSERT INTO CATEGORIES(CATEGORYID, CATEGORYNAME)
+		VALUES (CATEGORIES_CATEGORYID_SEQ.NEXTVAL, #{categoryname})
+	
+	</insert>
+
+</mapper>
