@@ -8,5 +8,6 @@
   <typeAliases>
     <typeAlias alias="chatMessage" type="com.kitri.market.chat.vo.ChatMessageVO"/>
     <typeAlias alias="chatRoom" type="com.kitri.market.chat.vo.ChatRoomVO"/>
+    <typeAlias alias="userReport" type="com.kitri.market.chat.vo.UserReportVO"/>
   </typeAliases>
 </configuration>

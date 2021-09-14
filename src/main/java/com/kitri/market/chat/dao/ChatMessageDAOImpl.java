@@ -18,8 +18,11 @@ public class ChatMessageDAOImpl implements ChatMessageDAO {
     
     // 채팅방의 채팅 내용 조회
     @Override
-    public List<ChatMessageVO> selectChatDialog(int roomId) {
-        return sqlSession.selectList("chat_message.selectChatDialog", roomId);
+    public List<ChatMessageVO> selectChatDialog(int roomId, String id) {
+        Map<String, String> infoMap = new HashMap<>();
+        infoMap.put("id", id);
+        infoMap.put("roomId", roomId+"");
+        return sqlSession.selectList("chat_message.selectChatDialog", infoMap);
     }
 
     // 채팅방에 채팅 보내기 (입력하기)
@@ -48,6 +51,15 @@ public class ChatMessageDAOImpl implements ChatMessageDAO {
         infoMap.put("id", id);
         infoMap.put("roomId", roomId+"");
         return sqlSession.update("chat_message.updateReadMsg", infoMap);
+    }
+
+    @Override
+    public int updateExitChat(String id, int roomId, String person) {
+        Map<String, String> infoMap = new HashMap<>();
+        infoMap.put("id", id);
+        infoMap.put("roomId", roomId+"");
+        infoMap.put("person", person);
+        return sqlSession.update("chat_message.updateExitChat", infoMap);
     }
     
     

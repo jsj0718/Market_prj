@@ -15,8 +15,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     private ChatMessageDAO cmdao;
     
     @Override
-    public List<ChatMessageVO> searchChatDialog(int roomId) {
-        return cmdao.selectChatDialog(roomId);
+    public List<ChatMessageVO> searchChatDialog(int roomId, String id) {
+        return cmdao.selectChatDialog(roomId, id);
     }
 
     @Override
@@ -37,6 +37,11 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     @Override
     public int changeReadMsg(String id, int roomId) {
         return cmdao.updateReadMsg(id, roomId);
+    }
+
+    @Override
+    public int exitChat(String id, int roomId, String person) {
+        return cmdao.updateExitChat(id, roomId, person);
     }
     
     

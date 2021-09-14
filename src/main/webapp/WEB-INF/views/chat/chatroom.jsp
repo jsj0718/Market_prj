@@ -1,17 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../header/header.jsp"%>
+<!-- jstl -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- contextPath -->
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/resources/css/chat.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
   let roomNum = 0;  // 채팅방 번호
   let cnt = 0;  // 방 호출 횟수 (처음만 스크롤 맨 아래로 두기)
   let maxHeight = 0; // 대화창의 최대 높이
   let currHeight = 0; // 현재 대화창에서의 높이(위치)
+  let ohterPerson = ""; // 대화 상대 아이디
   
   // 읽음 표시
   const changeReadMsg = function(roomid) {
@@ -94,6 +101,13 @@
         className = 'chat_list';
       }
       
+      let chatCtn = "";
+      let chatTime = "";
+      if (data[i].dataState == "BOTH" || data[i].dataState == userId) {
+        chatCtn = data[i].chatContent;
+        chatTime = data[i].chatTime;
+      }
+      
       let notReadMsgCount = "";
       let countClassName = "";
       
@@ -123,11 +137,11 @@
               .text(person)
               .append($('<span>')
                 .attr('class', 'chat_date')
-                .text(data[i].chatTime)
+                .text(chatTime)
               )
             )
             .append($('<p>')
-              .text(data[i].chatContent)
+              .text(chatCtn)
               .append($('<span>')
                 .attr('class', countClassName)
                 .attr('style', 'width : 10%;')
@@ -152,11 +166,24 @@
       success: function(data) {
 //         console.log(data);
         
+        // 메시지 기록 비우기
         $('#msg_history').empty();
-
+       
+        // 본인 아이디 선언
         let userId = "${sessionScope.id}";
+
+        // 상대방 아이디 선언
+        if(roomNum != 0 && data.length != 0) {
+          if (data[0].fromId == userId) {
+            otherPerson = data[0].toId;
+          } else if (data[0].toId == userId){
+            otherPerson = data[0].fromId;
+          }
+        }
+
         addDialog(data, userId); // 채팅 불러오기  
         
+        // 대화 시 스크롤 조정을 위한 스크롤 함수
         $('#msg_history').scroll(function() {
           // maxHeigth 설정
           let chatBox = document.getElementById("msg_history");
@@ -190,6 +217,11 @@
   
   // 채팅 전송하기
   const sendMsg = function() {
+    if (roomNum == 0) {
+      alert("채팅방을 선택하세요.");
+      return;
+    }
+
     let msgContent = document.getElementById("msgContent");
     if (msgContent.value == "") {
       alert("메세지를 입력하세요.");
@@ -229,10 +261,13 @@
       success: function(data) {
 //         console.log(data);
         
-        $('#inbox_chat').empty();
         let userId = "${sessionScope.id}";
         
-        addChatList(data, userId); // 채팅 목록 초기화
+        // 채팅 목록 초기화        
+        $('#inbox_chat').empty();
+        if (data.length != 0) {
+          addChatList(data, userId); 
+        }
       },
       error: function(request, status, error) {
         
@@ -240,36 +275,112 @@
     });
   }
   
+  // 채팅방 나가기
+  const exitDialog = function() {
+    if (roomNum == 0 || otherPerson == "") {
+      alert("대화창을 선택하세요.");
+      return;
+    }
+
+    if (!confirm("채팅방을 나가시겠습니까?")) {
+      return;
+    }
+    
+    console.log(roomNum);
+    console.log(otherPerson);
+    
+    $.ajax({
+      url: "${path}/chatroom/exit/" + roomNum,
+      type: "post",
+      data: {"person" : otherPerson},
+      dataType: "json",
+      success: function(data) {
+        
+        $('#inbox_chat').empty();
+        
+      },
+      error: function(request, status, error) {
+        
+      }
+    });
+  }
+
+  // 모달 값 초기화
+  const callModal = function() {
+    $('#reportTitle').val('');
+    $('#reportContent').val('');
+  }
+  
+  // 신고하기
+  const reportUser = function() {
+    let reportTitle = $('#reportTitle').val();
+    let reportContent = $('#reportContent').val();
+    
+    if (reportTitle == "" || reportContent == "") {
+      alert("제목 또는 내용을 입력하세요.");
+      return;
+    }
+    
+    if (roomNum == 0) {
+      alert("채팅방을 선택하세요.");
+      return;
+    }
+    
+    if (!confirm("신고하시겠습니까?")) {
+      return;
+    }
+    
+    $.ajax({
+      url: "${path}/report",
+      type: "post",
+      data: {"roomId" : roomNum, "reportTitle" : reportTitle, "reportContent" : reportContent},
+      dataType: "json",
+      success: function(data) {
+        if (data == -1) {
+          alert("이미 신고한 게시물과 유저입니다.");
+        } else if (data == 0 || data == 1) {
+          alert("신고 등록에 실패했습니다.");
+        } else if (data == 2) {
+          alert("신고 등록에 성공했습니다.");
+        }
+        
+        $('#closeReportBtn').click();
+        
+      },
+      error: function(request, status, error) {
+      }
+    });
+  }
+
   // 엔터키 누를 시 전송
   const enterkey = function() {
     if (window.event.keyCode == 13) {
       sendMsg();
     }
   }
-  
+
   // 스크롤 함수
   const scrollDialog = function() {
     let chatBox = document.getElementById("msg_history");
     chatBox.scrollTop = chatBox.scrollHeight; // 대화 시 스크롤 조정
     maxHeight = chatBox.scrollTop;
   }
-  
+
   // 반복해야 하는 함수
   const refreshMethod = function() {
     showDialog(roomNum);
     showChatList();
     cnt++;
   };
-  
-  // 최초 실행 후 반복 실행
-  function startInterval(seconds, callback) { 
-    showDialog(roomNum);
-    showChatList(); 
-    return setInterval(callback, seconds * 1000); 
-  }
-  
-  startInterval(5, refreshMethod);
 
+  // 최초 실행 후 반복 실행
+  function startInterval(seconds, callback) {
+    showDialog(roomNum);
+    showChatList();
+    return setInterval(callback, seconds * 1000);
+  }
+
+  startInterval(5, refreshMethod);
 </script>
 </head>
 <body>
@@ -342,13 +453,26 @@
           </div>
         </div>
         <div class="mesgs" id="chatbox">
+
+          <div class="dropdown d-flex justify-content-end">
+            <button class="btn btn-light" type="button" id="chatMenu" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-align-justify"></i></button>
+            <ul class="dropdown-menu bg-light" aria-labelledby="chatMenu">
+              <li>
+                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportModal" onclick="callModal();">신고하기</a>
+              </li>
+              <li>
+                <a class="dropdown-item" onclick="exitDialog();">채팅방 나가기</a>
+              </li>
+            </ul>
+          </div>
+
           <div class="msg_history" id="msg_history">
           </div>
           <div class="type_msg">
             <div class="input_msg_write">
               <input type="text" class="write_msg" placeholder="메시지를 입력하세요." id="msgContent" onkeyup="enterkey();"/>
-              <button class="msg_send_btn" id="sendBtn" type="button" onclick="sendMsg()">
-                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              <button class="msg_send_btn" id="sendBtn" type="button" onclick="sendMsg();">
+                <i class="fas fa-paper-plane"></i>
               </button>
             </div>
           </div>
@@ -359,5 +483,34 @@
       </p>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reportModalLabel">Report</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="reportTitle" class="form-label">제목</label>
+            <input type="text" class="form-control" id="reportTitle" placeholder="제목" required>
+          </div>
+          <div class="mb-3">
+            <label for="reportContent" class="form-label">내용</label>
+            <textarea class="form-control" id="reportContent" rows="3" placeholder="내용" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" onclick="reportUser();">신고</button>
+          <button type="button" class="btn btn-secondary" id="closeReportBtn" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>

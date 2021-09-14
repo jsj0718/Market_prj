@@ -15,6 +15,7 @@
     SELECT *
     FROM CHATMESSAGE
     WHERE ROOMID = #{roomId}
+    AND DATASTATE IN ('BOTH', #{id})
     ORDER BY CHATTIME
   </select>
   
@@ -54,4 +55,15 @@
     WHERE ROOMID = #{roomId}
     AND TOID = #{id}
   </select>
+  
+  <!-- 채팅방 나가기 -->
+  <update id="updateExitChat">
+    UPDATE CHATMESSAGE
+    SET DATASTATE = CASE
+                        WHEN ROOMID = #{roomId} AND (FROMID = #{id} OR TOID = #{id}) AND (DATASTATE IN ('BOTH', #{person})) THEN #{person}
+                        WHEN ROOMID = #{roomId} AND (FROMID = #{id} OR TOID = #{id}) AND (DATASTATE = #{id}) THEN 'NOTHING'
+                        ELSE 'NOTHING'
+                    END
+    WHERE ROOMID = #{roomId}
+  </update>
 </mapper>

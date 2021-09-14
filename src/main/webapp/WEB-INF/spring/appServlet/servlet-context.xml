@@ -4,10 +4,12 @@
   xmlns:beans="http://www.springframework.org/schema/beans"
   xmlns:context="http://www.springframework.org/schema/context"
   xmlns:websocket="http://www.springframework.org/schema/websocket"
+  xmlns:tx="http://www.springframework.org/schema/tx"
   xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -28,28 +30,34 @@
 	<context:property-placeholder location="classpath:mybatis/db.properties"/>
 	
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-      <beans:property name="driverClassName" value="${driver}" />
-      <beans:property name="url" value="${url}"/>
-      <beans:property name="username" value="${user}"/>
-      <beans:property name="password" value="${password}"/>
-   </beans:bean>
+    <beans:property name="driverClassName" value="${driver}" />
+    <beans:property name="url" value="${url}"/>
+    <beans:property name="username" value="${user}"/>
+    <beans:property name="password" value="${password}"/>
+  </beans:bean>
    
-   <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-      <beans:property name="dataSource" ref="dataSource"></beans:property>
-      <beans:property name="configLocation" value="classpath:mybatis/config/mybatis-config.xml"></beans:property>
-      <beans:property name="mapperLocations" value="classpath:mybatis/mapper/*-mapper.xml"></beans:property>
-   </beans:bean>
+  <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <beans:property name="dataSource" ref="dataSource"></beans:property>
+    <beans:property name="configLocation" value="classpath:mybatis/config/mybatis-config.xml"></beans:property>
+    <beans:property name="mapperLocations" value="classpath:mybatis/mapper/*-mapper.xml"></beans:property>
+  </beans:bean>
    
-   <beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-      <beans:constructor-arg name ="sqlSessionFactory" ref="sqlSessionFactory"/>
-   </beans:bean>
+  <beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+    <beans:constructor-arg name ="sqlSessionFactory" ref="sqlSessionFactory"/>
+  </beans:bean>
 
 <!--    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
 <!--       <beans:property name="maxUploadSize" value="20000000"/> -->
 <!--       <beans:property name="maxInMemorySize" value="20000000"/> -->
 <!--       <beans:property name="defaultEncoding" value="utf-8"/> -->
 <!--    </beans:bean> -->
-	
-	
+	  
+  <!-- 트랜젝션 매니저 -->
+  <beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <beans:property name="dataSource" ref="dataSource"></beans:property>
+  </beans:bean>
+  
+  <!-- @Transactional 애노테이션을 scan하기 위한 설정 -->
+  <tx:annotation-driven transaction-manager="transactionManager"/>
 	
 </beans:beans>

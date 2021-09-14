@@ -16,6 +16,12 @@
     AND (AUTHOR = #{author} AND SENDER = #{sender})
   </select>
   
+  <!-- 채팅방 생성 -->
+  <insert id="insertChatRoom" parameterType="chatRoom">
+    INSERT INTO CHATROOM (ROOMID, BOARDID, AUTHOR, SENDER)
+    VALUES (CHATROOM_ROOMID_SEQ.NEXTVAL, #{boardId}, #{author}, #{sender})
+  </insert>
+
   <!-- 채팅방 정보 조회 -->
   <select id="selectChatRoomInfo" resultType="chatRoom">
     SELECT *
@@ -29,13 +35,5 @@
     FROM CHATROOM
     WHERE AUTHOR = #{sender}
     OR SENDER = #{sender}
-    
   </select>
-  
-  <!-- 채팅방 생성 -->
-  <insert id="insertChatRoom" parameterType="chatRoom">
-    INSERT INTO CHATROOM (ROOMID, BOARDID, AUTHOR, SENDER)
-    VALUES (CHATROOM_ROOMID_SEQ.NEXTVAL, #{boardId}, #{author}, #{sender})
-  </insert>
-  
 </mapper>

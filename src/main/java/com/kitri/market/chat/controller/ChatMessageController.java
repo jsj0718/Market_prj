@@ -31,7 +31,8 @@ public class ChatMessageController {
     @RequestMapping(value="/chatdialog", method=RequestMethod.POST)
     @ResponseBody
     public List<ChatMessageVO> chatdialog(@RequestParam int roomId, HttpSession session) {
-        List<ChatMessageVO> cmList = cmservice.searchChatDialog(roomId);
+        String userId = (String) session.getAttribute("id");
+        List<ChatMessageVO> cmList = cmservice.searchChatDialog(roomId, userId);
         
         return cmList;
     }
@@ -56,7 +57,7 @@ public class ChatMessageController {
         
         cmservice.registChatDialog(cmvo);
         
-        List<ChatMessageVO> cmList = cmservice.searchChatDialog(cmvo.getRoomId());
+        List<ChatMessageVO> cmList = cmservice.searchChatDialog(cmvo.getRoomId(), userId);
         
         
         return cmList;
@@ -67,6 +68,14 @@ public class ChatMessageController {
     public void refresh(HttpSession session, int roomId) {
         String id = (String) session.getAttribute("id");
         cmservice.changeReadMsg(id, roomId);
+        return;
+    }
+    
+    @RequestMapping(value="/exit/{roomId}", method=RequestMethod.POST)
+    @ResponseBody
+    public void exit(HttpSession session, @PathVariable int roomId, @RequestParam String person) {
+        String id = (String) session.getAttribute("id");
+        cmservice.exitChat(id, roomId, person);
         return;
     }
 }
