@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="login">
-
+	<!-- db필드값과 dto(vo)객체의 property(변수)명이 다를 때 사용 
+		 id는 임의의 값(이름), type은 dto(vo)명
+		 column은 db필드 명 , property에는 dto(vo) property명
+	-->
 	<resultMap id="loginMap" type="com.kitri.market.user.vo.UserVO">
 		<result property="userid" column="userId" />
 		<result property="userpw" column="userPw" />
@@ -16,20 +18,23 @@
 		<result property="flag" column="flag" />
 	</resultMap>
 	
+	<!-- 회원조회 -->
 	<select id="selectUser" resultMap="loginMap">
 		SELECT * FROM MUSER
 		WHERE USERID = #{userid}
 		AND USERPW = #{userpw}
 	</select>
 	
+	<!-- id 중복체크 -->
 	<select id="selectIdCheck" resultType="int"> 
 		SELECT COUNT(*) FROM MUSER
 		WHERE USERID = #{userid}
 	</select>
 	
+	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="com.kitri.market.user.vo.UserVO">
 		INSERT INTO MUSER (USERID, USERPW, NAME, ADDRESS, GENDER, BIRTH, IMG)
-		VALUES (#{userid}, #{userpw}, #{name}, #{address}, #{gender}, #{birth, jdbcType=VARCHAR}, #{img})
+		VALUES (#{userid}, #{userpw}, #{name}, #{address}, #{gender, jdbcType=VARCHAR}, #{birth, jdbcType=VARCHAR}, #{img, jdbcType=VARCHAR})
 	</insert>
 	
 </mapper>

@@ -15,10 +15,12 @@ public class NaverUserServiceImpl implements NaverUserService{
 	@Override
 	public NaverUserVO registNaverUser(NaverUserVO nuvo) {
 		
+		// 출생연도 공백
 		if(nuvo.getBirthyear() == null) {
 			nuvo.setBirthyear("");
 		}
 		
+		// 모바일 공백
 		if(nuvo.getMobile() == null) {
 			nuvo.setMobile("");
 		}
