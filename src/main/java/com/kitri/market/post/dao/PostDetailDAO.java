@@ -2,6 +2,7 @@ package com.kitri.market.post.dao;
 
 import java.util.List;
 
+import com.kitri.market.post.vo.PostCategoryVO;
 import com.kitri.market.post.vo.PostDetailImgVO;
 import com.kitri.market.post.vo.PostDetailReportVO;
 import com.kitri.market.post.vo.PostDetailVO;
@@ -17,7 +18,14 @@ public interface PostDetailDAO {
 	
 	//게시물 업로드
 	public int insertPosting(PostDetailVO pdvo);
+	//게시물 이미지 업로드
+	public int insertImgPosting(PostDetailImgVO pdivo);
+	
+	//카테고리 보기
+	public List<PostCategoryVO> selectCategory();
 	
 	//게시물 수정
 	public int updatePosting(PostDetailVO pdvo);
+	//게시물 이미지 수정
+	
 }

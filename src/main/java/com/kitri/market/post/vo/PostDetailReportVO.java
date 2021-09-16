@@ -4,7 +4,7 @@ public class PostDetailReportVO {
 
 	
 	private int boardid;
-	private String USERID;
+	private String userid;
 	private String img;
 	
 	private int report;
@@ -16,12 +16,15 @@ public class PostDetailReportVO {
 		this.boardid = boardid;
 	}
 	
-	public String getUSERID() {
-		return USERID;
+	
+	
+	public String getUserid() {
+		return userid;
 	}
-	public void setUSERID(String uSERID) {
-		USERID = uSERID;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
+	
 	
 	public String getImg() {
 		return img;

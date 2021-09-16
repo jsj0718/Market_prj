@@ -2,15 +2,16 @@ package com.kitri.market.post.vo;
 
 public class PostCategoryVO {
 	
-	private int categoryId;
+	private int categoryid;
 	private String categoryName;
 	
 	
-	public int getCategoryId() {
-		return categoryId;
+	
+	public int getCategoryid() {
+		return categoryid;
 	}
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryid(int categoryid) {
+		this.categoryid = categoryid;
 	}
 	public String getCategoryName() {
 		return categoryName;

@@ -299,17 +299,17 @@
 		<div class="mt-5 p-5">
 			<!-- 업로드 -->
 		  	<div class="row ">
-		  	<%--   #{title}, #{content}, #{regdate}, #{price}, #{views}, #{flag}--%>
-				<form action="#" method="post" enctype="multipart/form-data" class="row">
+		  		<form action="${pageContext.request.contextPath}/post/write" method="post" enctype="multipart/form-data" class="row" >
 					<!-- 이미지 업로드 -->
 					<div class="mt-2 col-md-2">
 						<div class="upload_box">
-						<label class="input-file-button" for="images">
-							<img class="fit-picture" src="${path}/assets/img/post/camera.png" alt="camera">
+						<%-- <label class="input-file-button" for="images">
+							<img class="fit-picture" src="${pageContext.request.contextPath}/assets/img/post/camera.png" alt="camera">
 							<div class="picture_box">사진</div>
-							<div id="count">(0/5)</div>
-						</label>
-						<input type="file" class="form-control" id="images" name="images" onchange="preview_images(this);" style="display:none;" multiple />
+							<div id="count">(0/1)</div>
+						</label> --%>
+						<input type="file" name="uploadfile" > 
+						<!-- <input type="file" class="form-control" id="images" name="images" onchange="preview_images(this);" style="display:none;" multiple  name="uploadfile"/> -->
 						</div>
 					</div>
 					<!-- 이미지 업로드 미리보기 -->
@@ -319,40 +319,51 @@
 						</div>
 					</div>
 					<!-- 제목 -->
-					<input type="text" class="input_box" placeholder="제목">
+					<input type="text" class="input_box" name="title" id="post_title" placeholder="제목">
 					<!-- 카테고리 -->
-					<select class="input_box">
-						<option value="1" selected="selected" style="display:none">카테고리</option><%-- ${id} ${name} --%>
-						<option value="2">가구</option>
-					    
+					
+					<select class="input_box" name="categoryid" id="categoryid">
+						<option value="0" selected="selected" style="display:none">카테고리</option><%-- ${id} ${name} --%>
+						<option value="1">노트북</option>
+						<option value="2">도서</option>
+						<option value="3">가방</option>
+						<option value="4">주방도구</option>
+						<option value="5">뷰티</option>
+						<option value="6">홈인테리어</option>
+						<option value="7">문구/오피스</option>
+						<option value="8">반려동물용품</option>
+						<option value="9">헬스/건강식품</option>
+						<option value="10">생활용품</option>
+						<option value="11">가전디지털</option>
+						<option value="12">음반/DVD</option>
+						<option value="13">식품</option>
+						<option value="14">출산/유아동</option>
+						<option value="15">자동차용품</option>
 					</select>
 					
 					<!-- 지역 -->
 					<!-- 보여주는 값 -->
 					<input type="text" name="address" id="address" placeholder="우편번호" readonly class="input_box" style="width:50%;"> 
 					<!-- 넘겨주는 값 -->
-					<input type="hidden" name="addressCode" id="addressCode" placeholder="우편번호" readonly> 
+					<input type="hidden" name="addresscode" id="addresscode" placeholder="우편번호" readonly> 
 					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="input_box" style="width:50%;">
 					
 					<!-- 금액 -->
-					<input type="text" class="input_box" placeholder="\">
+					<input type="text" name="price" id="price" class="input_box" placeholder="\">
 					
 					<!-- 내용 -->
-					<textarea class="input_box" placeholder="내용" rows="15px"></textarea>
+					<textarea class="input_box"  name="content" id="content" placeholder="내용" rows="15px"></textarea>
 					
 					<!-- 유저 아이디 -->
-					<input type="hidden" value=""><%-- ${userid} --%>
-					
-					<!-- 날짜 -->
-					<input type="hidden" value=""><%-- ${regdate} --%>
+					<input type="hidden"  name="userid" id="userid" value="test"><%-- ${userid} --%>
 					
 					<!-- 조회수 -->
-					<input type="hidden" value=""><%-- ${view} --%>
+					<%--<input type="hidden" value=""> ${view} --%>
 					
 					<!-- 판매현황 -->
-					<input type="hidden" value="N">
+					<input type="hidden" name="flag" id="flag" value="N">
 					
-					<div class="mt-3 float-right">
+					<div class="mt-3 float-right" >
 					    <input type="submit" class="btn btn-primary finishBtn" name='submit_image' value="완료"/>
 					    <input type="button" class="btn btn-danger" name='delete' value="삭제"/>
 					    <input type="button" class="btn btn-secondary" name='cancel' value="취소"/>

@@ -3,7 +3,7 @@
 <mapper namespace="category">
 
 	<!-- 카테고리 불러오기 -->
-	<!-- 
+	
 	
 	<resultMap  id="categoryMap" type="com.kitri.market.post.vo.PostCategoryVO">
 		<result property="categoryId" column="categoryId"/>
@@ -15,9 +15,8 @@
 			CATEGORYID,
 			CATEGORYNAME
 		FROM CATEGORIES
-		WHERE CATEGORYID = #{categoryId}
 	</select>
 	
-	-->
+	
 	
 </mapper>

@@ -139,17 +139,17 @@
 	
 	
 	<script>
-		var userid = '${post.USERID}';
+		var userid = '${post.userid}';
 		var boardid = '${post.boardid}';
 		var img = '${post.img}';
-		var postUserId = '${post.USERID}';
-		var reportUserId = '${report.USERID}';
+		var postUserId = '${post.userid}';
+		var reportUserId = '${report.userid}';
 		var title = '${post.title}';
-		var category = '${post.CATEGORYID}';
-		var addrcode = '${post.ADDRESSCODE}';
+		var category = '${post.categoryid}';
+		var addrcode = '${post.addresscode}';
 		var content = '${post.content}';
 		var price = '${post.price}';
-		var views = '${post.views}';		
+		var views = '${post.views}';
 		var flag = '${post.flag}';
 		var regdate = '${post.regdate}';
 		var userimg = '${report.img}';
@@ -165,10 +165,7 @@
 		console.log("flag : ", flag);
 		console.log("views : ", views);
 		console.log("regdate : ", regdate);
-		console.log("userImg : ", userimg);
-		
-		
-					
+		console.log("userImg : ", userimg);	
 	</script>
 	
 </head>
@@ -286,14 +283,14 @@
 			                    			<img src="${path}/assets/img/post/up-arrow-blue.png" alt="${report.img}">
 										</c:if>
 										<c:if test="${not empty report.img}">
-											<img src="${path}/assets/img/post/user.png" alt="${report.img}">
+											<img src="${path}/assets/img/post/defaultProfile.png" alt="${report.img}">
 										</c:if>
 	                        		</div>
 	                        	</div>
 	                        	
 	                        	<div class="row col-md-11 mt-2">
 		                        	<div class="col-md-10">	                        	
-			                        	${post.USERID}
+			                        	${post.userid}
 		                        	</div>
 		                        	<!-- 신고당한 횟수 -->
 		                        	<div class=" col-md-2" >
@@ -390,7 +387,7 @@
 		</div>
 		<!-- FOOTER -->
 		<footer class="container">
-			<p class="float-end w-10 mb-5"><a href="#"><img src="${pageContext.request.contextPath}/resources/img/up-arrow.png"></a></p>
+			<p class="float-end w-10 mb-5"><a href="#"><img src="${path}/assets/img/post/up-arrow.png"></a></p>
 			
 		</footer>
 	</main>
