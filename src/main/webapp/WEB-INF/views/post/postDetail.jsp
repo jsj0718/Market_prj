@@ -16,8 +16,7 @@
 	<style>
 		/*-------header css-------*/
 		@import
-		  url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap')
-		  ;
+		url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap');
 		
 		body {
 		  font-family: 'Nanum Gothic', sans-serif;
@@ -140,17 +139,17 @@
 	
 	
 	<script>
-		var userid = '${post.USERID}';
+		var userid = '${post.userid}';
 		var boardid = '${post.boardid}';
 		var img = '${post.img}';
-		var postUserId = '${post.USERID}';
-		var reportUserId = '${report.USERID}';
+		var postUserId = '${post.userid}';
+		var reportUserId = '${report.userid}';
 		var title = '${post.title}';
-		var category = '${post.CATEGORYID}';
-		var addrcode = '${post.ADDRESSCODE}';
+		var category = '${post.categoryid}';
+		var addrcode = '${post.addresscode}';
 		var content = '${post.content}';
 		var price = '${post.price}';
-		var views = '${post.views}';		
+		var views = '${post.views}';
 		var flag = '${post.flag}';
 		var regdate = '${post.regdate}';
 		var userimg = '${report.img}';
@@ -166,27 +165,7 @@
 		console.log("flag : ", flag);
 		console.log("views : ", views);
 		console.log("regdate : ", regdate);
-		console.log("userImg : ", userimg);
-		
-		
-		function report() { 
-			
-			
-			location.href='userReport';
-			/*신고 한번만 
-			//세션유효하면
-			if(){
-				//본인 세션 id와 신고한사람 id
-				if(){
-					
-				}
-				
-			}else{
-				//회원가입
-			} 
-			*/
-		}
-					
+		console.log("userImg : ", userimg);	
 	</script>
 	
 </head>
@@ -255,36 +234,24 @@
 		  	<c:forEach items="${pdList}" var="pdvo" varStatus="status">
 			    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="${status.count -1}" class="active" aria-current="true" aria-label="${pdvo.img}"></button>
 		    </c:forEach> 
-		    <%-- 
-		    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="${pdvo.img}"></button>
-		    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-		    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> 
-		     --%>
+		    
 		  </div>
 		  <div class="carousel-inner">
 		  	<c:forEach items="${pdList}" var="pdvo" varStatus="status">
 			  	<c:if test="${status.count == 1}">
 				    <div class="carousel-item active">			    		
-						<img class="d-block w-100 h-75" src="${pageContext.request.contextPath}/resources/img/${pdvo.img}" alt="${status.count}">
+						<img class="d-block w-100 h-75" src="${path}/assets/img/post/${pdvo.img}" alt="${status.count}">
+						
 				    </div>
 				</c:if>
 				<c:if test="${status.count > 1}">
 					<div class="carousel-item">	    		
-						<img class="d-block w-100 h-75" src="${pageContext.request.contextPath}/resources/img/${pdvo.img}" alt="${status.count}">
+						<img class="d-block w-100 h-75" src="${path}/assets/img/post/${pdvo.img}" alt="${status.count}">
 					</div>
 				</c:if>
 		    </c:forEach>
 		     
-		    <%-- <div class="carousel-item active">
-				<img class="d-block w-100 h-75" src="${pageContext.request.contextPath}/resources/img/Desert_Water_source_2021.jpg" alt="first slide">
-		    </div>
-		    <div class="carousel-item">
-				<img class="d-block w-100 h-75" src="${pageContext.request.contextPath}/resources/img/Desert_Water_source_2021.jpg" alt="Second slide">
-		    </div>
-		    <div class="carousel-item">
-				<img class="d-block w-100 h-75" src="${pageContext.request.contextPath}/resources/img/Inner_Mongolia_Alxa_Swan_Lake_Desert.jpg" alt="Third slide">
-		      
-		    </div>  --%>
+		    
 		    
 		  </div>
 		  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -313,17 +280,17 @@
 	                        		
 	                        		<div style="width: 50px;">	
 	                        			<c:if test="${empty report.img}">
-			                    			<img src="${pageContext.request.contextPath}/resources/img/up-arrow-blue.png" alt="${report.img}">
+			                    			<img src="${path}/assets/img/post/up-arrow-blue.png" alt="${report.img}">
 										</c:if>
 										<c:if test="${not empty report.img}">
-											<img src="${pageContext.request.contextPath}/resources/img/user.png" alt="${report.img}">
+											<img src="${path}/assets/img/post/defaultProfile.png" alt="${report.img}">
 										</c:if>
 	                        		</div>
 	                        	</div>
 	                        	
 	                        	<div class="row col-md-11 mt-2">
 		                        	<div class="col-md-10">	                        	
-			                        	${post.USERID}
+			                        	${post.userid}
 		                        	</div>
 		                        	<!-- 신고당한 횟수 -->
 		                        	<div class=" col-md-2" >
@@ -339,15 +306,6 @@
 	                        	</div>
 	                        	
 	                        </div>
-                        	<%-- 
-                        	<div class="col-md-8 row">       
-                        		<!-- 사용자 ID -->                 	
-		                        <div class="col-md-10 h5"><div class="post-subtitle p-4">${post.USERID}</div></div>
-		                        <div class="col-md-2">
-				                        <input type="button" class="btn btn-danger mt-3 ml-5 mb-3" value="신고" id="report" onclick="report()">
-		                        </div>
-                        	</div> 
-                        	--%>
                         	
                         	</div>
                         </div>
@@ -429,7 +387,7 @@
 		</div>
 		<!-- FOOTER -->
 		<footer class="container">
-			<p class="float-end w-10 mb-5"><a href="#"><img src="${pageContext.request.contextPath}/resources/img/up-arrow.png"></a></p>
+			<p class="float-end w-10 mb-5"><a href="#"><img src="${path}/assets/img/post/up-arrow.png"></a></p>
 			
 		</footer>
 	</main>

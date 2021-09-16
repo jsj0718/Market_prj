@@ -4,9 +4,9 @@ public class PostDetailVO {
 
 	
 	private int boardid;
-	private String USERID;
-	private int CATEGORYID;
-	private String ADDRESSCODE;
+	private String userid;
+	private int categoryid;
+	private String addresscode;
 	private String title;
 	private String content;
 	private String regdate;
@@ -23,25 +23,27 @@ public class PostDetailVO {
 		this.boardid = boardid;
 	}
 	
-	public String getUSERID() {
-		return USERID;
+	
+	public String getUserid() {
+		return userid;
 	}
-	public void setUSERID(String uSERID) {
-		USERID = uSERID;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	
-	public int getCATEGORYID() {
-		return CATEGORYID;
-	}
-	public void setCATEGORYID(int cATEGORYID) {
-		CATEGORYID = cATEGORYID;
-	}
 	
-	public String getADDRESSCODE() {
-		return ADDRESSCODE;
+	
+	public int getCategoryid() {
+		return categoryid;
 	}
-	public void setADDRESSCODE(String aDDRESSCODE) {
-		ADDRESSCODE = aDDRESSCODE;
+	public void setCategoryid(int categoryid) {
+		this.categoryid = categoryid;
+	}
+	public String getAddresscode() {
+		return addresscode;
+	}
+	public void setAddresscode(String addresscode) {
+		this.addresscode = addresscode;
 	}
 	public String getTitle() {
 		return title;

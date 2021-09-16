@@ -31,15 +31,18 @@
 
 <!-- 페이징처리, 신고 5회이상 유저 총 갯수 -->	
 	<select id="fiveCount" resultType="int" >
+		<![CDATA[
 		SELECT COUNT(*)
 		FROM (
 		        SELECT USERID, REPORT
 		        FROM MUSER
 		        WHERE REPORT >= 5)
+		]]>
 	</select>
 	
 <!--페이징처리, 신고 5회 이상인 유저리스트 -->
 	<select id="fiveList" resultType="com.kitri.market.admin.vo.AdminBlacklistVO">
+		<![CDATA[
 		SELECT USERID, REPORT,FLAG
 		FROM (SELECT USERID, REPORT, FLAG,
 		            ROW_NUMBER() OVER(ORDER BY REPORT DESC)AS RNUM
@@ -48,6 +51,7 @@
 		            )MB
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY REPORT DESC    
+		]]>
 	</select>
 <!-- 신고 5회 이상인 유저 삭제 -->
 	<delete id="fiveDelete">
