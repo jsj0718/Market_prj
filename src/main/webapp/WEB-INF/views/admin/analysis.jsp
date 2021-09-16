@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/assets/css/admin/analysis.css">
+<link rel="stylesheet" href="${path}/assets/css/analysis.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js" integrity="sha512-FoyrIocrD2VGbh1HeDL8s/e+kNw0bl1WQHYlomgPuGe0N8y70F92YFUXW4Bompp9TrScjOiIPDSCM+ID0YXeqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 <script>
@@ -121,7 +121,7 @@ function chart(ctx,type,labels,data, label,x, bglist, hoverlist=[]){
 		              <li><a class="dropdown-item" href="#">회원 정보</a></li>
 		              <li><a class="dropdown-item" href="#">회원 수정</a></li>
 		              <li class="dropdown-divider"></li>
-		              <li><a class="dropdown-item" href="#">로그아웃</a></li>
+		              <li><a class="dropdown-item" href="${path }/logout">로그아웃</a></li>
 		            </ul>
 		          </li>
 		        </ul>

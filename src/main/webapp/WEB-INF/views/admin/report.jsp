@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/assets/css/admin/blacklist.css">
+<link rel="stylesheet" href="${path}/assets/css/blacklist.css">
 <script type="text/javascript">
 
 

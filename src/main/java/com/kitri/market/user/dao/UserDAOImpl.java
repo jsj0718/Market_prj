@@ -20,7 +20,7 @@ public class UserDAOImpl implements UserDAO{
 	
 	// 회원 조회 로그인
 	@Override
-	public UserVO selectUser(UserVO uvo) {
+	public String selectUser(UserVO uvo) {
 		return sqlSession.selectOne("login.selectUser", uvo);
 	}
 	

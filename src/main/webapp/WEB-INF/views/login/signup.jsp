@@ -12,30 +12,70 @@
 		$("#signUpBtn").on("click",function() {
 			let userid = $("#userid").val();
 			let userpw = $("#userpw").val();
+			let repw = $("#repw").val();
 			let name = $("#name").val();
 			let address = $("#address").val();
 			let gender = $("#gender").val();
 			let birth = $("#birth").val();
-			//let myFile = $("#img")[0].files[0].name;
-			let myFile = $("#img").val();
+			
+			let male = $("#M").val();
+			let female = $("#F").val();
+			
 // 			alert(userid);
 // 			alert(myFile);
 
+
+			//id유효성 체크
+            var regex = /^[a-z][a-z\d]{4,11}$/;
+        	var result = regex.exec(userid);
+        	
+        	//pw유효성 체크
+			var regexpw = /^[A-Za-z\d]{8,12}$/;
+			var resultpw = regexpw.exec(userpw);
+            
+			//이름 유효성 체크
+			var regexN = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|]+$/;
+			var resultN = regexN.exec($("#name").val());
+			
 			if(userid == "") {
 				alert("아이디를 입력하세요.");
 				$("#userid").focus();
-				return false;
+			}
+			if(result != null){
+			    $(".id.regex").html("");
+			}else{
+			    $(".id.regex").html("영어 소문자,숫자 4-12자리");
+			    $(".id.regex").css("color","red");
+			    return false;
 			}
 			
 			if(userpw == "") {
 				alert("비밀번호를 입력하세요.");
 				$("#userpw").focus();
+				
+			}
+			if(resultpw != null){
+                $(".pw.regexpw").html("");
+            }else{
+                $(".pw.regexpw").html("영어대소문자,숫자 8-11자리");
+                $(".pw.regexpw").css("color","red");
+                return false;
+            }
+			
+			if(userpw != repw) {
+				alert("비밀번호가 다릅니다.");
+				$("#repw").focus();
 				return false;
 			}
 			
 			if(name == "") {
 				alert("이름를 입력하세요.");
 				$("#name").focus();
+			}
+			if(resultN != null){
+				$(".name.regexN").html("");  
+			}else{
+				$(".name.regexN").html("한글만 입력 가능합니다.");
 				return false;
 			}
 			
@@ -51,14 +91,22 @@
 				return false;
 			}
 			
- 			if(myFile == 0) {
- 				alert("프로필 사진을 선택해 주세요.");
- 				$("#myFile").focus();
+			/* 파일 null check */
+			var fileCK = $("#myFile").val();
+			if(!fileCK){
+			 alert("프로필 사진을 선택해 주세요.");
+			    return;
+			}
+			
+ 		
+ 			if($("#M").is(":checked") == false && $("#F").is(":checked") == false) {
+ 				alert("성별을 선택해 주세요.");
+ 				$("#M").focus();
  				return false;
  			}
  		
 			$.ajax({
-				url: "${pageContext.request.contextPath}/login/idcheck",
+				url: "${pageContext.request.contextPath}/idcheck",
 				type: "post",
 				data: {"userid" : userid},
 				dataType: "json",
@@ -67,6 +115,7 @@
 					console.log(data);
 					if(data) {
 						$("#signUpForm").submit();
+						alert(name);
 						alert("회원가입 완료.");
 					} else {
 						$("#idCheckMsg").css("color","red");
@@ -88,7 +137,18 @@
 // 			});
 		});
 	});
-
+	
+	/* var male= Document.getElementById("#M");
+	var female =Document.getElementById("#F");
+	
+	console.log(male);
+	console.log(female);
+	
+	if( value2 == ""){ 
+		console.log("비어 있음"); 
+	} else{ 
+		console.log("값이 있음"); }
+ */
 </script>
 
 <script>
@@ -129,28 +189,36 @@
 <!-- 					</form> -->
 
 					<form
-						action="${pageContext.request.contextPath}/login/signup-regist"
+						action="${pageContext.request.contextPath}/signup-regist"
 						id="signUpForm" method="post" enctype="multipart/form-data">
 						
 						<div>
-							<input type="file" name="uploadfile" > 
+							<input type="file" name="uploadfile" id="myFile"> 
 <!-- 								<input type="submit" value="이미지업로드" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"> -->
 						</div>
 
 						<div>
 							<input type="text" name="userid" id="userid" placeholder="아이디"
 								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+            				<div class="id regex"></div>
 						</div>
 
 						<div>
 							<input type="password" name="userpw" id="userpw"
 								placeholder="비밀번호"
 								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+							<div class="pw regexpw"></div>
+						</div>
+						<div>
+							<input type="password" name="repw" id="repw"
+								placeholder="비밀번호 중복확인"
+								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
 						</div>
 
 						<div>
 							<input type="text" name="name" id="name" placeholder="이름"
 								class="mt-1 block w-full border- bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+								<div class="name regexN"></div>
 						</div>
 
 						<div >
@@ -159,10 +227,10 @@
 								onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
 								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
 						</div>
-						<div class="text-center">
-						<label><input type="radio" name="gender" value="남" />남</label> <label><input
-							type="radio" name="gender" value="여" />여</label>
-							</div>
+						<div class="text-center" id="gender">
+							<label><input type="radio" name="gender" id="M" value="male" />남</label> 
+							<label><input type="radio" name="gender" id="F" value="female" />여</label>
+						</div>
 
 						<div>
 							<input type="date" name="birth" id="birth" placeholder="생년월일"
@@ -170,6 +238,11 @@
 						</div>
 						<span id="idCheckMsg"></span>
 					</form>
+
+					<script>
+					$(function(){
+			          
+					</script>
 
 					<div class="mt-7">
 						<input type="button" id="signUpBtn" value="가입"

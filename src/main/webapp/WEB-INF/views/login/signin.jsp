@@ -25,18 +25,20 @@
 			}
 			
 			$.ajax({
-				url: "${pageContext.request.contextPath}/login/signincheck",
+				url: "${pageContext.request.contextPath}/signincheck",
 				type: "post",
 				data: {"userid": userid, "userpw": userpw},
-				dataType:"json",
+				dataType:"text",
 				
 				success:function(data) {
-					if(data) {
-						window.location.replace("${pageContext.request.contextPath}/user/user");
+					if(data != null) {
+						window.location.replace("${pageContext.request.contextPath}/index");
+						alert
 						alert("환영합니다.");
-					} else if(data == "admin") {
-						window.location.replace("${pageContext.request.contextPath}/login/signup");
-						alert("관리자페이지로 이동합니다.");
+						if(data == "admin"){
+							window.location.replace("${pageContext.request.contextPath}/admin");
+							alert("관리자페이지로 이동합니다.");
+						}
 					} else {
 						$("#signInMsg").css("color","red");
 						$("#signInMsg").css("font-size","15px");
@@ -45,7 +47,7 @@
 				},
 				
 				error:function(request, status, error) {
-				
+					console.log(error);
 				}
 				
 			});
@@ -60,7 +62,7 @@
 <section class="flex flex-col md:flex-row h-screen items-center">
 
   <div class="lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-    <img src="${pageContext.request.contextPath}/resources/img/잔망얼굴.jpg" alt="" class="w-screen h-screen">
+    <img src="${pageContext.request.contextPath}/assets/img/user/잔망얼굴.jpg" alt="" class="w-screen h-screen">
   </div>
 
   <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
@@ -79,12 +81,12 @@
 
         <div class="mt-4">
           <label class="block text-gray-700">Password</label>
-          <input type="password" name="userpw" id="userpw" placeholder="바밀번호" minlength="6" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+          <input type="password" name="userpw" id="userpw" placeholder="비밀번호" minlength="6" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
                 focus:bg-white focus:outline-none" required>
         </div>
 
         <div class="text-right mt-2">
-          <a href="${pageContext.request.contextPath}/login/signup" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">회원가입</a>
+          <a href="${pageContext.request.contextPath}/signup" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">회원가입</a>
         </div>
 
         <input type="button" id="signInBtn" class="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
@@ -100,11 +102,11 @@
 				<script type="text/javascript">
 					var naver_id_login = new naver_id_login(
 							"BS1ec9u_kYL0nHmx8MGJ",
-							"http://localhost:8080/market/login/naverlogin");
+							"http://localhost:8080/market/naverlogin");
 					var state = naver_id_login.getUniqState();
 					naver_id_login.setButton("green", 3, 60);
 					naver_id_login
-							.setDomain("http://localhost:8080/market/login/signin");
+							.setDomain("http://localhost:8080/market/signin");
 					naver_id_login.setState(state);
 					//  				naver_id_login.setPopup();
 					naver_id_login.init_naver_id_login();

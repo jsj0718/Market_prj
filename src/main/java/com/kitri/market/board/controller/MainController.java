@@ -40,7 +40,7 @@ public class MainController {
         List<MainVO> categoryList = mainService.getCategory();
         model.addAttribute("categoryList", categoryList);
         
-        return "index";
+        return "main/index";
     }
     
     
@@ -55,7 +55,7 @@ public class MainController {
 //        System.out.println("addresscode: "+ addresscode);
 //        System.out.println("Flag: " + registFlag);
         
-        return "redirect:/index";
+        return "redirect:main/index";
     }
     
     //선택된 동네의 게시물만 불러오기 (AJAX통신)

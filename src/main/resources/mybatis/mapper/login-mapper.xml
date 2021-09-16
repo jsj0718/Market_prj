@@ -19,14 +19,14 @@
 	</resultMap>
 	
 	<!-- 회원조회 -->
-	<select id="selectUser" resultMap="loginMap">
-		SELECT * FROM MUSER
+	<select id="selectUser" resultType="string" parameterType="com.kitri.market.user.vo.UserVO">
+		SELECT USERID FROM MUSER
 		WHERE USERID = #{userid}
 		AND USERPW = #{userpw}
 	</select>
 	
 	<!-- id 중복체크 -->
-	<select id="selectIdCheck" resultType="int"> 
+	<select id="selectIdCheck" resultType="int">
 		SELECT COUNT(*) FROM MUSER
 		WHERE USERID = #{userid}
 	</select>
