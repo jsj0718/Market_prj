@@ -50,6 +50,15 @@ public class User {
 		return userid;
 	}
 	
+	//로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		if(session.getAttribute("userid") != null) {
+			session.removeAttribute("userid");
+		}
+		return "redirect:/login/signin";
+	}
+	
 	// 회원가입 페이지 이동
 	@RequestMapping("/signup")
 	public String signup() {

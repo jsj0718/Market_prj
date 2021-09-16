@@ -121,7 +121,7 @@ function chart(ctx,type,labels,data, label,x, bglist, hoverlist=[]){
 		              <li><a class="dropdown-item" href="#">회원 정보</a></li>
 		              <li><a class="dropdown-item" href="#">회원 수정</a></li>
 		              <li class="dropdown-divider"></li>
-		              <li><a class="dropdown-item" href="#">로그아웃</a></li>
+		              <li><a class="dropdown-item" href="${path }/login/logout">로그아웃</a></li>
 		            </ul>
 		          </li>
 		        </ul>

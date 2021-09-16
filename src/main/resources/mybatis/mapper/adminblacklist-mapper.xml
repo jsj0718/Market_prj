@@ -47,7 +47,7 @@
 		            WHERE REPORT >= 5
 		            )MB
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY REPORT DESC    
+		ORDER BY REPORT DESC   
 	</select>
 <!-- 신고 5회 이상인 유저 삭제 -->
 	<delete id="fiveDelete">

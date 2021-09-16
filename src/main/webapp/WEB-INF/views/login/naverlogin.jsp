@@ -55,7 +55,7 @@
 	         success:function(data) {
 	        	 console.log(data);
 	        	 
-	        	 window.location.replace("${pageContext.request.contextPath}/user/user");
+	        	 window.location.replace("${pageContext.request.contextPath}/index");
 	       
 	         }, 
 	         error: function(request, status, error) {

@@ -44,6 +44,11 @@
 				$("#address").focus();
 				return false;
 			}
+			
+			if(gender == "") {
+				$("#gender").focus();
+				return false;
+			}
 						
 			if(birth == "") {
 				alert("생년월일을 입력하세요.");
@@ -67,6 +72,7 @@
 					console.log(data);
 					if(data) {
 						$("#signUpForm").submit();
+						alert(gender);
 						alert("회원가입 완료.");
 					} else {
 						$("#idCheckMsg").css("color","red");
@@ -160,8 +166,8 @@
 								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
 						</div>
 						<div class="text-center">
-						<label><input type="radio" name="gender" value="남" />남</label> <label><input
-							type="radio" name="gender" value="여" />여</label>
+						<label><input type="radio" name="gender" value="male" />남</label> 
+						<label><input type="radio" name="gender" value="female" />여</label>
 							</div>
 
 						<div>

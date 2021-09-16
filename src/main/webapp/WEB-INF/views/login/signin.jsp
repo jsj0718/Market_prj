@@ -33,6 +33,7 @@
 				success:function(data) {
 					if(data != null) {
 						window.location.replace("${pageContext.request.contextPath}/index");
+						alert
 						alert("환영합니다.");
 						if(data == "admin"){
 							window.location.replace("${pageContext.request.contextPath}/admin/analysis");
