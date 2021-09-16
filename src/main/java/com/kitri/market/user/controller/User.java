@@ -39,14 +39,15 @@ public class User {
 	// 로그인 체크
 	@RequestMapping("/signincheck")
 	@ResponseBody
-	public boolean signincheck(UserVO uvo, HttpSession session) {
-		boolean signinFlag = userService.signinCheckUser(uvo);
+	public String signincheck(UserVO uvo, HttpSession session) {
 		
-		if(signinFlag) {
+		String userid = userService.signinCheckUser(uvo);
+		System.out.println(userid);
+		if(userid != null) {
 			session.setAttribute("userid", uvo.getUserid());
 		}
 		
-		return signinFlag;
+		return userid;
 	}
 	
 	// 회원가입 페이지 이동

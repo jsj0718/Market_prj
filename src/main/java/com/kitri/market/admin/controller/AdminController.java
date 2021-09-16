@@ -28,7 +28,7 @@ public class AdminController {
 	@RequestMapping("/analysis")
 	public String analysis() {
 	  
-		return "analysis";
+		return "admin/analysis";
 	}
 	
 //----------------gender---------
@@ -156,7 +156,7 @@ public class AdminController {
 	  pageMaker.setTotalCount(adminservice.reportCount());
 	  model.addAttribute("pageMaker",pageMaker);
 	  
-	  return "report";
+	  return "admin/report";
 	}
 
 	//레포트 삭제
@@ -187,7 +187,7 @@ public class AdminController {
 	  pageMaker.setTotalCount(adminservice.fiveCount());
 	  model.addAttribute("pageMaker",pageMaker);
 	  
-	  return "blacklist";
+	  return "admin/blacklist";
 	  
 	}
 	//5회이상 유저 삭제
@@ -211,7 +211,7 @@ public class AdminController {
     pageMakerT.setTotalCount(adminservice.threeCount());
     model.addAttribute("pageMakerT",pageMakerT);
     
-    return "blacklist";
+    return "admin/blacklist";
     
 	 }
 	 //3회 이상 경고(업데이트)

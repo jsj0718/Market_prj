@@ -16,21 +16,21 @@ public class UserServiceImpl implements UserService{
 	
 	// 로그인 체크 (T,F)
 	@Override
-	public boolean signinCheckUser(UserVO uvo) {
+	public String signinCheckUser(UserVO uvo) {
 		
-		UserVO vo = userDAO.selectUser(uvo);
-		boolean signinFlag = false;
+		String userid = userDAO.selectUser(uvo);
+//		boolean signinFlag = false;
+//		
+//		// 로그인 됬을 때
+//		if(vo != null) {
+//			signinFlag = true;
+//		
+//		// 아닐 때
+//		} else {
+//			signinFlag = false;
+//		}
 		
-		// 로그인 됬을 때
-		if(vo != null) {
-			signinFlag = true;
-		
-		// 아닐 때
-		} else {
-			signinFlag = false;
-		}
-		
-		return signinFlag;
+		return userid;
 		
 	}
 	
