@@ -11,6 +11,5 @@
     <typeAlias alias="userReport" type="com.kitri.market.chat.vo.UserReportVO"/>
   	<typeAlias alias="main" type="com.kitri.market.board.vo.MainVO"/>
   	<typeAlias alias="user" type="com.kitri.market.user.vo.MyPageVO"/>
-
   </typeAliases>
 </configuration>

@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="blacklist">
 
-
 <!-- 페이징처리, 신고 게시물들 -->	
 	<select id="pagingList" resultType="com.kitri.market.admin.vo.AdminBlacklistVO">
 			SELECT REPORTID, REPORT_TITLE,USERID,REPORT_CONTENT,BOARDID,TITLE
