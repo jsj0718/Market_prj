@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="img">
+	<!-- detail imgList -->
+	<resultMap  id="imgDetailMap" type="com.kitri.market.post.vo.PostDetailImgVO">
+		<result property="boardid" column="boardid"/>
+		<result property="img" column="img"/>
+	</resultMap>
+	
+	<select id="selectImgDetail" resultMap="imgDetailMap">
+		SELECT i.IMG
+		FROM BOARD b, BOARD_IMG i
+		WHERE b.BOARDID = i.BOARDID
+		AND b.BOARDID = #{boardid}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	
+	
+	<!-- 게시글 이미지 수정 -->
+	
+	
+</mapper>
