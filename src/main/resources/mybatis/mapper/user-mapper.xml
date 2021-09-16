@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+  <resultMap type="com.kitri.market.user.vo.MyPageVO" id="userMap">
+    <result property="boardId" column="boardid" />
+    <result property="userId" column="userid" />
+    <result property="buyer" column="buyer" />
+    <result property="title" column="title" />
+    <result property="regdate" column="regdate" />
+    <result property="flag" column="flag" />
+    <result property="addressName" column="addressname"/>
+    <result property="userPw" column="userpw"/>
+    <result property="birth" column="birth"/>
+    <result property="name" column="name"/>
+  </resultMap>
+
+  <!-- 판매중인 내역 -->
+  <select id="selectSellList" resultMap="userMap">
+    SELECT BOARDID, TITLE, REGDATE
+    FROM BOARD
+    WHERE USERID = #{userId}
+    AND FLAG = 'N'
+  </select>
+
+  <!-- 판매완료 내역 -->
+  <select id="selectSoldoutList" resultMap="userMap">
+    SELECT BOARDID, TITLE, REGDATE, BUYER
+    FROM BOARD
+    WHERE USERID = #{userId}
+    AND FLAG = 'Y'
+  </select>
+  
+   <!-- 구매내역 -->
+  <select id="selectBuyList" resultMap="userMap">
+    SELECT BOARDID, TITLE, REGDATE
+    FROM BOARD
+    WHERE BUYER = #{userId}
+    AND FLAG = 'Y'
+  </select>
+  
+  <!-- user 동네 리스트 -->
+   <select id="myAddressList" resultMap="userMap">
+      SELECT A.ADDRESSNAME, U.USERID
+      FROM ADDRESS A, USER_ADDRESS U
+      WHERE A.ADDRESSCODE = U.ADDRESSCODE
+      AND USERID = #{userId}
+   </select>
+   
+<!--user 동네 삭제  -->
+   <delete id="myAddressDelete" parameterType="com.kitri.market.user.vo.MyPageVO">
+      DELETE FROM USER_ADDRESS
+       WHERE ADDRESSCODE = (SELECT ADDRESSCODE FROM ADDRESS
+                           WHERE ADDRESSNAME = #{addressName}
+                           AND USERID = #{userId})
+   </delete>
+
+<!-- 회원 정보 -->
+   <select id="userInfo" resultMap="userMap">
+      SELECT USERID, USERPW, NAME, BIRTH
+      FROM MUSER
+      WHERE USERID = #{userId}
+   </select>
+<!-- 회원 수정 -->
+   <update id="userUpdate" parameterType="com.kitri.market.user.vo.MyPageVO">
+      UPDATE MUSER SET
+      USERPW = #{userPw},
+      NAME = #{name}
+      WHERE USERID = #{userId}
+   
+   </update>
+   
+<!-- 회원 탈퇴 -->
+   <delete id="userDelete" parameterType="com.kitri.market.user.vo.MyPageVO">
+      DELETE FROM MUSER
+      WHERE USERID= #{userId}
+   
+   </delete>   
+
+
+</mapper>

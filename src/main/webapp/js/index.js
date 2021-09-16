@@ -34,7 +34,7 @@ function addLocation() {
 				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
 				// 예제를 참고하여 다양한 활용법을 확인해 보세요.
 				let addresscode = data.bcode; // 최종 주소 변수
-				let name = data.sido + " " + data.sigungi + " " + data.bname + " ";
+				let name = data.sido + " " + data.sigungu + " " + data.bname + " ";
 				//				console.log("code: " + code);
 				//				console.log("name: " + name);
 
@@ -80,7 +80,7 @@ function getLocation() {
 							+ " <p class='text-sm mt-2 text-gray-700'> "+data[i].regdate+ "</p>"
 							+ " <div class='mt-4 mb-2 flex justify-between pl-4 pr-2'>"
 							+ "   <button class='block text-xl font-semibold text-gray-700 cursor-auto'> "+data[i].price+ "원</button>"
-							+ "   <button class='text-lg block font-semibold py-2 px-6 text-green-100 hover:text-white bg-green-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
+							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
 							+ " </div>"
 							+ "  </div>"
 							+ " </div>";
@@ -122,7 +122,7 @@ function search(){
 							+ " <p class='text-sm mt-2 text-gray-700'> "+data[i].regdate+ "</p>"
 							+ " <div class='mt-4 mb-2 flex justify-between pl-4 pr-2'>"
 							+ "   <button class='block text-xl font-semibold text-gray-700 cursor-auto'> "+data[i].price+ "원</button>"
-							+ "   <button class='text-lg block font-semibold py-2 px-6 text-green-100 hover:text-white bg-green-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
+							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
 							+ " </div>"
 							+ "  </div>"
 							+ " </div>";
@@ -166,7 +166,7 @@ function category(){
 							+ " <p class='text-sm mt-2 text-gray-700'> "+data[i].regdate+ "</p>"
 							+ " <div class='mt-4 mb-2 flex justify-between pl-4 pr-2'>"
 							+ "   <button class='block text-xl font-semibold text-gray-700 cursor-auto'> "+data[i].price+ "원</button>"
-							+ "   <button class='text-lg block font-semibold py-2 px-6 text-green-100 hover:text-white bg-green-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
+							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
 							+ " </div>"
 							+ "  </div>"
 							+ " </div>";

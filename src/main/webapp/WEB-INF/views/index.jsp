@@ -111,6 +111,12 @@
                             <span>채팅</span>
                         </button>
                     </div>
+<!--         마이페이지        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <span>마이페이지</span>
+                        </button>
+                    </div>                    
                    </ul>
               </div>
           </nav>
@@ -135,18 +141,20 @@
   </div>
 
   <h1>우리동네 매물</h1>
-  
+      
+      </div>
 <div class="p-4" id="search-bar">
   <div class="bg-white flex items-center rounded-full shadow-xl">
     <input class="rounded-l-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" id="search-input" type="text" placeholder="게시글검색">
     <div class="p-2">
-      <button id="search-btn" class="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center">
+      <button id="search-btn" class="bg-purple-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center">
         GO
       </button>
       </div>
     </div>
+
   </div>
-</div>
+
   <!--  -------------게시글 LIST-------------- -->
 
   <!-- <div class="min-h-screen bg-gray-100 flex justify-center items-center"> -->
@@ -162,14 +170,23 @@
         <p class="text-sm mt-2 text-gray-700">${mvo.regdate}</p>
         <div class="mt-4 mb-2 flex justify-between pl-4 pr-2">
           <button class="block text-xl font-semibold text-gray-700 cursor-auto">${mvo.price}원</button>
-          <button class="text-lg block font-semibold py-2 px-6 text-green-100 hover:text-white bg-green-400 rounded-lg shadow hover:shadow-md transition duration-300">Buy</button>
+          <button class="text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300">Buy</button>
         </div>
       </div>
     </div>
    </c:forEach>
    
   </div>
-
+      <div class="write-btn">
+        <button
+                class="p-0 w-12 h-12 bg-purple-600 rounded-full hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+          <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
+            <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+                                    C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
+                                    C15.952,9,16,9.447,16,10z" />
+          </svg>
+        </button>
+      </div>
 
 </body>
 </html>
