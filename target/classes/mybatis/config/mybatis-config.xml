@@ -11,5 +11,9 @@
     <typeAlias alias="userReport" type="com.kitri.market.chat.vo.UserReportVO"/>
   	<typeAlias alias="main" type="com.kitri.market.board.vo.MainVO"/>
   	<typeAlias alias="user" type="com.kitri.market.user.vo.MyPageVO"/>
+    <typeAlias type="com.kitri.market.post.vo.PostDetailVO" alias="post"/>
+    <typeAlias type="com.kitri.market.post.vo.PostDetailReportVO" alias="report"/>
+    <typeAlias type="com.kitri.market.post.vo.PostDetailVO" alias="img"/>
   </typeAliases>
+  
 </configuration>
