@@ -19,10 +19,6 @@
 				return;
 			}
 			
-			if(userid == "admin") {
-				alert("관리자용입니다.");
-			}
-			
 			if(userpw == "") {
 				alert("비밀번호를 입력하세요.");
 				return;
@@ -38,6 +34,9 @@
 					if(data) {
 						window.location.replace("${pageContext.request.contextPath}/user/user");
 						alert("환영합니다.");
+					} else if(data == "admin") {
+						window.location.replace("${pageContext.request.contextPath}/login/signup");
+						alert("관리자페이지로 이동합니다.");
 					} else {
 						$("#signInMsg").css("color","red");
 						$("#signInMsg").css("font-size","15px");

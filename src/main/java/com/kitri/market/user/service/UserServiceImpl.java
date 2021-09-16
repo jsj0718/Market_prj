@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kitri.market.user.dao.UserDAO;
+import com.kitri.market.user.vo.UserAddrVO;
 //import com.kitri.market.user.vo.UserInfoVO;
 import com.kitri.market.user.vo.UserVO;
 
@@ -54,14 +55,15 @@ public class UserServiceImpl implements UserService{
 	
 	// 등록 (1,0)
 	@Override
-	public boolean registUser(UserVO uvo) {
+	public boolean registUser(UserVO uvo, UserAddrVO udvo) {
 //		System.out.println(uvo.toString());
 //		System.out.println(uvo.getImg());
 		int result = userDAO.insertUser(uvo);
+		int result1 = userDAO.insertAddr(udvo);
 		boolean registCheckFlag = false;
 		
 		// 정상 회원가입
-		if(result != 0) {
+		if(result != 0 && result1 != 0) {
 			registCheckFlag = true;
 		
 		} else {
@@ -71,18 +73,5 @@ public class UserServiceImpl implements UserService{
 		return registCheckFlag;
 		
 	}
-
-//	@Override
-//	public boolean registAddr(UserInfoVO uivo) {
-//		int result = userDAO.insertAddr(uivo);
-//		boolean registAddrCheck = false;
-//		
-//		if(result != 0) {
-//			registAddrCheck = true;
-//		} else {
-//			registAddrCheck = false;
-//		}
-//		return registAddrCheck;
-//	}
 
 }

@@ -4,13 +4,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kitri.market.user.vo.UserAddrVO;
 //import com.kitri.market.user.vo.UserInfoVO;
 import com.kitri.market.user.vo.UserVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
-	
-	// DAO에서 받고 Service로 보냄
 	
 	/*
 	* mybatis를 이용하여 DAO를 구현하려면 SqlSession 객체가 필요
@@ -37,9 +36,9 @@ public class UserDAOImpl implements UserDAO{
 		return sqlSession.insert("login.insertUser", uvo);
 	}
 
-//	@Override
-//	public int insertAddr(UserInfoVO uivo) {
-//		return sqlSession.insert("userinfo.insertAddr",uivo);
-//	}
+	@Override
+	public int insertAddr(UserAddrVO udvo) {
+		return sqlSession.insert("user-address.insertAddr", udvo);
+	}
 
 }

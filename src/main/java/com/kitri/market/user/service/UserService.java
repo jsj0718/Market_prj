@@ -1,6 +1,6 @@
 package com.kitri.market.user.service;
 
-//import com.kitri.market.user.vo.UserInfoVO;
+import com.kitri.market.user.vo.UserAddrVO;
 import com.kitri.market.user.vo.UserVO;
 
 public interface UserService {
@@ -9,6 +9,5 @@ public interface UserService {
 	
 	public boolean signinCheckUser(UserVO uvo);
 	public boolean idCheck(String userid);
-	public boolean registUser(UserVO uvo);
-//	public boolean registAddr(UserInfoVO uivo);
+	public boolean registUser(UserVO uvo, UserAddrVO udvo);
 }

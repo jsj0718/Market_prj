@@ -79,13 +79,13 @@
 					
 				}
 			});
-			$("#img").on("change",function(){
-	// 			alert("1");
-				var file = $("#img")[0].files[0];
-				var fileName = file.name;
-				var filePaht = file.path;
-	// 			alert(fileName);
-			});
+// 			$("#img").on("change",function(){
+// 	// 			alert("1");
+// 				var file = $("#img")[0].files[0];
+// 				var fileName = file.name;
+// 				var filePaht = file.path;
+// 	// 			alert(fileName);
+// 			});
 		});
 	});
 
@@ -120,17 +120,22 @@
 						class="block mb-3 mt-2 text-3XL text-gray-700 text-center font-semibold">
 						회원가입 </label>
 						
-					<form action="${pageContext.request.contextPath}/login/img-regist"
-						id="imgForm" method="post" enctype="multipart/form-data">
-						<div>
-							<input type="file" name="uploadfile" > <input
-								type="submit" value="이미지업로드" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
-						</div>
-					</form>
+<%-- 					<form action="${pageContext.request.contextPath}/login/img-regist" --%>
+<!-- 						id="imgForm" method="post" enctype="multipart/form-data"> -->
+<!-- 						<div> -->
+<!-- 							<input type="file" name="uploadfile" > <input -->
+<!-- 								type="submit" value="이미지업로드" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"> -->
+<!-- 						</div> -->
+<!-- 					</form> -->
 
 					<form
 						action="${pageContext.request.contextPath}/login/signup-regist"
 						id="signUpForm" method="post" enctype="multipart/form-data">
+						
+						<div>
+							<input type="file" name="uploadfile" > 
+<!-- 								<input type="submit" value="이미지업로드" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"> -->
+						</div>
 
 						<div>
 							<input type="text" name="userid" id="userid" placeholder="아이디"
