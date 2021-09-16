@@ -32,7 +32,7 @@
 				
 				success:function(data) {
 					if(data) {
-						window.location.replace("${pageContext.request.contextPath}/user/user");
+						window.location.replace("${pageContext.request.contextPath}/index");
 						alert("환영합니다.");
 					} else if(data == "admin") {
 						window.location.replace("${pageContext.request.contextPath}/login/signup");

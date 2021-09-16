@@ -7,8 +7,8 @@
 		<title>Editorial by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="${path}/assets/css/user/main.css">
-    <script src="${path}/js/user.js"></script>
+		<link rel="stylesheet" href="${path}/assets/css/main.css">
+    <script src="${path}/assets/js/user.js"></script>
 	</head>
 	<body class="is-preload">
 
@@ -52,17 +52,6 @@
 								        </ul>
 								        <ul class="navbar-nav">
 								          <li><a class="btn" style="color: white;">아이콘</a></li>
-								          <li class="nav-item dropdown">
-								            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-								              회원 정보
-								            </a>
-								            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-								              <li><a class="dropdown-item" href="#" style="color: white;">회원 정보</a></li>
-								              <li><a class="dropdown-item" href="#">회원 수정</a></li>
-								              <li class="dropdown-divider"></li>
-								              <li><a class="dropdown-item" href="#">로그아웃</a></li>
-								            </ul>
-								          </li>
 								        </ul>
 								      </div>
 								    </div>
@@ -77,7 +66,7 @@
 										<h2>My Page</h2>
 									</header>
 									<div id="box" class="features">
-									   <img src="resources/img/mypage.jpg" alt="이미지" style="margin: 0 auto;" />
+									   <img src="assets/img/mypage/mypage.jpg" alt="이미지" style="margin: 0 auto;" />
                
 									</div>
 									<div id="mypage-info" class="features">
@@ -149,11 +138,11 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+<!-- 			<script src="assets/js/jquery.min.js"></script> -->
+<!-- 			<script src="assets/js/browser.min.js"></script> -->
+<!-- 			<script src="assets/js/breakpoints.min.js"></script> -->
+<!-- 			<script src="assets/js/util.js"></script> -->
+<!-- 			<script src="assets/js/main.js"></script> -->
 
 	</body>
 </html>

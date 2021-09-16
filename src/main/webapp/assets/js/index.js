@@ -73,7 +73,7 @@ function getLocation() {
 				let html = "";
 				for(let i=0; i<data.length; i++){
 				html  += "<div class='w- p-6 m-10 bg-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500'>"
-						  + "<img class='w-64 object-cover rounded-t-md' src='resources/img/1.png' alt='이미지' />"
+						  + "<img class='w-64 object-cover rounded-t-md' src='"+data[i].img+"' alt='이미지' />"
 							+ " <div class='mt-4'>"
 							+ "  <h1 class='text-2xl font-bold text-gray-700'> "+data[i].title+ " </h1>"
 							+ "  <p class='text-base mt-2 text-gray-700'> "+data[i].addressName+ " </p>"
@@ -115,7 +115,7 @@ function search(){
 				let html = "";
 				for(let i=0; i<data.length; i++){
 				html  += "<div class='w- p-6 m-10 bg-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500'>"
-						  + "<img class='w-64 object-cover rounded-t-md' src='resources/img/1.png' alt='이미지' />"
+						  + "<img class='w-64 object-cover rounded-t-md' src='"+data[i].img+"' alt='이미지' />"
 							+ " <div class='mt-4'>"
 							+ "  <h1 class='text-2xl font-bold text-gray-700'> "+data[i].title+ " </h1>"
 							+ "  <p class='text-base mt-2 text-gray-700'> "+data[i].addressName+ " </p>"
@@ -159,7 +159,7 @@ function category(){
 				let html = "";
 				for(let i=0; i<data.length; i++){
 				html  += "<div class='w- p-6 m-10 bg-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500'>"
-						  + "<img class='w-64 object-cover rounded-t-md' src='resources/img/1.png' alt='이미지' />"
+						  + "<img class='w-64 object-cover rounded-t-md' src='"+data[i].img+"' alt='이미지' />"
 							+ " <div class='mt-4'>"
 							+ "  <h1 class='text-2xl font-bold text-gray-700'> "+data[i].title+ " </h1>"
 							+ "  <p class='text-base mt-2 text-gray-700'> "+data[i].addressName+ " </p>"

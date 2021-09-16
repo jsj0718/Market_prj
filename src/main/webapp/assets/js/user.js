@@ -32,7 +32,7 @@ function sell() {
 				let html2 = "";
 				
 				      html1= '<h3>판매중인 상품</h1>'
-							 +	'<img src="resources/img/mypage3.jpg" alt="이미지" style="margin: 0 auto;" />'
+							 +	'<img src="assets/img/mypage/mypage3.jpg" alt="이미지" style="margin: 0 auto;" />'
 							 +		'<table>'
                +      '<thead>'
                +          '<tr>'
@@ -90,7 +90,7 @@ let html1 = "";
 				let html2 = "";
 				
 				      html1= '<h3>판매 완료 상품</h1>'
-							 +	'<img src="resources/img/mypage2.jpg" alt="이미지" style="margin: 0 auto;" />'
+							 +	'<img src="assets/img/mypage/mypage2.jpg" alt="이미지" style="margin: 0 auto;" />'
 							 +		'<table>'
                +      '<thead>'
                +          '<tr>'
@@ -150,7 +150,7 @@ function buy() {
 				let html2 = "";
 				
 				      html1= '<h3>구매 내역</h1>'
-							 +	'<img src="resources/img/mypage4.jpg" alt="이미지" style="margin: 0 auto;" />'
+							 +	'<img src="assets/img/mypage/mypage4.jpg" alt="이미지" style="margin: 0 auto;" />'
 							 +		'<table>'
                +      '<thead>'
                +          '<tr>'

@@ -27,6 +27,7 @@
     AND B.ADDRESSCODE = MU.ADDRESS
     AND B.BOARDID = BI.BOARDID
     AND B.ADDRESSCODE = A.ADDRESSCODE
+    AND B.FLAG = 'N'
   </select>
   
   
@@ -39,6 +40,7 @@
                            WHERE ADDRESSNAME = #{addressName})
     AND B.ADDRESSCODE = A.ADDRESSCODE
     AND B.BOARDID = BI.BOARDID
+    AND B.FLAG = 'N'
   </select>
   
   
@@ -67,6 +69,7 @@
     WHERE B.TITLE LIKE '%'||#{title}||'%'
     AND B.ADDRESSCODE = A.ADDRESSCODE
     AND B.BOARDID = BI.BOARDID
+    AND B.FLAG = 'N'
   </select>
   
   
@@ -84,6 +87,7 @@
                           WHERE CATEGORYNAME = #{categoryName})
     AND B.ADDRESSCODE = A.ADDRESSCODE
     AND B.BOARDID = BI.BOARDID
+    AND B.FLAG = 'N'
     ORDER BY BOARDID
   </select>
   
