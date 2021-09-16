@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap');
+   body{
+      font-family: 'Nanum Gothic', sans-serif;
+      background-color: #F1F2F5;
+      
+   }
+   #header{
+   	background-color: white;
+   }
+   #space{
+      height: 50px;
+   }
+   #title{
+      font-size: 30px;
+      text-align: center;
+   }
+   #nav, .btn, .nav-link{
+      color: white;
+   }
+   .btn,.nav-link:hover{
+      color: white;
+      text-shadow: 1px 1px 1px white;
+   }
+   #blackListA,#analysisA{
+      margin: 0 10px;
+      width: 10px;
+      text-align: center;
+      font-size: 20px;
+   }
+   .listBtn{
+      background-color: #FFF7F1;
+      border-radius: 5px;
+      margin: 20px auto;
+      padding: 6px;
+      color: gray;
+      box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+   }
+   .listBtn:hover{
+      background-color: #F6EBE7;
+      color: black;
+   }
+   .fas{
+      margin: 0 10px;
+      color:  gray;
+   }
+  .searchBox{
+ 			margin-left: 300px;  
+   }
+ 	.searchInput{
+ 		border: 1px solid gray;
+ 		height: 25px;
+ 		border-radius: 2px;
+ 	}
+   
+   table {
+      margin: 0 auto;
+      border-width: 1px;
+      color: rgba(0,0,0,0.6);
+      text-align: center;   
+   }
+   h1{
+      font-size: 20px;
+      text-align: center;
+      margin-top:20px;
+      margin-bottom:20px;
+   }
+   th{
+      width: 120px;
+      text-align: center;
+   }
+   tr:hover{
+      color: black;
+      font-weight: 4px;
+      background-color: rgba(255,0,0,0.2);
+      
+   }
+   #reportBtn{
+   	background-color: rgba(255,0,0,0.2);
+   }
+
+

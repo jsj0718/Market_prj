@@ -15,6 +15,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/upload/**" location="/uploadfolder/" />
+	<resources mapping="/assets/**" location="/assets/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -25,26 +26,26 @@
 	<context:component-scan base-package="com.kitri.market" />
 	<context:property-placeholder location="classpath:mybatis/db.properties"/>
 	
-<!-- 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
-<!--       <beans:property name="driverClassName" value="${driver}" /> -->
-<!--       <beans:property name="url" value="${url}"/> -->
-<!--       <beans:property name="username" value="${user}"/> -->
-<!--       <beans:property name="password" value="${password}"/> -->
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+      <beans:property name="driverClassName" value="${driver}" />
+      <beans:property name="url" value="${url}"/>
+      <beans:property name="username" value="${user}"/>
+      <beans:property name="password" value="${password}"/>
 <!--                               value에는 db.properties의 변수명들을 기입 -->
-<!--    </beans:bean> -->
+   </beans:bean>
    
-   <!-- 아래 bean의 property 중 dataSource는 위에서 만든 bean dataSource와 같다 -->
-<!--    <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
-<!--       <beans:property name="dataSource" ref="dataSource"></beans:property> -->
-<!--       <beans:property name="configLocation" value="classpath:mybatis/config/mybatis-config.xml"></beans:property> -->
-<!--       <beans:property name="mapperLocations" value="classpath:mybatis/mapper/*-mapper.xml"></beans:property> -->
+<!--    아래 bean의 property 중 dataSource는 위에서 만든 bean dataSource와 같다 -->
+   <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <beans:property name="dataSource" ref="dataSource"></beans:property>
+      <beans:property name="configLocation" value="classpath:mybatis/config/mybatis-config.xml"></beans:property>
+      <beans:property name="mapperLocations" value="classpath:mybatis/mapper/*-mapper.xml"></beans:property>
    
-<!--    </beans:bean> -->
+   </beans:bean>
    
-<!--    <beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache"> -->
-<!--       <beans:constructor-arg name ="sqlSessionFactory" ref="sqlSessionFactory"/> -->
+   <beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+      <beans:constructor-arg name ="sqlSessionFactory" ref="sqlSessionFactory"/>
    
-<!--    </beans:bean> -->
+   </beans:bean>
 <!--    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
 <!--       <beans:property name="maxUploadSize" value="20000000"/> -->
 <!--       <beans:property name="maxInMemorySize" value="20000000"/> -->
