@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap');
+   body{
+      font-family: 'Nanum Gothic', sans-serif;
+      background-color: #F1F2F5;
+      
+   }
+/*     fixed 된 네브바와 sub 네브바 공간 확보용  */
+   #space{
+      height: 50px;
+   }
+   
+/*     navbar  */
+   #nav, .btn, .nav-link{
+      color: white;
+   }
+   .btn,.nav-link:hover{
+      color: white;
+      text-shadow: 1px 1px 1px white;
+   }
+/*   서브네브바  */
+   #blackListA,#analysisA{
+      margin: 0 10px;
+      width: 10px;
+      text-align: center;
+      font-size: 20px;
+   }
+   #navigator{
+   	margin: 0 auto;
+   }
+/*    서브네브바 하위 네브바 */
+   .analysisMove{
+   	  font-size: 12px;
+   	  margin-top: 15px;
+   	  margin: 0 15px;
+   	  color: gray;
+   	 
+   }
+   .analysisMove:hover{
+   	  color: black;
+   	  font-weight: bold;
+   }
+
+/*  content내용란 */
+   .fas{
+      margin: 0 10px;
+      color:  gray;
+   }
+
+   

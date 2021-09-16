@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminchart">
+		<resultMap type="com.kitri.market.admin.vo.AdminAnalysisVO" id="analysis">
+			<result property="gender" column="gender"/>
+			<result property="reg" column="reg"/>
+			<result property="name" column="name"/>
+			<result property="categoryname" column="categoryname"/>
+			<result property="agerange" column="agerange"/>
+			<result property="count" column="count"/>
+		</resultMap>
+		
+		<!-- 유저 성별 -->
+		<select id="userGenderChart" resultMap="analysis">
+			SELECT GENDER,COUNT(*) AS COUNT
+			FROM MUSER
+			GROUP BY GENDER
+			ORDER BY COUNT
+		
+		</select>
+		
+		<!-- 유저 나이대별 -->
+		<select id="userAgeChart" resultMap="analysis">
+			SELECT AGERANGE, COUNT(*) AS COUNT
+			FROM
+				(
+				SELECT
+					FLOOR((TO_CHAR(SYSDATE, 'YYYY') - TO_CHAR(BIRTH,'YYYY')) / 10) * 10 AS AGERANGE
+				FROM
+					MUSER
+				)O
+			GROUP BY AGERANGE
+			ORDER BY AGERANGE
+		</select>
+		
+		<!-- 기간별 게시물 (일주일) -->
+		<select id="dailyBoard" resultMap="analysis">
+			SELECT TO_CHAR(REGDATE,'YYYY-MM-DD') AS REG, COUNT(*)AS COUNT
+			FROM BOARD
+			WHERE REGDATE BETWEEN SYSDATE-(INTERVAL '31' DAY) AND SYSDATE
+			GROUP BY TO_CHAR(REGDATE,'YYYY-MM-DD')
+			ORDER BY TO_CHAR(REGDATE,'YYYY-MM-DD')
+		</select>
+
+		<!-- 거래 완료된 유저의 게시물 수 -->
+		<select id="completeBoard" resultMap="analysis">
+			SELECT MU.NAME, COUNT(*)AS COUNT
+			FROM BOARD B, MUSER MU
+			WHERE B.USERID = MU.USERID
+			AND B.FLAG = 'Y'
+			GROUP BY MU.NAME
+			ORDER BY COUNT
+		</select>
+		
+		<!-- 카테고리 인기순 -->
+		<select id="categoryBest" resultMap="analysis">
+			SELECT CT.CATEGORYNAME,COUNT(*) AS COUNT
+			FROM BOARD B, CATEGORIES CT
+			WHERE B.CATEGORYID = CT.CATEGORYID
+			GROUP BY CT.CATEGORYNAME
+			ORDER BY COUNT DESC
+		</select>
+
+</mapper>
