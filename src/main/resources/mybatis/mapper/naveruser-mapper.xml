@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에는 테이블 명을 주로 적는다. -->
+<!-- resultMap 활용 -->
+<mapper namespace="naveruser">
+
+	<resultMap type="com.kitri.market.user.vo.NaverUserVO" id="naverUserMap">
+		<result property="email" column="n_email" />
+		<result property="name" column="n_name" />
+		<result property="birthyear" column="n_year" />
+		<result property="birthday" column="n_birthday" />
+		<result property="gender" column="n_gender" />
+		<result property="profile_image" column="n_profile" />
+		<result property="mobile" column="n_mobile" />
+	</resultMap>
+	
+	<select id="selectNaverUser" resultMap="naverUserMap">
+		SELECT * FROM NAVER_USER WHERE N_EMAIL = #{email}
+	</select>
+	<insert id="insertNaverUser" parameterType="com.kitri.market.user.vo.NaverUserVO">
+		INSERT INTO NAVER_USER (N_EMAIL,N_NAME,N_YEAR,N_BIRTHDAY,N_GENDER,N_PROFILE,N_MOBILE)
+		VALUES (#{email}, #{name},#{birthyear}, #{birthday}, #{gender}, #{profile_image}, #{mobile})
+	</insert>
+	
+</mapper>

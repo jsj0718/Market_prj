@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user-address">
+
+	<resultMap id="userAddr" type="com.kitri.market.user.vo.UserAddrVO">
+		<result property="userid" column="userid" />
+		<result property="address" column="addresscode" />
+	</resultMap>
+	
+	<insert id="insertAddr" parameterType="com.kitri.market.user.vo.UserAddrVO">
+	INSERT INTO USER_ADDRESS (USERID, ADDRESSCODE)
+	VALUES (#{userid},#{addresscode})
+	</insert>
+</mapper>
