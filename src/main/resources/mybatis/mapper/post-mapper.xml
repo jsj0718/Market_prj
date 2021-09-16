@@ -20,19 +20,26 @@
 	</select>
 	
 	<!-- 게시글 올리기-->
-	<!-- <insert id="insertPosting" parameterType="posting">
+	<!-- 
+	<insert id="insertPosting" parameterType="com.kitri.market.post.vo.PostDetailVO">
 		INSERT INTO BOARD (BOARDID , USERID , CATEGORYID , ADDRESSCODE , TITLE , CONTENT , REGDATE , PRICE , VIEWS , FLAG)
-		VALUES (BOARD_BOARDID_SEQ.NEXTVAL, #{uid}, #{cid}, #{addrcode}, #{title}, #{content}, #{regdate}, #{price}, #{views}, #{flag} )
-	</insert>  -->
+		VALUES (BOARD_BOARDID_SEQ.NEXTVAL, #{userid}, #{categoryid}, #{addresscode}, #{title}, #{content}, sysdate, #{price}, #{views}, #{flag} )
+	</insert>  
+	-->
 	
-	<!-- 게시글 수정 
-	<update id="updatePostModify" parameterType="postModify">
-		
-		
-	</update>-->
-	
-	<!-- 게시글 이미지 수정 -->
-	
+	<!-- 게시글 수정 -->
+	<!-- 
+	<update id="updatePostModify" parameterType="com.kitri.market.post.vo.PostDetailVO">
+		UPDATE BOARD
+		SET 
+		CATEGORYID = #{categoryid}, 
+		ADDRESSCODE = #{addresscode}, 
+		TITLE = #{title}, 
+		CONTENT = #{content}, 
+		PRICE = #{price}, 
+		VIEWS = #{views}
+	</update>
+	-->
 	
 	<!-- 게시글 삭제 -->
 	<delete id="deletePost" parameterType="int">

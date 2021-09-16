@@ -14,6 +14,7 @@
     <typeAlias type="com.kitri.market.post.vo.PostDetailVO" alias="post"/>
     <typeAlias type="com.kitri.market.post.vo.PostDetailReportVO" alias="report"/>
     <typeAlias type="com.kitri.market.post.vo.PostDetailVO" alias="img"/>
+    <typeAlias type="com.kitri.market.post.vo.PostCategoryVO" alias="category"/>
   </typeAliases>
   
 </configuration>

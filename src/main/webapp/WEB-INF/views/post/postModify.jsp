@@ -18,6 +18,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
 	var index = 0;
@@ -216,6 +217,25 @@
 	
 	
 </style>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = ''; // 주소 변수
+                var addrcode = '';
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    
+                	addr = data.query;
+                	addrcode = data.bcode;
+                	/* addr = data.bcode+sigungu +bname; */
+                	
+                }
+                document.getElementById('address').value = data.query;
+                document.getElementById('addressCode').value = data.bcode;
+            }
+        }).open();
+    }
+</script>
 </head>
 <body>
 	<!-- navigation  -->
@@ -274,18 +294,18 @@
 	  </nav>
 	</header>
 	<div id="space"></div>
-	
 	<!-- post -->
 	<div class="container">
 		<div class="mt-5 p-5">
 			<!-- 업로드 -->
 		  	<div class="row ">
+		  	<%--   #{title}, #{content}, #{regdate}, #{price}, #{views}, #{flag}--%>
 				<form action="#" method="post" enctype="multipart/form-data" class="row">
 					<!-- 이미지 업로드 -->
 					<div class="mt-2 col-md-2">
 						<div class="upload_box">
 						<label class="input-file-button" for="images">
-							<img class="fit-picture" src="${pageContext.request.contextPath}/resources/img/camera.png" alt="camera">
+							<img class="fit-picture" src="${path}/assets/img/post/camera.png" alt="camera">
 							<div class="picture_box">사진</div>
 							<div id="count">(0/5)</div>
 						</label>
@@ -301,24 +321,36 @@
 					<!-- 제목 -->
 					<input type="text" class="input_box" placeholder="제목">
 					<!-- 카테고리 -->
-					<select class="input_box" style="width:50%;">
-						<option value="americano">가구</option>
-					    <option value="caffe latte">전자제품</option>
-					    <option value="cafe au lait" selected>의류</option>
-					    <option value="espresso">신발</option>
+					<select class="input_box">
+						<option value="1" selected="selected" style="display:none">카테고리</option><%-- ${id} ${name} --%>
+						<option value="2">가구</option>
+					    
 					</select>
+					
 					<!-- 지역 -->
-					<select class="input_box" style="width:50%;">
-						<option value="americano">서울시</option>
-					    <option value="caffe latte">대구</option>
-					    <option value="cafe au lait" selected>부산</option>
-					    <option value="espresso">ㅁㅁ</option>
-					</select>
+					<!-- 보여주는 값 -->
+					<input type="text" name="address" id="address" placeholder="우편번호" readonly class="input_box" style="width:50%;"> 
+					<!-- 넘겨주는 값 -->
+					<input type="hidden" name="addressCode" id="addressCode" placeholder="우편번호" readonly> 
+					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="input_box" style="width:50%;">
+					
 					<!-- 금액 -->
 					<input type="text" class="input_box" placeholder="\">
 					
 					<!-- 내용 -->
 					<textarea class="input_box" placeholder="내용" rows="15px"></textarea>
+					
+					<!-- 유저 아이디 -->
+					<input type="hidden" value=""><%-- ${userid} --%>
+					
+					<!-- 날짜 -->
+					<input type="hidden" value=""><%-- ${regdate} --%>
+					
+					<!-- 조회수 -->
+					<input type="hidden" value=""><%-- ${view} --%>
+					
+					<!-- 판매현황 -->
+					<input type="hidden" value="N">
 					
 					<div class="mt-3 float-right">
 					    <input type="submit" class="btn btn-primary finishBtn" name='submit_image' value="완료"/>
