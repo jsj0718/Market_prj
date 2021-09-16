@@ -5,13 +5,9 @@
   
   
 <configuration>
-<!--   resultType을 더 간편하게 작성하기 위해 Aliases지정(configuration오류나니가 맨위에 써주기) -->
   <typeAliases>
-<!--   	<typeAlias alias="naveruser" type="com.kitri.mini.user.vo.NaverUserVO"/> -->
-
+    <typeAlias alias="chatMessage" type="com.kitri.market.chat.vo.ChatMessageVO"/>
+    <typeAlias alias="chatRoom" type="com.kitri.market.chat.vo.ChatRoomVO"/>
+    <typeAlias alias="userReport" type="com.kitri.market.chat.vo.UserReportVO"/>
   </typeAliases>
-  
-
-  
-
 </configuration>

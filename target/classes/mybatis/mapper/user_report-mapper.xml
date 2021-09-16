@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user_report">
+  <resultMap type="userReport" id="userReportResultMap">
+    <result property="userId" column="userid" />
+    <result property="boardId" column="boardid" />
+    <result property="reportTitle" column="report_title" />
+    <result property="reportContent" column="report_content" />
+    <result property="reporter" column="reporter" />
+  </resultMap>
+  
+  <!-- 신고 가능 여부 조회 -->
+  <select id="selectReportPossible" resultType="int">
+    SELECT COUNT(*)
+    FROM USER_REPORT
+    WHERE USERID = #{userId}
+    AND BOARDID = #{boardId}
+    AND REPORTER = #{reporter}
+  </select>
+  
+  <!-- 신고하기 -->
+  <insert id="insertReport" parameterType="userReport">
+    INSERT INTO USER_REPORT (REPORTID, USERID, BOARDID, REPORT_TITLE, REPORT_CONTENT, REPORTER)
+    VALUES (USER_REPORT_REPORTID_SEQ.NEXTVAL, #{userId}, #{boardId}, #{reportTitle}, #{reportContent}, #{reporter})
+  </insert>
+  
+  <!-- 유저 테이블에 신고 횟수 누적시키기 -->
+  <update id="updateUserReportCnt" parameterType="string">
+    UPDATE MUSER 
+    SET REPORT = REPORT + 1
+    WHERE USERID = #{id}
+  </update>
+</mapper>
