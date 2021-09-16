@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/assets/css/admin/blacklist.css">
+<link rel="stylesheet" href="${path}/assets/css/blacklist.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js" integrity="sha512-FoyrIocrD2VGbh1HeDL8s/e+kNw0bl1WQHYlomgPuGe0N8y70F92YFUXW4Bompp9TrScjOiIPDSCM+ID0YXeqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 	//체크박스 전체 선택 & 해제
@@ -105,54 +105,59 @@
 <body>
 <!-- navigation  -->
 <header id="header">
-<nav id="navigator" class="navbar navbar-expand-lg navbar fixed-top" style="background-color: #5f0080; height: 50px; color:white;">
-    <div id="nav" class="container-fluid">
-      <a class="navbar-brand mt-1 ml-1" href="#">
-        <img alt="아이콘" style="height: auto; width: 100px" src="#">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse align-items-end justify-content-between" id="navbarNav" style="background-color :#5f0080;">
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">홈</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">메인</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">동네</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">카테고리</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">채팅</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">관리자</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li><a class="btn">아이콘</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              회원 정보
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">회원 정보</a></li>
-              <li><a class="dropdown-item" href="#">회원 수정</a></li>
-              <li class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">로그아웃</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+		<!-- navigation  -->
+		<div class="nav justify-content-center" style="background-color: #5f0080;">
+          <nav class="navbar navbar-expand-lg navbar">
+<!--       아이콘 -->
+		          <div @click.away="open = false" class="relative" x-data="{ open: false }">
+		              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+		                  <img alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;" src="#"> 
+		              </button>
+		          </div>
+              <div class="collapse navbar-collapse">
+                  <ul class="nav justify-content-center" style="background-color: #5f0080; width:1200px; height: 40px; color:white; ">
+                  
+<!--         홈 -->
+                      <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                          <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/index"><span>홈</span></a>
+                          </button>
+                      </div>
+                      
 
- <div id="space"></div>
+                      
+<!--         채팅        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                             <a href="${path }/chatroom"><span>채팅</span></a>
+                        </button>
+                    </div>
+<!--         마이페이지        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                             <a href="${path }/mypage"><span>마이페이지</span></a>
+                        </button>
+                    </div>     
+<!--         관리자        -->                                   
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/admin/report"><span>관리자</span></a>
+                        </button>
+                    </div>                    
+                   </ul>
+<!--         로그아웃        -->
+									<div class="nav justify-content-end" style="margin-right: 0; color:white;">                                   
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/login/signin"><span>로그아웃</span></a>
+                        </button>
+                    </div>
+                  </div>		                      
+              </div>
+          </nav>
+     </div>
+
+<!--  <div id="space"></div> -->
  
 
  <!-- --------------서브 tab-------------- -->

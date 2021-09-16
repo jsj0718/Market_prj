@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +26,18 @@ public class AdminController {
   @Autowired
   private AdminService adminservice;
 	
+
 	//-------관리자 페이지 차트분석란-------------
 	@RequestMapping("/analysis")
-	public String analysis() {
+	public String analysis(HttpSession session) {
+	  String userid = (String)session.getAttribute("userid");
+	  if(userid.equals("admin")) {
+	    return "admin/analysis";
+	  }else {
 	  
-		return "analysis";
+	    return "redirect:/index";
+	  }
+	  
 	}
 	
 //----------------gender---------
@@ -146,17 +155,24 @@ public class AdminController {
 	
 	//페이징용 
 	@RequestMapping(value = "/report", method = RequestMethod.GET)
-	public String getFiveListPage(Model model,Criteria cri) {
-	  
-	  List<AdminBlacklistVO> list = adminservice.searchReportList(cri);
-	  model.addAttribute("list",list);
-	
-	  PageMaker pageMaker = new PageMaker();
-	  pageMaker.setCri(cri);
-	  pageMaker.setTotalCount(adminservice.reportCount());
-	  model.addAttribute("pageMaker",pageMaker);
-	  
-	  return "report";
+	public String getFiveListPage(HttpSession session, Model model,Criteria cri) {
+	  String userid = (String)session.getAttribute("userid");
+    if(userid.equals("admin")) {
+     
+      List<AdminBlacklistVO> list = adminservice.searchReportList(cri);
+      model.addAttribute("list",list);
+      
+      PageMaker pageMaker = new PageMaker();
+      pageMaker.setCri(cri);
+      pageMaker.setTotalCount(adminservice.reportCount());
+      model.addAttribute("pageMaker",pageMaker);
+      
+      return "admin/report";
+    
+    }else {
+      return "redirect:/index";
+    }
+    
 	}
 
 	//레포트 삭제
@@ -177,41 +193,54 @@ public class AdminController {
 	
 	//5회이상 리스트 페이징
 	@RequestMapping(value = "/blacklist-red", method = RequestMethod.GET)
-	public String fiveList(Model model, Criteria cri) {
-	  
-	  List<AdminBlacklistVO> flist = adminservice.searchFiveList(cri);
-	  model.addAttribute("flist",flist);
-	  
-	  PageMaker pageMaker = new PageMaker();
-	  pageMaker.setCri(cri);
-	  pageMaker.setTotalCount(adminservice.fiveCount());
-	  model.addAttribute("pageMaker",pageMaker);
-	  
-	  return "blacklist";
+	public String fiveList(HttpSession session ,Model model, Criteria cri) {
+	  String userid = (String)session.getAttribute("userid");
+    if(userid.equals("admin")) {
+      
+      List<AdminBlacklistVO> flist = adminservice.searchFiveList(cri);
+      model.addAttribute("flist",flist);
+      
+      PageMaker pageMaker = new PageMaker();
+      pageMaker.setCri(cri);
+      pageMaker.setTotalCount(adminservice.fiveCount());
+      model.addAttribute("pageMaker",pageMaker);
+      
+      return "admin/blacklist";
+     
+    }else {
+      return "redirect:/index";
+    }
 	  
 	}
 	//5회이상 유저 삭제
 	@RequestMapping("/delete-five")
 	public String deleteFive(String userid) {
 	  int result = adminservice.fiveDelete(userid);
-	  return "redirect:/admin/blacklist-red?page=1";
+	  return "redirect:admin/blacklist-red?page=1";
 	}
 	
 	
 	
 	//3회이상 리스트 페이징
 	 @RequestMapping(value = "/blacklist-yellow", method = RequestMethod.GET)
-	 public String threeList(Model model, Criteria cri) {
-	   
-	  List<AdminBlacklistVO> tlist = adminservice.searchThreeList(cri);
-	  model.addAttribute("tlist",tlist);
-	   
-	  PageMaker pageMakerT = new PageMaker();
-    pageMakerT.setCri(cri);
-    pageMakerT.setTotalCount(adminservice.threeCount());
-    model.addAttribute("pageMakerT",pageMakerT);
-    
-    return "blacklist";
+	 public String threeList(HttpSession session, Model model, Criteria cri) {
+	   String userid = (String)session.getAttribute("userid");
+	  if(userid.equals("admin")) {
+	  
+	    List<AdminBlacklistVO> tlist = adminservice.searchThreeList(cri);
+	    model.addAttribute("tlist",tlist);
+	    
+	    PageMaker pageMakerT = new PageMaker();
+	    pageMakerT.setCri(cri);
+	    pageMakerT.setTotalCount(adminservice.threeCount());
+	    model.addAttribute("pageMakerT",pageMakerT);
+	    
+	    return "admin/blacklist";
+	  
+	  }else {
+	    
+	    return "redirect:/index";
+	  }
     
 	 }
 	 //3회 이상 경고(업데이트)
