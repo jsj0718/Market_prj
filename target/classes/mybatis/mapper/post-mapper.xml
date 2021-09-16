@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+
+	<!-- 게시글 자세히 보기 -->
+	<select id="selectPostDetail" parameterType="int" resultType="com.kitri.market.post.vo.PostDetailVO">
+		SELECT 	
+			BOARDID,
+			USERID,
+			CATEGORYID,
+			ADDRESSCODE,
+			TITLE,
+			CONTENT,
+			REGDATE,
+			PRICE,
+			VIEWS, 
+			FLAG
+		FROM BOARD
+		WHERE BOARDID = #{boardid}
+	</select>
+	
+	<!-- 게시글 올리기-->
+	<!-- <insert id="insertPosting" parameterType="posting">
+		INSERT INTO BOARD (BOARDID , USERID , CATEGORYID , ADDRESSCODE , TITLE , CONTENT , REGDATE , PRICE , VIEWS , FLAG)
+		VALUES (BOARD_BOARDID_SEQ.NEXTVAL, #{uid}, #{cid}, #{addrcode}, #{title}, #{content}, #{regdate}, #{price}, #{views}, #{flag} )
+	</insert>  -->
+	
+	<!-- 게시글 수정 
+	<update id="updatePostModify" parameterType="postModify">
+		
+		
+	</update>-->
+	
+	<!-- 게시글 이미지 수정 -->
+	
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deletePost" parameterType="int">
+		DELETE FROM BOARD WHERE BOARDID = #{boardid}
+	</delete>
+</mapper>
