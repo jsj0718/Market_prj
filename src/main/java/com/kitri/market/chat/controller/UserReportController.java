@@ -64,6 +64,8 @@ public class UserReportController {
             }
         }
         
+        System.out.println(result);
+        
         return result;
     }
 }

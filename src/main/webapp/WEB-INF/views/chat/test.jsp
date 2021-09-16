@@ -9,7 +9,7 @@
 </head>
 <body>  
   <h1>상세 페이지</h1>
-  <form action="chatroom" method="POST">
+  <form action="/market/chatroom" method="POST">
     BOARDID : <input type="text" name="boardId"> <br>
     author : <input type="text" name="author"> <br>
     <input type="submit" value="채팅하기">

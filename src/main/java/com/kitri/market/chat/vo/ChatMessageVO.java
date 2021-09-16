@@ -10,6 +10,8 @@ public class ChatMessageVO {
     private String chatRead;
     private String dataState;
     private int notReadMsgCount;
+    private String otherPersonImg;
+    private String boardTitle;
     
     public int getChatId() {
         return chatId;
@@ -64,6 +66,18 @@ public class ChatMessageVO {
     }
     public void setNotReadMsgCount(int notReadMsgCount) {
         this.notReadMsgCount = notReadMsgCount;
+    }
+    public String getOtherPersonImg() {
+        return otherPersonImg;
+    }
+    public void setOtherPersonImg(String otherPersonImg) {
+        this.otherPersonImg = otherPersonImg;
+    }
+    public String getBoardTitle() {
+        return boardTitle;
+    }
+    public void setBoardTitle(String boardTitle) {
+        this.boardTitle = boardTitle;
     }
     
     

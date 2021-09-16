@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kitri.market.chat.service.ChatMessageServiceImpl;
 import com.kitri.market.chat.service.ChatRoomServiceImpl;
 import com.kitri.market.chat.vo.ChatMessageVO;
+import com.kitri.market.chat.vo.ChatRoomVO;
 
 @Controller
 public class ChatRoomController {
@@ -31,25 +32,27 @@ public class ChatRoomController {
         return "chat/test";
     }
     
-//    @RequestMapping(value="/chatroom/{id}", method=RequestMethod.POST)
-//    public String chatroomPost(HttpSession session, ChatRoomVO vo, Model model, @PathVariable String id) {
-////        String id = (String) session.getAttribute("id");
-//        
-//        if (id == null || id.equals(vo.getAuthor())) {
-//            return "redirect:test";
-//        }
-//        
-//        vo.setSender(id);
-//        
-//        if (crservice.searchChatRoom(vo) == 0) {
-//            crservice.registChatRoom(vo);
-//        }
-//        
-//        List<ChatRoomVO> crvoList = crservice.searchChatRoomInfos(id);
-//        model.addAttribute("chatrooms", crvoList);
-//        
-//        return "chat/chatroom";
-//    }
+    
+    // 대화하기 할 때 채팅 페이지 조회
+    @RequestMapping(value="/chatroom", method=RequestMethod.POST)
+    public String createChatroom(HttpSession session, Model model, ChatRoomVO vo) {
+        String id = (String) session.getAttribute("id");
+        
+        
+        if (id == null || id.equals(vo.getAuthor())) {
+            return "redirect:test";
+        }
+        
+        vo.setSender(id);
+        
+        if (crservice.searchChatRoom(vo) == 0) {
+            crservice.registChatRoom(vo);
+        }
+        
+        model.addAttribute("currRoomId", crservice.searchRoomId(vo));
+        
+        return "chat/chatroom";
+    }
     
     
     @RequestMapping(value="/chatroom", method=RequestMethod.GET)
@@ -58,18 +61,31 @@ public class ChatRoomController {
     }
     
     // 채팅방 조회
-    @RequestMapping(value="/chatroom", method=RequestMethod.POST)
+    @RequestMapping(value="/chatroom-info", method=RequestMethod.POST)
     @ResponseBody
     public List<ChatMessageVO> chatroomPost(Model model, HttpSession session) {
         String id = (String) session.getAttribute("id");
         
         List<ChatMessageVO> cmvoList = cmservice.searchRecentChatDialog(id);
         for (ChatMessageVO cmvo : cmvoList) {
+            // 읽음 처리
             int notReadMsgCount = cmservice.searchNotReadMsgCount(id, cmvo.getRoomId());
             cmvo.setNotReadMsgCount(notReadMsgCount);
+            
+            // 상대방 이미지 넣기
+            if (id.equals(cmvo.getFromId())) {
+                cmvo.setOtherPersonImg(crservice.searchOtherPersonImg(cmvo.getToId()));
+            } else if (id.equals(cmvo.getToId())) {
+                cmvo.setOtherPersonImg(crservice.searchOtherPersonImg(cmvo.getFromId()));
+            }
+            
+            // 게시판 제목 넣기
+            cmvo.setBoardTitle(crservice.searchBoardTitle(cmvo.getRoomId()));
         }
         
         return cmvoList;
+        
     }
+    
     
 }

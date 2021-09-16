@@ -16,6 +16,15 @@
     AND (AUTHOR = #{author} AND SENDER = #{sender})
   </select>
   
+  <!-- boardId와 sender로 채팅방 번호 조회 -->
+  <select id="selectRoomId" resultType="int">
+    SELECT ROOMID
+    FROM CHATROOM
+    WHERE BOARDID = #{boardId}
+    AND SENDER = #{sender}
+  </select>
+  
+  
   <!-- 채팅방 생성 -->
   <insert id="insertChatRoom" parameterType="chatRoom">
     INSERT INTO CHATROOM (ROOMID, BOARDID, AUTHOR, SENDER)
@@ -35,5 +44,27 @@
     FROM CHATROOM
     WHERE AUTHOR = #{sender}
     OR SENDER = #{sender}
+  </select>
+  
+  <!-- 해당 BoardId와 관련해 대화한 모든 상대 조회하기 -->
+  <select id="selectBuyerList" resultType="chatRoom">
+    SELECT *
+    FROM CHATROOM
+    WHERE BOARDID = #{boardId}
+  </select>
+  
+  <!-- 상대방 이미지 조회 -->
+  <select id="selectOtherPersonImg" resultType="string">
+    SELECT IMG 
+    FROM MUSER 
+    WHERE USERID = #{id}
+  </select>
+  
+  <!-- 채팅방 번호로 게시판 제목 조회 -->
+  <select id="selectBoardTitle" resultType="string">
+    SELECT B.TITLE
+    FROM CHATROOM CR, BOARD B
+    WHERE CR.BOARDID = B.BOARDID
+    AND CR.ROOMID = #{roomId}
   </select>
 </mapper>

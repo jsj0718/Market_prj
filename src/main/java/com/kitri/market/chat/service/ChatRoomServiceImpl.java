@@ -19,6 +19,11 @@ public class ChatRoomServiceImpl implements ChatRoomService {
     }
 
     @Override
+    public int searchRoomId(ChatRoomVO crvo) {
+        return crdao.selectRoomId(crvo);
+    }
+
+    @Override
     public int registChatRoom(ChatRoomVO crvo) {
         return crdao.insertChatRoom(crvo);
     }
@@ -32,6 +37,23 @@ public class ChatRoomServiceImpl implements ChatRoomService {
     public List<ChatRoomVO> searchChatRoomInfos(String id) {
         return crdao.selectChatRoomInfos(id);
     }
+
+    @Override
+    public List<ChatRoomVO> searchBuyerList(int boardId) {
+        return crdao.selectBuyerList(boardId);
+    }
+
+    @Override
+    public String searchOtherPersonImg(String id) {
+        return crdao.selectOtherPersonImg(id);
+    }
+
+    @Override
+    public String searchBoardTitle(int roomId) {
+        return crdao.selectBoardTitle(roomId);
+    }
+    
+    
 
     
 }

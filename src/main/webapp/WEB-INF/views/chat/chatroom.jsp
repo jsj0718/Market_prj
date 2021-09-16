@@ -18,7 +18,12 @@
   let cnt = 0;  // 방 호출 횟수 (처음만 스크롤 맨 아래로 두기)
   let maxHeight = 0; // 대화창의 최대 높이
   let currHeight = 0; // 현재 대화창에서의 높이(위치)
-  let ohterPerson = ""; // 대화 상대 아이디
+  let otherPerson = ""; // 대화 상대 아이디
+  
+  // 대화하기 버튼으로 들어온 경우 현재 채팅방 번호 설정
+  if ("${currRoomId}" != null && "${currRoomId}" != "") {
+    roomNum = "${currRoomId}";
+  }
   
   // 읽음 표시
   const changeReadMsg = function(roomid) {
@@ -43,15 +48,15 @@
         $('#msg_history')
           .append($('<div>')
             .attr('class', 'incoming_msg')
+//             .append($('<div>')
+//               .attr('class', 'incoming_msg_img')
+//               .append($('<img>')
+//                 .attr('src', 'https://ptetutorials.com/images/user-profile.png')
+//                 .attr('alt', 'sunil')
+//               )
+//             )
             .append($('<div>')
-              .attr('class', 'incoming_msg_img')
-              .append($('<img>')
-                .attr('src', 'https://ptetutorials.com/images/user-profile.png')
-                .attr('alt', 'sunil')
-              )
-            )
-            .append($('<div>')
-              .attr('class', 'recieved_msg')
+              .attr('class', 'recieved_msg mb-4')
               .append($('<div>')
                 .attr('class', 'received_withd_msg')
                 .append($('<p>')
@@ -106,6 +111,8 @@
       if (data[i].dataState == "BOTH" || data[i].dataState == userId) {
         chatCtn = data[i].chatContent;
         chatTime = data[i].chatTime;
+      } else {
+        continue;
       }
       
       let notReadMsgCount = "";
@@ -118,6 +125,16 @@
         countClassName = "float-end text-center text-white bg-danger rounded-circle";
       } 
       
+      let otherPersonImg = "https://ptetutorials.com/images/user-profile.png";
+      if (data[i].otherPersonImg != null && data[i].otherPersonImg != "") {
+        otherPersonImg = data[i].otherPersonImg;
+      }
+      
+      let boardTitle = "";
+      if (data[i].boardTitle != null && data[i].boardTitle != "") {
+        boardTitle = "["+data[i].boardTitle+"]";
+      }
+      
       $('#inbox_chat')
       .append($('<div>')
         .attr('class', className)
@@ -127,14 +144,14 @@
           .append($('<div>')
             .attr('class', 'chat_img')
             .append($('<img>')
-              .attr('src', 'https://ptetutorials.com/images/user-profile.png')
+              .attr('src', otherPersonImg)
               .attr('alt', 'sunil')
             )
           )
           .append($('<div>')
             .attr('class', 'chat_ib')
             .append($('<h5>')
-              .text(person)
+              .text(person + " " + boardTitle)
               .append($('<span>')
                 .attr('class', 'chat_date')
                 .text(chatTime)
@@ -256,7 +273,7 @@
   // 채팅 목록 보기
   const showChatList = function() {
     $.ajax({
-      url: "${path}/chatroom",
+      url: "${path}/chatroom-info",
       type: "post",
       success: function(data) {
 //         console.log(data);
@@ -286,8 +303,8 @@
       return;
     }
     
-    console.log(roomNum);
-    console.log(otherPerson);
+//     console.log(roomNum);
+//     console.log(otherPerson);
     
     $.ajax({
       url: "${path}/chatroom/exit/" + roomNum,
@@ -509,7 +526,6 @@
       </div>
     </div>
   </div>
-
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
