@@ -20,7 +20,7 @@ import com.kitri.market.user.vo.NaverUserVO;
 import com.kitri.market.user.vo.UserAddrVO;
 
 @Controller
-@RequestMapping("/login") // market/login/signin
+@RequestMapping("/") // market/login/signin
 public class User {
 	
 	// 네이버 유저 서비스
@@ -56,7 +56,7 @@ public class User {
 		if(session.getAttribute("userid") != null) {
 			session.removeAttribute("userid");
 		}
-		return "redirect:/login/signin";
+		return "redirect:/signin";
 	}
 	
 	// 회원가입 페이지 이동
@@ -171,11 +171,11 @@ public class User {
 		
 		// 성공하면 로그인 페이지로
 				if(registCheckFlag) {
-					path = "redirect:/login/signin";
+					path = "redirect:/signin";
 				
 				// 실패하면 그대로 회원가입 페이지로
 				} else {
-					path = "redirect:/login/signup";
+					path = "redirect:/signup";
 				}
 				
 				

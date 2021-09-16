@@ -13,7 +13,7 @@
 <body>
 
 <script type="text/javascript">
-		var naver_id_login = new naver_id_login("BS1ec9u_kYL0nHmx8MGJ", "http://localhost:8080/market/login/naverlogin");
+		var naver_id_login = new naver_id_login("BS1ec9u_kYL0nHmx8MGJ", "http://localhost:8080/market/naverlogin");
 		// 접근 토큰 값 출력
 // 		alert(naver_id_login.oauthParams.access_token);
 		// 네이버 사용자 프로필 조회
@@ -47,7 +47,7 @@
 		
 		// 제이쿼리 ajax 기본 모양
 		$.ajax({
-	         url: "${pageContext.request.contextPath}/login/naverlogincheck",   // 이동할 url 값
+	         url: "${pageContext.request.contextPath}/naverlogincheck",   // 이동할 url 값
 	         type: "post",   // method POST, GET
 	         data: JSON.stringify(user),   // url로 이동시킬 데이터 값
 	         dataType: "json",   // 데이터 타입 설정 (json, xml)
@@ -62,7 +62,7 @@
 	        	 console.log("code:" + request.status)
 	        	 console.log("message:" + request.responseText)
 	        	 console.log("error:" + error)
-	        	 window.location.replace("${pageContext.request.contextPath}/login/signin");
+	        	 window.location.replace("${pageContext.request.contextPath}/signin");
 
 	         }
 	      });

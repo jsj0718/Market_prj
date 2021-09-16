@@ -25,7 +25,7 @@
 			}
 			
 			$.ajax({
-				url: "${pageContext.request.contextPath}/login/signincheck",
+				url: "${pageContext.request.contextPath}/signincheck",
 				type: "post",
 				data: {"userid": userid, "userpw": userpw},
 				dataType:"text",
@@ -36,7 +36,7 @@
 						alert
 						alert("환영합니다.");
 						if(data == "admin"){
-							window.location.replace("${pageContext.request.contextPath}/admin/analysis");
+							window.location.replace("${pageContext.request.contextPath}/admin");
 							alert("관리자페이지로 이동합니다.");
 						}
 					} else {
@@ -86,7 +86,7 @@
         </div>
 
         <div class="text-right mt-2">
-          <a href="${pageContext.request.contextPath}/login/signup" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">회원가입</a>
+          <a href="${pageContext.request.contextPath}/signup" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">회원가입</a>
         </div>
 
         <input type="button" id="signInBtn" class="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
@@ -102,11 +102,11 @@
 				<script type="text/javascript">
 					var naver_id_login = new naver_id_login(
 							"BS1ec9u_kYL0nHmx8MGJ",
-							"http://localhost:8080/market/login/naverlogin");
+							"http://localhost:8080/market/naverlogin");
 					var state = naver_id_login.getUniqState();
 					naver_id_login.setButton("green", 3, 60);
 					naver_id_login
-							.setDomain("http://localhost:8080/market/login/signin");
+							.setDomain("http://localhost:8080/market/signin");
 					naver_id_login.setState(state);
 					//  				naver_id_login.setPopup();
 					naver_id_login.init_naver_id_login();
