@@ -2,6 +2,8 @@ package com.kitri.market.user.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,17 +22,18 @@ public class MyPageController {
     private MyPageService mypageService;
     
     @RequestMapping("")
-    public String main(Model model) {
-        String userId = "jisoo";
+    public String main(HttpSession session, Model model) {
+     
+      String userId = (String)session.getAttribute("userid");
         
-        return "user";
+        return "mypage/user";
     }
     
     //판매중인 내역
     @RequestMapping("/sell")
     @ResponseBody
-    public List<MyPageVO> selling() {
-        String userId = "jisoo";
+    public List<MyPageVO> selling(HttpSession session) {
+        String userId = (String)session.getAttribute("userid");
         List<MyPageVO> sellList = mypageService.getSellList(userId);
         System.out.println("sellList::" + sellList);
         return sellList;
@@ -39,8 +42,8 @@ public class MyPageController {
     //판매완료 내역
     @RequestMapping("/soldout")
     @ResponseBody
-    public List<MyPageVO> soldout() {
-        String userId = "jisoo";
+    public List<MyPageVO> soldout(HttpSession session) {
+        String userId = (String)session.getAttribute("userid");
         List<MyPageVO> soldoutList = mypageService.getSoldoutList(userId);
         return soldoutList;
     }
@@ -48,8 +51,8 @@ public class MyPageController {
     //구매내역
     @RequestMapping("/buy")
     @ResponseBody
-    public List<MyPageVO> buy() {
-        String userId = "jisoo";
+    public List<MyPageVO> buy(HttpSession session) {
+        String userId = (String)session.getAttribute("userid");
         List<MyPageVO> buyList = mypageService.getBuyList(userId);
         return buyList;
     }
@@ -58,7 +61,8 @@ public class MyPageController {
     //나의 동네 리스트 
     @RequestMapping("/address-list")
     @ResponseBody
-    public List<MyPageVO> addressList(String userId){
+    public List<MyPageVO> addressList(HttpSession session, String userId){
+      userId = (String)session.getAttribute("userid");
       List<MyPageVO> list = mypageService.searchMyAddress(userId);
       return list;
     }
@@ -71,12 +75,12 @@ public class MyPageController {
     }
     
     @RequestMapping("/user-info")
-    public String userInfo(Model model, String userId) {
-      userId = "jisoo";
+    public String userInfo(HttpSession session,Model model, String userId) {
+      userId = (String)session.getAttribute("userid");
       List<MyPageVO> list = mypageService.searchMyInfo(userId);
 //      System.out.println(list);
       model.addAttribute("list",list);
-      return "userInfo";
+      return "mypage/userInfo";
     }
     
 
@@ -91,8 +95,8 @@ public class MyPageController {
     }
     //회원 탈퇴 
     @RequestMapping("/delete-info")
-    public String deleteInfo(String userId) {
-      userId = "jisoo";
+    public String deleteInfo(HttpSession session,String userId) {
+      userId = (String)session.getAttribute("userid");
       int result = mypageService.deleteMyInfo(userId);
 //      System.out.println(result);
       return "redirect:/mypage/user-info";

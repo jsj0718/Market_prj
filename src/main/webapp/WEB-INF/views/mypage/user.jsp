@@ -7,68 +7,38 @@
 		<title>Editorial by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="${path}/assets/css/user/main.css">
-    <script src="${path}/js/user.js"></script>
+		<link rel="stylesheet" href="${path}/assets/css/main.css">
+    <script src="${path }/assets/js/user.js"></script>
 	</head>
 	<body class="is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-
+					
+					
+					
 				<!-- Main -->
 					<div id="main">
-						<div class="inner">
-
-							<!-- Header -->
-								<header id="header">
-									<nav id="navigator" class="navbar navbar-expand-lg navbar fixed-top" style="background-color: #5f0080; height: 50px; color:white;">
-								    <div id="nav" class="container-fluid">
-								      <a class="navbar-brand mt-1 ml-1" href="#">
-								        <img alt="아이콘" style="height: auto; width: 100px" src="#">
-								      </a>
-								      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-								        <span class="navbar-toggler-icon"></span>
-								      </button>
-								      <div class="collapse navbar-collapse align-items-end justify-content-between" id="navbarNav" style="background-color :#5f0080;">
-								        <ul class="nav justify-content-center">
-								          <li class="nav-item" style="color: white;">
-								            <a class="nav-link active" aria-current="page" href="#" style="color: white;">홈</a>
-								          </li>
-								          <li class="nav-item">
-								            <a class="nav-link" href="#" style="color: white;">메인</a>
-								          </li>
-								          <li class="nav-item">
-								            <a class="nav-link" href="#" style="color: white;">동네</a>
-								          </li>
-								          <li class="nav-item">
-								            <a class="nav-link" href="#" style="color: white;">카테고리</a>
-								          </li>
-								          <li class="nav-item">
-								            <a class="nav-link" href="#" style="color: white;">채팅</a>
-								          </li>
-								          <li class="nav-item">
-								            <a class="nav-link" href="#" style="color: white;">관리자</a>
-								          </li>
-								        </ul>
-								        <ul class="navbar-nav">
-								          <li><a class="btn" style="color: white;">아이콘</a></li>
-								          <li class="nav-item dropdown">
-								            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-								              회원 정보
-								            </a>
-								            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-								              <li><a class="dropdown-item" href="#" style="color: white;">회원 정보</a></li>
-								              <li><a class="dropdown-item" href="#">회원 수정</a></li>
-								              <li class="dropdown-divider"></li>
-								              <li><a class="dropdown-item" href="#">로그아웃</a></li>
-								            </ul>
-								          </li>
-								        </ul>
-								      </div>
-								    </div>
-								  </nav>
-								</header>
-
+						<header id="header">
+							<ul class="nav justify-content-center" style="width:1200px; height: 35px;">
+							  <li class="nav-item" > 
+							    <a class="nav-link" style="color:black ; font-weight: bold; font-size: 20px;" aria-current="page"  href="${path }/index"><span>홈</span></a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link" style="color:black; font-weight: bold; font-size: 20px;" href="${path }/chatroom"><span>채팅</span></a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link" style="color:black; font-weight: bold; font-size: 20px;" href="${path }/mypage"><span>마이페이지</span></a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link"" style="color:black; font-weight: bold; font-size: 20px;" href="${path }/login/signin"><span>로그아웃</span></a>
+							  </li>
+							  
+							</ul>
+						
+						</header>
+					<div class="inner">
+						
 
 
 							<!-- Section -->
@@ -77,7 +47,7 @@
 										<h2>My Page</h2>
 									</header>
 									<div id="box" class="features">
-									   <img src="resources/img/mypage.jpg" alt="이미지" style="margin: 0 auto;" />
+									   <img src="assets/img/mypage/mypage.jpg" alt="이미지" style="margin: 0 auto;" />
                
 									</div>
 									<div id="mypage-info" class="features">
