@@ -113,16 +113,21 @@ public class User {
 	@RequestMapping("/signup-regist")
 	public String signupRegist(UserVO uvo, MultipartFile uploadfile, HttpServletRequest req, HttpSession session) {
 		
+		// 회원가입을 누르면 실행
 		String uploadPath = req.getRealPath("uploadfolder");
+		// 사진 이름이 들어옴 savename
 		String saveName = uploadfile.getOriginalFilename();
+		// 업로드 파일 경로 uploadfolder 인데 market에는 저장아님 , 아파치톰캣 저장
 		String uploadUniquePath = uploadPath+File.separator;		
 		
+		// 초기값
 		boolean uploadConfirm = false;
 		boolean registFlag = false;
 		String path="";
 		
 		try {
-		
+			
+			// 디버그로 보면 패스에 uploaduniquepath 들어와 있음
 			File idFile = new File(uploadUniquePath);
 			
 			// 경로에 폴더가 존재 하는지 확인
@@ -136,6 +141,7 @@ public class User {
 			
 			// transferTo로 원하는 위치에 저장
 			uploadfile.transferTo(saveFile);
+			// true 저장 됬으면
 			uploadConfirm = true;
 			
 		} catch (IllegalStateException e) {
@@ -148,13 +154,20 @@ public class User {
 		
 		// 가입 확인
 //		String insertImgPath = "";
-		if(uploadConfirm) {
 		
+		// 여기로 옴
+		if(uploadConfirm) {
 			// 세션에 파일 정보 저장
+			 
 			UserAddrVO udvo = new UserAddrVO();
 			udvo.setUserid(uvo.getUserid());
 			udvo.setAddresscode(uvo.getAddress());
+			
+			
+			// 이미지 set
 			uvo.setImg(File.separator+"upload"+File.separator+saveName);
+			
+			
 			boolean registCheckFlag = userService.registUser(uvo, udvo);
 //			insertImgPath = File.separator+"upload"+File.separator+saveName;
 //			session.setAttribute("filePath", insertImgPath);

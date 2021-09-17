@@ -14,10 +14,23 @@
 		AND b.BOARDID = #{boardid}
 	</select>
 	
-	<!-- 게시글 수정 -->
+	<!-- 게시글 이미지 업로드 -->
+	
+	<insert id="insertImgPosting" parameterType="com.kitri.market.post.vo.PostDetailImgVO">
+		INSERT INTO BOARD_IMG (BOARDID , IMG)
+		VALUES (BOARD_BOARDID_SEQ.NEXTVAL, #{img})<!-- 쌤한테 여쭤보기 -->
+	</insert>  
 	
 	
 	<!-- 게시글 이미지 수정 -->
-	
+
+	<update id="updatePostImg" parameterType="com.kitri.market.post.vo.PostDetailImgVO">
+		UPDATE BOARD_IMG
+		SET
+			IMG = #{img}
+		WHERE
+			BOARDID = #{boardid}
+	</update>
+
 	
 </mapper>

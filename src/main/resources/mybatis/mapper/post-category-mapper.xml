@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category">
+
+	<!-- 카테고리 불러오기 -->
+	
+	
+	<resultMap  id="categoryMap" type="com.kitri.market.post.vo.PostCategoryVO">
+		<result property="categoryId" column="categoryId"/>
+		<result property="categoryName" column="categoryName"/>
+	</resultMap>
+	
+	<select id="selectCategory" resultMap="categoryMap">
+		SELECT 	
+			CATEGORYID,
+			CATEGORYNAME
+		FROM CATEGORIES
+	</select>
+	
+	
+	
+</mapper>

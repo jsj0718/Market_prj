@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: ￬ﾠﾕ￬ﾄﾸ￬ﾧﾄ
-Build-Jdk: 11.0.9
+Built-By: kitri
+Build-Jdk: 11.0.11
 Created-By: Maven Integration for Eclipse
 

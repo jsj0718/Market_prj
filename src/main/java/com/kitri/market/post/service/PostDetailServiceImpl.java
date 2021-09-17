@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kitri.market.post.dao.PostDetailDAO;
+import com.kitri.market.post.vo.PostCategoryVO;
 import com.kitri.market.post.vo.PostDetailImgVO;
 import com.kitri.market.post.vo.PostDetailReportVO;
 import com.kitri.market.post.vo.PostDetailVO;
@@ -37,15 +38,24 @@ public class PostDetailServiceImpl implements PostDetailService{
 	}
 
 	@Override
-	public boolean registPosting(PostDetailVO pdvo) {
+	public boolean registPosting(PostDetailVO pdvo, PostDetailImgVO pdivo) {
+		
 		int result = postBoardDAO.insertPosting(pdvo);
+		int result1 = postBoardDAO.insertImgPosting(pdivo);
+		
 		boolean registFlag = false;
 		
-		if(result != 0) {
+		if(result != 0 && result1 != 0) {
 			registFlag = true;
 		}
 		
 		return registFlag;
+	}
+
+	@Override
+	public List<PostCategoryVO> selectCategory() {
+		
+		return postBoardDAO.selectCategory();
 	}
 	
 	
