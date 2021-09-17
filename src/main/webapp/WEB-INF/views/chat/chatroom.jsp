@@ -9,9 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/chat.css">
+<link rel="stylesheet" href="${path}/assets/css/chat.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
   let roomNum = 0;  // 채팅방 번호
@@ -403,59 +404,66 @@
 <body>
   <!-- navigation  -->
   <header>
-    <nav id="navigator" class="navbar navbar-expand-lg navbar fixed-top" style="background-color: #5f0080; height: 70px; color: white;">
-      <div id="nav" class="container-fluid">
-        <a class="navbar-brand mt-1 ml-1" href="#">
-          <img alt="아이콘" style="height: auto; width: 100px" src="#">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse align-items-end justify-content-between" id="navbarNav" style="background-color: #5f0080;">
-          <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">홈</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">메인</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">동네</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">카테고리</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">채팅</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">관리자</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav">
-            <li>
-              <a class="btn">아이콘</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 회원 정보 </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li>
-                  <a class="dropdown-item" href="#">회원 정보</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">회원 수정</a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li>
-                  <a class="dropdown-item" href="#">로그아웃</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+    <!-- navigation  -->
+    <div class="nav justify-content-center" style="background-color: #5f0080;">
+      <nav class="navbar navbar-expand-lg navbar">
+        <!--       아이콘 -->
+        <div @click.away="open = false" class="relative" x-data="{ open: false }">
+          <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+            <img alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;" src="#">
+          </button>
         </div>
-      </div>
-    </nav>
+        <div class="collapse navbar-collapse">
+          <ul class="nav justify-content-center" style="background-color: #5f0080; width: 1200px; height: 40px; color: white;">
+            <!-- 홈 -->
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                <a href="${path }/index">
+                  <span>홈</span>
+                </a>
+              </button>
+            </div>
+            <!-- 채팅 -->
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                <a href="${path }/chatroom">
+                  <span>채팅</span>
+                </a>
+              </button>
+            </div>
+            <!-- 마이페이지 -->
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                <a href="${path }/mypage">
+                  <span>마이페이지</span>
+                </a>
+              </button>
+            </div>
+            <!-- 관리자 -->
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                <a href="${path }/admin/report">
+                  <span>관리자</span>
+                </a>
+              </button>
+            </div>
+          </ul>
+          <!-- 로그아웃 -->
+          <div class="nav justify-content-end" style="margin-right: 0; color: white;">
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                <a href="${path }/login/signin">
+                  <span>로그아웃</span>
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   </header>
+  
+  <!-- 채팅 -->
   <div id="space" style="height:100px;"></div>
   <div class="container">
     <div class="messaging">
@@ -526,6 +534,7 @@
       </div>
     </div>
   </div>
+  
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>

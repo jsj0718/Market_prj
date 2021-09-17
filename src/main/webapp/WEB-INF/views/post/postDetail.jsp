@@ -390,8 +390,9 @@
 			                        <div class="col-md-3">
 	                        		
 		                        		<c:if test="${fn:contains(post.flag, 'Y')}">
-											<form action="" method="post">
-						                    	<input type="hidden" value="${post.boardid}" readonly >
+											<form action="/market/chatroom" method="post">
+						                    	<input type="hidden" value="${post.boardid}" name="boardId" readonly >
+                                  <input type="hidden" value="${post.USERID}" name="author" readonly >
 						                    	<input type="submit" value="채팅으로 거래하기" class="btn btn-primary mt-3 mb-3">
 						                    </form>   
 										</c:if>

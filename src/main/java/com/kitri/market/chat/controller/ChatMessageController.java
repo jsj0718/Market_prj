@@ -62,7 +62,8 @@ public class ChatMessageController {
         
         return cmList;
     }
-    
+
+    // 읽음 메시지 처리
     @RequestMapping(value="/refresh", method=RequestMethod.POST)
     @ResponseBody
     public void refresh(HttpSession session, int roomId) {
@@ -71,6 +72,7 @@ public class ChatMessageController {
         return;
     }
     
+    // 채팅방 나가기
     @RequestMapping(value="/exit/{roomId}", method=RequestMethod.POST)
     @ResponseBody
     public void exit(HttpSession session, @PathVariable int roomId, @RequestParam String person) {

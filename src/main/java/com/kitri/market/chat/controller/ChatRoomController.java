@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kitri.market.chat.service.ChatMessageServiceImpl;
@@ -39,8 +40,8 @@ public class ChatRoomController {
         String id = (String) session.getAttribute("id");
         
         
-        if (id == null || id.equals(vo.getAuthor())) {
-            return "redirect:test";
+        if (id == null || id == "") {
+            return "redirect:login/signin";
         }
         
         vo.setSender(id);
@@ -56,7 +57,13 @@ public class ChatRoomController {
     
     
     @RequestMapping(value="/chatroom", method=RequestMethod.GET)
-    public String chatroomGet() {
+    public String chatroomGet(HttpSession session) {
+        String id = (String) session.getAttribute("id");
+        
+        if (id == null || id == "") {
+            return "redirect:login/signin";
+        }
+        
         return "chat/chatroom";
     }
     
