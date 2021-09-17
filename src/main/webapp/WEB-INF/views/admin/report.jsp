@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/assets/css/admin/blacklist.css">
+<link rel="stylesheet" href="${path}/assets/css/blacklist.css">
 <script type="text/javascript">
 
 
@@ -43,54 +43,59 @@ function insertCategory($this){
 <body>
 <!-- navigation  -->
 <header id="header">
-<nav id="navigator" class="navbar navbar-expand-lg navbar fixed-top" style="background-color: #5f0080; height: 50px; color:white;">
-    <div id="nav" class="container-fluid">
-      <a class="navbar-brand mt-1 ml-1" href="#">
-        <img alt="아이콘" style="height: auto; width: 100px" src="#">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse align-items-end justify-content-between" id="navbarNav" style="background-color :#5f0080;">
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">홈</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">메인</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">동네</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">카테고리</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">채팅</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">관리자</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li><a class="btn">아이콘</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              회원 정보
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">회원 정보</a></li>
-              <li><a class="dropdown-item" href="#">회원 수정</a></li>
-              <li class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">로그아웃</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+		<!-- navigation  -->
+		<div class="nav justify-content-center" style="background-color: #5f0080;">
+          <nav class="navbar navbar-expand-lg navbar">
+<!--       아이콘 -->
+		          <div @click.away="open = false" class="relative" x-data="{ open: false }">
+		              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+		                  <img alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;" src="#"> 
+		              </button>
+		          </div>
+              <div class="collapse navbar-collapse">
+                  <ul class="nav justify-content-center" style="background-color: #5f0080; width:1200px; height: 40px; color:white; ">
+                  
+<!--         홈 -->
+                      <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                          <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/index"><span>홈</span></a>
+                          </button>
+                      </div>
+                      
 
- <div id="space"></div>
+                      
+<!--         채팅        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                             <a href="${path }/chatroom"><span>채팅</span></a>
+                        </button>
+                    </div>
+<!--         마이페이지        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                             <a href="${path }/mypage"><span>마이페이지</span></a>
+                        </button>
+                    </div>     
+<!--         관리자        -->                                   
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/admin/report"><span>관리자</span></a>
+                        </button>
+                    </div>                    
+                   </ul>
+<!--         로그아웃        -->
+									<div class="nav justify-content-end" style="margin-right: 0; color:white;">                                   
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/login/signin"><span>로그아웃</span></a>
+                        </button>
+                    </div>
+                  </div>		                      
+              </div>
+          </nav>
+     </div>
+
+<!--  <div id="space"></div> -->
  
 
  <!-- --------------서브 tab-------------- -->
@@ -240,6 +245,7 @@ function insertCategory($this){
 	                  			<input id="reportContent" type="hidden" name="reportContent" value="${report.report_content}"> 
                  	 			</form></td>
                   			<input id="boardTitle" type="hidden" name="boardTitle" value="${report.title}"> 
+                  			<input id="boardId" type="hidden" name="boardId" value="${report.boardid}"> 
                   			
 <!--                   			<button onclick="detailReport()">상세보기</button> -->
  										  </tr>     
@@ -303,6 +309,7 @@ function insertCategory($this){
 						let userid = reportBox.children("input:eq(2)");//input태그의 1번째부터 가져옴(0번 'no'이다)
 						let reportContent = reportBox.children("input:eq(3)");
 						let boardTitle = reportBox.children("input:eq(4)");
+						let boardId = reportBox.children("input:eq(5)");
 						
 						
 						let html='';
@@ -315,7 +322,7 @@ function insertCategory($this){
 					      			+		'</div>'
 					      			+	'</div>' 
 					       			+'<div class="h-full border rounded-xl bg-white m-6 p-4">'+reportContent.val()+'</div>' 
-					       			+'<div><a href="${path}/admin/report?page=1">신고한 게시물 :'+boardTitle.val()+'</a></div>';
+					       			+'<div><a href="${path}/post/postDetail?boardid='+boardId.val()+'">신고한 게시물 :'+boardTitle.val()+'</a></div>';
 					       			
 					  $("#detail-box").empty();
 						$("#detail-box").append(html); //달라를통해 하나의 객체로 바들어서 그위의 부모객체를 가져옴
@@ -323,13 +330,13 @@ function insertCategory($this){
 					}
 				});
 				
-				</script>
+			</script>
           
       </div>
    </div>	
    
 
-		
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
 </body>
