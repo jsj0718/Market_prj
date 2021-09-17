@@ -6,7 +6,7 @@
 	
 	
 	<resultMap  id="categoryMap" type="com.kitri.market.post.vo.PostCategoryVO">
-		<result property="categoryId" column="categoryId"/>
+		<result property="categoryid" column="categoryId"/>
 		<result property="categoryName" column="categoryName"/>
 	</resultMap>
 	

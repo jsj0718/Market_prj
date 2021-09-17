@@ -21,11 +21,13 @@ public interface PostDetailService {
 	//게시글 올리기
 	public boolean registPosting(PostDetailVO pdvo, PostDetailImgVO pdivo);
 	
+	//게시글 수정하기
+	public boolean registUpdatePosting(PostDetailVO pdvo, PostDetailImgVO pdivo);
+	
 	
 	//카테고리 보기
 	public List<PostCategoryVO> selectCategory();
 	
-	//게시글 수정하기
 	
 	
 }
