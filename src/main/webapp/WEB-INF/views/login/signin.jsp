@@ -8,9 +8,12 @@
 <title>로그인</title>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script>
+// 문서가 준비되면 매개변수로 넣은 콜백 함수를 실행하라는 의미
 	$(document).ready(function() {
+		// signInBtn을 누르면(click) 실행
 		let signInBtn = $("#signInBtn");
 		signInBtn.on("click", function() {
+			// userid,userpw 값 선언
 			let userid = $("#userid").val();
 			let userpw = $("#userpw").val();
 			
@@ -24,21 +27,26 @@
 				return;
 			}
 			
+			// signincheck에서 userid와 userpw를 post방식으로 text형태로 실행
 			$.ajax({
 				url: "${pageContext.request.contextPath}/signincheck",
 				type: "post",
 				data: {"userid": userid, "userpw": userpw},
 				dataType:"text",
 				
+				// 성공하고
 				success:function(data) {
+					
+					// 데이터가 null이 아니면 main(index)페이지로 이동
 					if(data != null) {
 						window.location.replace("${pageContext.request.contextPath}/index");
-						alert
 						alert("환영합니다.");
+						// 데이터가 null이 아니고 admin이면 관리자 페이지(admin)로 이동
 						if(data == "admin"){
 							window.location.replace("${pageContext.request.contextPath}/admin");
 							alert("관리자페이지로 이동합니다.");
 						}
+						// 둘 다 아니면 signInMsg 텍스트를 출력
 					} else {
 						$("#signInMsg").css("color","red");
 						$("#signInMsg").css("font-size","15px");
@@ -46,8 +54,8 @@
 					}
 				},
 				
+				//에러
 				error:function(request, status, error) {
-					console.log(error);
 				}
 				
 			});
@@ -59,42 +67,54 @@
 </script>
 </head>
 <body>
-<section class="flex flex-col md:flex-row h-screen items-center">
+	<section class="flex flex-col md:flex-row h-screen items-center">
 
-  <div class="lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-    <img src="${pageContext.request.contextPath}/assets/img/user/잔망얼굴.jpg" alt="" class="w-screen h-screen">
-  </div>
+		<div class="lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+			<img
+				src="${pageContext.request.contextPath}/assets/img/user/잔망얼굴.jpg"
+				alt="" class="w-screen h-screen">
+		</div>
 
-  <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
+		<div
+			class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
         flex items-center justify-center">
 
-    <div class="w-full h-100">
+			<div class="w-full h-100">
 
+				<h1
+					class="text-xl md:text-2xl text-center font-bold leading-tight mt-12">Log
+					in to your account</h1>
 
-      <h1 class="text-xl md:text-2xl text-center font-bold leading-tight mt-12">Log in to your account</h1>
+				<form class="mt-6" action="#" method="POST">
+					<div>
+						<label class="block text-gray-700">ID</label> <input type="text"
+							name="userid" id="userid" placeholder="아이디"
+							class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+							autofocus autocomplete required>
+					</div>
 
-      <form class="mt-6" action="#" method="POST">
-        <div>
-          <label class="block text-gray-700">ID</label>
-          <input type="text" name="userid" id="userid" placeholder="아이디" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required>
-        </div>
+					<div class="mt-4">
+						<label class="block text-gray-700">Password</label> <input
+							type="password" name="userpw" id="userpw" placeholder="비밀번호"
+							minlength="6"
+							class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                focus:bg-white focus:outline-none"
+							required>
+					</div>
+					
+					<!-- 회원가입버튼 -->
+					<div class="text-right mt-2">
+						<a href="${pageContext.request.contextPath}/signup"
+							class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">회원가입</a>
+					</div>
 
-        <div class="mt-4">
-          <label class="block text-gray-700">Password</label>
-          <input type="password" name="userpw" id="userpw" placeholder="비밀번호" minlength="6" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-                focus:bg-white focus:outline-none" required>
-        </div>
-
-        <div class="text-right mt-2">
-          <a href="${pageContext.request.contextPath}/signup" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">회원가입</a>
-        </div>
-
-        <input type="button" id="signInBtn" class="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
-              px-4 py-3 mt-6" value="로그인">
-              
-        <span id="signInMsg"></span>
-      </form>
-
+					<input type="button" id="signInBtn"
+						class="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
+              px-4 py-3 mt-6"
+						value="로그인"> <span id="signInMsg"></span>
+				</form>
+				
+				<!-- 네이버 로그인 api를 이용한 네이버로그인 , 사용하려면 신청해야한다. -->
 				<!-- 네이버아이디로로그인 버튼 노출 영역 -->
 				<div id="naver_id_login"></div>
 
@@ -113,10 +133,10 @@
 				</script>
 
 
-    </div>
-  </div>
+			</div>
+		</div>
 
-</section>
+	</section>
 
 
 </body>

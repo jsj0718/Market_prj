@@ -23,7 +23,7 @@ public class MyPageController {
     public String main(Model model) {
         String userId = "jisoo";
         
-        return "user";
+        return "mypage/user";
     }
     
     //판매중인 내역
@@ -76,7 +76,7 @@ public class MyPageController {
       List<MyPageVO> list = mypageService.searchMyInfo(userId);
 //      System.out.println(list);
       model.addAttribute("list",list);
-      return "userInfo";
+      return "mypage/userInfo";
     }
     
 

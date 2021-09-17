@@ -22,20 +22,16 @@
 		function naverSignInCallback() {
 	    alert(naver_id_login.getProfileData('email'));
 	    alert(naver_id_login.getProfileData('name'));
-// 	    alert(naver_id_login.getProfileData('birthyear'));//
 	    alert(naver_id_login.getProfileData('birthday'));
 	    alert(naver_id_login.getProfileData('gender'));
 	    alert(naver_id_login.getProfileData('profile_image'));
-// 	    alert(naver_id_login.getProfileData('mobile'));//
 		
 		let user = new Object();
 		user.email = naver_id_login.getProfileData('email');
 		user.name = naver_id_login.getProfileData('name');
-// 		user.birthyear = naver_id_signin.getProfileData('birthyear');
 		user.birthday = naver_id_login.getProfileData('birthday');
 		user.gender = naver_id_login.getProfileData('gender');
 		user.profile_image = naver_id_login.getProfileData('profile_image');
-// 		user.mobile = naver_id_signin.getProfileData('mobile');
 		
 		// 제이쿼리를 사용할 때에는 라이브러리가 필요하다
 		// 라이브러리는 직접 다운 받을 수도 있고 cdn방식을 사용

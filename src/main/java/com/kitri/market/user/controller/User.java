@@ -122,73 +122,70 @@ public class User {
 		
 	@RequestMapping("/signup-regist")
 	public String signupRegist(UserVO uvo, MultipartFile uploadfile, HttpServletRequest req, HttpSession session) {
-		
-		String uploadPath = req.getRealPath("uploadfolder");
-		String saveName = uploadfile.getOriginalFilename();
-		String uploadUniquePath = uploadPath+File.separator;		
-		
-		boolean uploadConfirm = false;
-		boolean registFlag = false;
+//		boolean uploadConfirm = false;
+		// saveName , path 초기화
+		String saveName = "";
 		String path="";
-		
 		try {
-		
-			File idFile = new File(uploadUniquePath);
+			// 이미지의 사이즈가 0 이 아니면 실행
+			if(uploadfile.getSize() != 0) {
+				String uploadPath = req.getRealPath("uploadfolder");
+				saveName = uploadfile.getOriginalFilename();
+				String uploadUniquePath = uploadPath+File.separator;		
+				
+				boolean registFlag = false;
 			
-			// 경로에 폴더가 존재 하는지 확인
-			// 폴더가 없으면 (!) 폴더 생성
-			if(!idFile.exists()) {
-				idFile.mkdir();
+				File idFile = new File(uploadUniquePath);
+	//			if(saveName == "") {
+	//				saveName이 공백일 때 defaultProfile.png 사진이 db에 저장되야한다.
+	//			}
+				// 경로에 폴더가 존재 하는지 확인
+				// 폴더가 없으면 (!) 폴더 생성
+				if(!idFile.exists()) {
+					idFile.mkdir();
+				}
+				
+				// 경로잡기 uploadPath+"/"+savename
+				File saveFile = new File(idFile, saveName); 
+				
+				// transferTo로 원하는 위치에 저장
+				uploadfile.transferTo(saveFile);
+//				uploadConfirm = true;
+			
+			}else {
+				// 이미지의 사이즈가 0 이면 실행
+				// getSize == 0 이면 saveName에 경로에 저장되어 있는 기본이미지 "defaultProfile.png"를 가져옴
+				saveName = "defaultProfile.png";
 			}
 			
-			// 경로잡기 uploadPath+"/"+savename
-			File saveFile = new File(idFile, saveName); 
-			
-			// transferTo로 원하는 위치에 저장
-			uploadfile.transferTo(saveFile);
-			uploadConfirm = true;
-			
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-			uploadConfirm = false;
-		} catch (IOException e) {
-			e.printStackTrace();
-			uploadConfirm = false;
-		}
-		
-		// 가입 확인
-//		String insertImgPath = "";
-		if(uploadConfirm) {
-		
 			// 세션에 파일 정보 저장
+			// 그 외에 회원가입되는 인원을 정보들을 저장 아이디, 비밀번호, 이름, 주소, 생년월일
 			UserAddrVO udvo = new UserAddrVO();
 			udvo.setUserid(uvo.getUserid());
 			udvo.setAddresscode(uvo.getAddress());
+			// /upload/saveName(defaultProfile.png 또는 등록한 이미지)
 			uvo.setImg(File.separator+"upload"+File.separator+saveName);
 			boolean registCheckFlag = userService.registUser(uvo, udvo);
 //			insertImgPath = File.separator+"upload"+File.separator+saveName;
 //			session.setAttribute("filePath", insertImgPath);
 		
 		// 성공하면 로그인 페이지로
-				if(registCheckFlag) {
-					path = "redirect:/signin";
-				
-				// 실패하면 그대로 회원가입 페이지로
-				} else {
-					path = "redirect:/signup";
-				}
-				
-				
+			if(registCheckFlag) {
+				path = "redirect:/signin";
+			
+			// 실패하면 그대로 회원가입 페이지로
+			} else {
+				path = "redirect:/signup";
+			}
 		 
-//		if (registFlag) {
-//			path = "redirect:/login/signup";
-//		} else {
-//			path = "redirect:/login/signup";
-//
-//		}
-//		 
-//		return path;
-	}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+//			uploadConfirm = false;
+		} catch (IOException e) {
+			e.printStackTrace();
+//			uploadConfirm = false;
+		}
+//	}
 		return path;
 	}
 	
