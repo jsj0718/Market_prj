@@ -41,6 +41,7 @@ public class Post {
 		
 		// 회원가입을 누르면 실행
 		String uploadPath = req.getRealPath("uploadfolder");
+//	    String uploadPath = "C:\\Java\\Spring_prj\\market\\src\\main\\webapp\\uploadfolder";
 		// 사진 이름이 들어옴 savename
 		String saveName = uploadfile.getOriginalFilename();
 		// 업로드 파일 경로 uploadfolder 인데 market에는 저장아님 , 아파치톰캣 저장
@@ -97,11 +98,8 @@ public class Post {
 	
 	
 	/* 상세보기 페이지 */
-	@RequestMapping("/postDetail")
-    public String postDetail(Model model) {
-		
-		//test
-		int boardid = 4;
+	@RequestMapping(value="/postDetail", method=RequestMethod.GET)
+    public String postDetail(Model model, int boardid) {
 		
 		PostDetailVO pdvo = postDetailService.selectPostDetail(boardid);
 		PostDetailReportVO pdrvo = postDetailService.selectReport(boardid);
@@ -138,6 +136,7 @@ public class Post {
     public String postModify(PostDetailImgVO pdivo,PostDetailVO pdvo,MultipartFile uploadfile, HttpServletRequest req, HttpSession session) {
 		// 회원가입을 누르면 실행
 		String uploadPath = req.getRealPath("uploadfolder");
+//	    String uploadPath = "C:\\Java\\Spring_prj\\market\\src\\main\\webapp\\uploadfolder";
 		// 사진 이름이 들어옴 savename
 		String saveName = uploadfile.getOriginalFilename();
 		// 업로드 파일 경로 uploadfolder 인데 market에는 저장아님 , 아파치톰캣 저장

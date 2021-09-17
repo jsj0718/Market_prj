@@ -115,6 +115,7 @@ public class User {
 		
 		// 회원가입을 누르면 실행
 		String uploadPath = req.getRealPath("uploadfolder");
+//	    String uploadPath = "C:\\Java\\Spring_prj\\market\\src\\main\\webapp\\uploadfolder";
 		// 사진 이름이 들어옴 savename
 		String saveName = uploadfile.getOriginalFilename();
 		// 업로드 파일 경로 uploadfolder 인데 market에는 저장아님 , 아파치톰캣 저장

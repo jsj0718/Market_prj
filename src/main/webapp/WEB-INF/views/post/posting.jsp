@@ -357,7 +357,7 @@
 					<textarea class="input_box"  name="content" id="content" placeholder="내용" rows="15px"></textarea>
 					
 					<!-- 유저 아이디 -->
-					<input type="hidden"  name="userid" id="userid" value="test"><%-- ${userid} --%>
+					<input type="hidden"  name="userid" id="userid" value="${sessionScope.userid}"><%-- ${userid} --%>
 					
 					<!-- 조회수 -->
 					<%--<input type="hidden" value=""> ${view} --%>

@@ -66,21 +66,21 @@ function getLocation() {
 			dataType: "json",
 
 			success: function(data) {
-//				console.log(data);
+				console.log(data);
 				//기존의 게시물을 다 지우고 비동기로 다시 불러오기
 				$("#board-box").empty();
 		
 				let html = "";
 				for(let i=0; i<data.length; i++){
 				html  += "<div class='w- p-6 m-10 bg-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500'>"
-						  + "<img class='w-64 object-cover rounded-t-md' src='"+data[i].img+"' alt='이미지' />"
+						  + "<img class='w-64 object-cover rounded-t-md' src='\\market"+data[i].img+"' alt='이미지' />"
 							+ " <div class='mt-4'>"
 							+ "  <h1 class='text-2xl font-bold text-gray-700'> "+data[i].title+ " </h1>"
 							+ "  <p class='text-base mt-2 text-gray-700'> "+data[i].addressName+ " </p>"
 							+ " <p class='text-sm mt-2 text-gray-700'> "+data[i].regdate+ "</p>"
 							+ " <div class='mt-4 mb-2 flex justify-between pl-4 pr-2'>"
 							+ "   <button class='block text-xl font-semibold text-gray-700 cursor-auto'> "+data[i].price+ "원</button>"
-							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
+							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300' onclick='gotoDetail("+data[i].boardId+")'>Buy</button>"
 							+ " </div>"
 							+ "  </div>"
 							+ " </div>";
@@ -115,14 +115,14 @@ function search(){
 				let html = "";
 				for(let i=0; i<data.length; i++){
 				html  += "<div class='w- p-6 m-10 bg-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500'>"
-						  + "<img class='w-64 object-cover rounded-t-md' src='"+data[i].img+"' alt='이미지' />"
+						  + "<img class='w-64 object-cover rounded-t-md' src='\\market"+data[i].img+"' alt='이미지' />"
 							+ " <div class='mt-4'>"
 							+ "  <h1 class='text-2xl font-bold text-gray-700'> "+data[i].title+ " </h1>"
 							+ "  <p class='text-base mt-2 text-gray-700'> "+data[i].addressName+ " </p>"
 							+ " <p class='text-sm mt-2 text-gray-700'> "+data[i].regdate+ "</p>"
 							+ " <div class='mt-4 mb-2 flex justify-between pl-4 pr-2'>"
 							+ "   <button class='block text-xl font-semibold text-gray-700 cursor-auto'> "+data[i].price+ "원</button>"
-							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
+							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300' onclick='gotoDetail("+data[i].boardId+")'>Buy</button>"
 							+ " </div>"
 							+ "  </div>"
 							+ " </div>";
@@ -159,14 +159,14 @@ function category(){
 				let html = "";
 				for(let i=0; i<data.length; i++){
 				html  += "<div class='w- p-6 m-10 bg-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500'>"
-						  + "<img class='w-64 object-cover rounded-t-md' src='"+data[i].img+"' alt='이미지' />"
+						  + "<img class='w-64 object-cover rounded-t-md' src='\\market"+data[i].img+"' alt='이미지' />"
 							+ " <div class='mt-4'>"
 							+ "  <h1 class='text-2xl font-bold text-gray-700'> "+data[i].title+ " </h1>"
 							+ "  <p class='text-base mt-2 text-gray-700'> "+data[i].addressName+ " </p>"
 							+ " <p class='text-sm mt-2 text-gray-700'> "+data[i].regdate+ "</p>"
 							+ " <div class='mt-4 mb-2 flex justify-between pl-4 pr-2'>"
 							+ "   <button class='block text-xl font-semibold text-gray-700 cursor-auto'> "+data[i].price+ "원</button>"
-							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300'>Buy</button>"
+							+ "   <button class='text-lg block font-semibold py-2 px-6 text-white-100 hover:text-white bg-purple-400 rounded-lg shadow hover:shadow-md transition duration-300' onclick='gotoDetail("+data[i].boardId+")'>Buy</button>"
 							+ " </div>"
 							+ "  </div>"
 							+ " </div>";

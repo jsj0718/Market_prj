@@ -8,6 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${path}/assets/css/index.css">
 
+<script>
+  const gotoDetail = function(boardid) {
+    console.log(1);
+    if (boardid != null && boardid != "") {
+      console.log(2);
+      location.href = "${path}/post/postDetail?boardid=" + boardid;
+    }
+  }
+</script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${path}/assets/js/index.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script> -->
@@ -15,7 +24,6 @@
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
 <title>MAIN</title>
-
 </head>
 <body>
 
@@ -148,10 +156,9 @@
   <!-- <div class="min-h-screen bg-gray-100 flex justify-center items-center"> -->
   <div id="board-box" class="grid grid-cols-4 gap-1 place-items-center h-24">
 
-
     <c:forEach items="${boardList}" var="mvo">
       <div onclick="location.href='${path}/post/postDetail?boardid=${mvo.boardId}'" class="w- p-6 m-10 bg-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500">
-        <img class="w-64 object-cover rounded-t-md" src="resources/img/1.png" alt="이미지" />
+        <img class="w-64 object-cover rounded-t-md" src="${path}/${mvo.img}" alt="이미지" />
         <div class="mt-4">
           <h1 class="text-2xl font-bold text-gray-700">${mvo.title}</h1>
           <p class="text-base mt-2 text-gray-700">${mvo.addressName}</p>
