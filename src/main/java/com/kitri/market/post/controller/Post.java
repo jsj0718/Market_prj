@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kitri.market.post.service.PostDetailService;
 import com.kitri.market.post.vo.PostDetailImgVO;
@@ -31,27 +32,27 @@ public class Post {
         return "redirect:/";
     }
 
-	/* int boardid */
-	@RequestMapping("/postDetail")
-    public String postDetail(Model model) {
-		
-		//test
-		int boardid = 4;
-		
-		PostDetailVO pdvo = postDetailService.selectPostDetail(boardid);
-		PostDetailReportVO pdrvo = postDetailService.selectReport(boardid);
-		List<PostDetailImgVO> pdList = postDetailService.getImgBoardList(boardid);
-		
-		System.out.println("post pdvo : " + pdvo);
-		System.out.println("userimg prdvo : " + pdrvo);
-		
-		model.addAttribute("post",pdvo);
-		model.addAttribute("report",pdrvo);
-		model.addAttribute("pdList", pdList);
-		
-		
-        return "post/postDetail";
-    }
+	   /* int boardid */
+	   @RequestMapping(value="/postDetail",method = RequestMethod.GET)
+	    public String postDetail(Model model, int boardid) {
+	      
+	      //test
+//	      int boardid = 4;
+	      
+	      PostDetailVO pdvo = postDetailService.selectPostDetail(boardid);
+	      PostDetailReportVO pdrvo = postDetailService.selectReport(boardid);
+	      List<PostDetailImgVO> pdList = postDetailService.getImgBoardList(boardid);
+	      
+	      System.out.println("post pdvo : " + pdvo);
+	      System.out.println("userimg prdvo : " + pdrvo);
+	      
+	      model.addAttribute("post",pdvo);
+	      model.addAttribute("report",pdrvo);
+	      model.addAttribute("pdList", pdList);
+	      
+	      
+	        return "post/postDetail";
+	    }
 	
 	@RequestMapping("/userReport")
     public String postReport(Model model) {

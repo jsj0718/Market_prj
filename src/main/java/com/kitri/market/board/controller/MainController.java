@@ -28,6 +28,7 @@ public class MainController {
     @RequestMapping("")
     public String main(Model model) {
         String userId = "jisoo";
+//      String userId = (String) session.getAttribute("userid");
         List<MainVO> mList = mainService.getUserAddress(userId);
         // model에 실린 값은 jsp에서 el태그로 활용하면 됨
         model.addAttribute("mList", mList);
@@ -40,22 +41,24 @@ public class MainController {
         List<MainVO> categoryList = mainService.getCategory();
         model.addAttribute("categoryList", categoryList);
         
-        return "index";
+        return "main/index";
     }
     
     
     //내 동네 탭에서 동네 추가
     @RequestMapping("/address-regist")
     @ResponseBody
-    public String addressRegist(HttpServletRequest request, HttpServletResponse response, String addresscode) throws Exception{
+    public String addressRegist(String addresscode, HttpSession session) throws Exception{
+        String userId = (String) session.getAttribute("userid");
+        
         MainVO mvo = new MainVO();
-        mvo.setUserId("jisoo");
+        mvo.setUserId(userId);
         mvo.setAddressCode(addresscode);
         boolean registFlag = mainService.registUserAddress(mvo);
 //        System.out.println("addresscode: "+ addresscode);
 //        System.out.println("Flag: " + registFlag);
         
-        return "redirect:/index";
+        return "redirect:/main/index";
     }
     
     //선택된 동네의 게시물만 불러오기 (AJAX통신)
