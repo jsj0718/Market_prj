@@ -29,7 +29,7 @@ public class ChatRoomController {
     
     @RequestMapping("/test/{id}")
     public String test(HttpSession session, @PathVariable String id) {
-        session.setAttribute("id", id);
+        session.setAttribute("userid", id);
         return "chat/test";
     }
     
@@ -37,7 +37,7 @@ public class ChatRoomController {
     // 대화하기 할 때 채팅 페이지 조회
     @RequestMapping(value="/chatroom", method=RequestMethod.POST)
     public String createChatroom(HttpSession session, Model model, ChatRoomVO vo) {
-        String id = (String) session.getAttribute("id");
+        String id = (String) session.getAttribute("userid");
         
         
         if (id == null || id == "") {
@@ -58,7 +58,7 @@ public class ChatRoomController {
     
     @RequestMapping(value="/chatroom", method=RequestMethod.GET)
     public String chatroomGet(HttpSession session) {
-        String id = (String) session.getAttribute("id");
+        String id = (String) session.getAttribute("userid");
         
         if (id == null || id == "") {
             return "redirect:login/signin";
@@ -71,7 +71,7 @@ public class ChatRoomController {
     @RequestMapping(value="/chatroom-info", method=RequestMethod.POST)
     @ResponseBody
     public List<ChatMessageVO> chatroomPost(Model model, HttpSession session) {
-        String id = (String) session.getAttribute("id");
+        String id = (String) session.getAttribute("userid");
         
         List<ChatMessageVO> cmvoList = cmservice.searchRecentChatDialog(id);
         for (ChatMessageVO cmvo : cmvoList) {

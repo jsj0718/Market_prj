@@ -26,7 +26,7 @@ public class UserReportController {
     @ResponseBody
     @Transactional(rollbackFor = Exception.class)
     public int report(HttpSession session, @RequestParam("roomId") int roomId, @RequestParam("reportTitle") String reportTitle, @RequestParam String reportContent) {
-        String userId = (String) session.getAttribute("id");
+        String userId = (String) session.getAttribute("userid");
         String otherPerson = "";    // 상대방 유저 id
         // roomid로 게시글 번호, 상대방 유저 가져오기
         ChatRoomVO crvo = crservice.searchChatRoomInfo(roomId);

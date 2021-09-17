@@ -43,7 +43,7 @@ public class User {
 		boolean signinFlag = userService.signinCheckUser(uvo);
 		
 		if(signinFlag) {
-			session.setAttribute("id", uvo.getUserid());
+			session.setAttribute("userid", uvo.getUserid());
 		}
 		
 		return signinFlag;
