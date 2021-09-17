@@ -21,11 +21,15 @@ public interface PostDetailDAO {
 	//게시물 이미지 업로드
 	public int insertImgPosting(PostDetailImgVO pdivo);
 	
+	
+	//boardid 검색
+	public PostDetailVO selectPostBoardid();
+	
 	//카테고리 보기
 	public List<PostCategoryVO> selectCategory();
 	
 	//게시물 수정
 	public int updatePosting(PostDetailVO pdvo);
 	//게시물 이미지 수정
-	
+	public int updateImgPosting(PostDetailImgVO pdivo);
 }

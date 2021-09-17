@@ -58,10 +58,26 @@ public class PostDetailServiceImpl implements PostDetailService{
 		return postBoardDAO.selectCategory();
 	}
 
+	// 게시글 업데이트
 	@Override
 	public boolean registUpdatePosting(PostDetailVO pdvo, PostDetailImgVO pdivo) {
-		// TODO Auto-generated method stub
-		return false;
+		int result = postBoardDAO.updatePosting(pdvo);
+		int result1 = postBoardDAO.updateImgPosting(pdivo);
+		
+		boolean registFlag = false;
+		
+		if(result != 0 && result1 != 0) {
+			registFlag = true;
+		}
+		
+		return registFlag;
+	}
+
+	//boardid 가져오기
+	@Override
+	public PostDetailVO selectPostBoardid() {
+		
+		return postBoardDAO.selectPostBoardid();
 	}
 	
 	

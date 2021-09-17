@@ -363,8 +363,6 @@
 										</c:if>
 	                        		</div>     
 		                    	</div>
-		                    	
-	                        	
                         		<!-- 가격 -->
                     			<div class="post-subtitle h4">
                     				<div class="mt-4 mb-3">
@@ -380,9 +378,6 @@
 		                    </div>
                     	</div>
                     </div>
-                    
-                    
-                    
                 </div>
             </div>
         </div>

@@ -118,24 +118,24 @@ public class Post {
         return "post/postDetail";
     }
 	
-	@RequestMapping("/userReport")
-    public String postReport(Model model) {
-		
-		int boardid = 4;
-		
-		PostDetailVO pdvo = postDetailService.selectPostDetail(boardid);
-		PostDetailReportVO pdrvo = postDetailService.selectReport(boardid);
-		
-		model.addAttribute("post",pdvo);
-		model.addAttribute("report",pdrvo);
-		
-		
+	@RequestMapping(value ="/userReport", method = RequestMethod.GET)
+    public String postReport(Model model, int boardid) {
+      
+      
+      PostDetailVO pdvo = postDetailService.selectPostDetail(boardid);
+      PostDetailReportVO pdrvo = postDetailService.selectReport(boardid);
+      
+      model.addAttribute("post",pdvo);
+      model.addAttribute("report",pdrvo);
+      
+      
         return "post/postDetail";
     }
-
+   
+   
 	/* 게시글 수정 */
-	@RequestMapping("/postModify")
-    public String postModify(PostDetailImgVO pdivo,PostDetailVO pdvo,MultipartFile uploadfile, HttpServletRequest req, HttpSession session) {
+	@RequestMapping("/postModifyAction")
+    public String postModifyAction(PostDetailImgVO pdivo,PostDetailVO pdvo,MultipartFile uploadfile, HttpServletRequest req, HttpSession session) {
 		// 회원가입을 누르면 실행
 		String uploadPath = req.getRealPath("uploadfolder");
 		// 사진 이름이 들어옴 savename
@@ -179,18 +179,22 @@ public class Post {
 			pdivo.setImg(File.separator+"upload"+File.separator+saveName);
 		}
 		//완료 체크
-		boolean registCheckFlag = postDetailService.registPosting(pdvo,pdivo);
+		boolean registCheckFlag = postDetailService.registUpdatePosting(pdvo,pdivo);
 				
 		if(registCheckFlag) {
 			//메인으로 가기
 			path = "redirect:/index";
 		}
 		else {
-			path = "redirect:/post";
+			path = "redirect:/post/postModify";
 		}
 		
         return path;
     }
 	
+	@RequestMapping(value ="/postModify", method = RequestMethod.GET)
+    public String postModify(int boardid) {
+		return "post/postModify";
+	};
 	
 }

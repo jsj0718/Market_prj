@@ -29,6 +29,11 @@
 		WHERE
 			BOARDID = #{boardid}
 	</update>
-
+	
+	<!-- boardid 가져오기 -->
+	<select id="selectPostBoardid" resultType="com.kitri.market.post.vo.PostDetailImgVO">
+		SELECT MAX(BOARDID)
+		FROM BOARD
+	</select>
 	
 </mapper>

@@ -24,6 +24,8 @@ public interface PostDetailService {
 	//게시글 수정하기
 	public boolean registUpdatePosting(PostDetailVO pdvo, PostDetailImgVO pdivo);
 	
+	//boardid 가져오기
+	public PostDetailVO selectPostBoardid();
 	
 	//카테고리 보기
 	public List<PostCategoryVO> selectCategory();

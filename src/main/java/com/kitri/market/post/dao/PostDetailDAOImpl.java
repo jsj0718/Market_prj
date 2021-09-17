@@ -61,9 +61,25 @@ public class PostDetailDAOImpl implements PostDetailDAO{
 	//게시글 수정
 	@Override
 	public int updatePosting(PostDetailVO pdvo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.selectOne("post.updatePostModify");
 	}
+	
+	// TODO Auto-generated method stub
+	@Override
+	public int updateImgPosting(PostDetailImgVO pdivo) {
+		
+		return sqlSession.selectOne("img.updatePostImg");
+	}
+	
+	
+	//boardid 보기
+	@Override
+	public PostDetailVO selectPostBoardid() {
+		
+		return sqlSession.selectOne("post.selectPostBoardid");
+	}
+
 
 
 	
