@@ -15,15 +15,13 @@
 	</select>
 	
 	<!-- 게시글 이미지 업로드 -->
-	
 	<insert id="insertImgPosting" parameterType="com.kitri.market.post.vo.PostDetailImgVO">
 		INSERT INTO BOARD_IMG (BOARDID , IMG)
-		VALUES (BOARD_BOARDID_SEQ.NEXTVAL, #{img})<!-- 쌤한테 여쭤보기 -->
+		VALUES (BOARD_BOARDID_SEQ.NEXTVAL-1, #{img})
 	</insert>  
 	
 	
 	<!-- 게시글 이미지 수정 -->
-
 	<update id="updatePostImg" parameterType="com.kitri.market.post.vo.PostDetailImgVO">
 		UPDATE BOARD_IMG
 		SET

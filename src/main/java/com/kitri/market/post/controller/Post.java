@@ -96,7 +96,7 @@ public class Post {
     }
 	
 	
-	/* int boardid */
+	/* 상세보기 페이지 */
 	@RequestMapping("/postDetail")
     public String postDetail(Model model) {
 		
@@ -132,7 +132,8 @@ public class Post {
 		
         return "post/postDetail";
     }
-	
+
+	/* 게시글 수정 */
 	@RequestMapping("/postModify")
     public String postModify(PostDetailImgVO pdivo,PostDetailVO pdvo,MultipartFile uploadfile, HttpServletRequest req, HttpSession session) {
 		// 회원가입을 누르면 실행

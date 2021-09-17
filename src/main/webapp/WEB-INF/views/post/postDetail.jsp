@@ -346,18 +346,20 @@
 			                        <div class="post-title h2 p-3 col-md-7 ">${post.title}</div>
 			                        
 			                        <div class="col-md-3">
-	                        		
-		                        		<c:if test="${fn:contains(post.flag, 'Y')}">
-											<form action="" method="post">
-						                    	<input type="hidden" value="${post.boardid}" readonly >
-						                    	<input type="submit" value="채팅으로 거래하기" class="btn btn-primary mt-3 mb-3">
-						                    </form>   
-										</c:if>
-										<c:if test="${fn:contains(post.flag, 'N')}">
-										    <form action="" method="post">
-						                    	<input type="hidden" value="${post.boardid}" readonly >
-						                    	<input type="submit" value="채팅으로 거래하기" class="btn btn-primary mt-3 mb-3" disabled>
-						                    </form> 
+	                        			<c:if test="${post.userid ne sessionScope.userid}">
+			                        		<c:if test="${fn:contains(post.flag, 'Y')}">
+												<form action="/market/chatroom" method="post">
+							                    	<input type="hidden" value="${post.boardid}" name="boardId" readonly >
+							                    	<input type="hidden" value="${post.userid}" name="author" readonly >
+							                    	<input type="submit" value="채팅으로 거래하기" class="btn btn-primary mt-3 mb-3">
+							                    </form>   
+											</c:if>
+											<c:if test="${fn:contains(post.flag, 'N')}">
+											    <form action="" method="post">
+							                    	<input type="hidden" value="${post.boardid}" readonly >
+							                    	<input type="submit" value="채팅으로 거래하기" class="btn btn-primary mt-3 mb-3" disabled>
+							                    </form> 
+											</c:if>
 										</c:if>
 	                        		</div>     
 		                    	</div>

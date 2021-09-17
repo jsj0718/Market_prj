@@ -57,6 +57,12 @@ public class PostDetailServiceImpl implements PostDetailService{
 		
 		return postBoardDAO.selectCategory();
 	}
+
+	@Override
+	public boolean registUpdatePosting(PostDetailVO pdvo, PostDetailImgVO pdivo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 
