@@ -87,7 +87,7 @@ function chart(ctx,type,labels,data, label,x, bglist, hoverlist=[]){
 <!--       아이콘 -->
 		          <div @click.away="open = false" class="relative" x-data="{ open: false }">
 		              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-		                  <img alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;" src="#"> 
+		                  <img src="../assets/img/netchu.png" alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;"> 
 		              </button>
 		          </div>
               <div class="collapse navbar-collapse">

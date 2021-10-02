@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header/header.jsp"%>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -161,7 +162,7 @@
 	/*-------img upload css-------*/
 	.input-file-button{
 		padding: 60px;
-		background-color:white;
+		background-color:#E1E3F9;
 		border-radius: 4px;
 		border: 1px solid grey;
 		color: grey;
@@ -241,69 +242,68 @@
 <body>
 	<!-- navigation  -->
 	<header>
-	  <nav id="navigator" class="navbar navbar-expand-lg navbar fixed-top" style="background-color: #5f0080; height: 70px; color: white;">
-	    <div id="nav" class="container-fluid">
-	      <a class="navbar-brand mt-1 ml-1" href="#">
-	        <img alt="아이콘" style="height: auto; width: 100px" src="#">
-	      </a>
-	      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="navbar-toggler-icon"></span>
-	      </button>
-	      <div class="collapse navbar-collapse align-items-end justify-content-between" id="navbarNav" style="background-color: #5f0080;">
-	        <ul class="nav justify-content-center">
-	          <li class="nav-item">
-	            <a class="nav-link active" aria-current="page" href="#">홈</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">메인</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">동네</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">카테고리</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">채팅</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">관리자</a>
-	          </li>
-	        </ul>
-	        <ul class="navbar-nav">
-	          <li>
-	            <a class="btn">아이콘</a>
-	          </li>
-	          <li class="nav-item dropdown">
-	            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 회원 정보 </a>
-	            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	              <li>
-	                <a class="dropdown-item" href="#">회원 정보</a>
-	              </li>
-	              <li>
-	                <a class="dropdown-item" href="#">회원 수정</a>
-	              </li>
-	              <li class="dropdown-divider"></li>
-	              <li>
-	                <a class="dropdown-item" href="#">로그아웃</a>
-	              </li>
-	            </ul>
-	          </li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
+	  	<!-- navigation  -->
+		<div class="nav justify-content-center" style="background-color: #5f0080;">
+          <nav class="navbar navbar-expand-lg navbar">
+<!--       아이콘 -->
+		          <div @click.away="open = false" class="relative" x-data="{ open: false }">
+		              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+		                  <img src="./assets/img/netchu.png" alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;"> 
+		              </button>
+		          </div>
+              <div class="collapse navbar-collapse">
+                  <ul class="nav justify-content-center" style="background-color: #5f0080; width:1200px; height: 40px; color:white; ">
+                  
+<!--         홈 -->
+                      <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                          <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/index"><span>홈</span></a>
+                          </button>
+                      </div>
+                      
+
+                      
+<!--         채팅        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                             <a href="${path }/chatroom"><span>채팅</span></a>
+                        </button>
+                    </div>
+<!--         마이페이지        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                             <a href="${path }/mypage"><span>마이페이지</span></a>
+                        </button>
+                    </div>     
+<!--         관리자        -->                                   
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/admin/report"><span>관리자</span></a>
+                        </button>
+                    </div>                    
+                   </ul>
+<!--         로그아웃        -->
+									<div class="nav justify-content-end" style="margin-right: 0; color:white;">                                   
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/login/signin"><span>로그아웃</span></a>
+                        </button>
+                    </div>
+                  </div>		                      
+              </div>
+          </nav>
+     </div>
 	</header>
-	<div id="space"></div>
+
 	<!-- post -->
-	<div class="container">
-		<div class="mt-5 p-5">
+	<div class="container shadow-md bg-white" >
+		<div class="mt-1 p-5">
 			<!-- 업로드 -->
-		  	<div class="row ">
+		  	<div class="row">
 		  	
 				<form action="${pageContext.request.contextPath}/post/write" method="post" enctype="multipart/form-data" class="row" >
 					<!-- 이미지 업로드 -->
-					<div class="mt-2 col-md-2">
+					<div class="mt-2 col-md-2 ">
 						<div class="upload_box">
 						<%-- <label class="input-file-button" for="images">
 							<img class="fit-picture" src="${pageContext.request.contextPath}/assets/img/post/camera.png" alt="camera">
@@ -320,8 +320,9 @@
 							<!-- 미리보기 내용 -->
 						</div>
 					</div>
+				
 					<!-- 제목 -->
-					<input type="text" class="input_box" name="title" id="post_title" placeholder="제목">
+					<input type="text" class="input_box" name="title" id="post_title" placeholder="제목" style="border-radius: 6px 6px 0px 0px;">
 					<!-- 카테고리 -->
 					
 					<select class="input_box" name="categoryid" id="categoryid">
@@ -348,13 +349,13 @@
 					<input type="text" name="address" id="address" placeholder="우편번호" readonly class="input_box" style="width:50%;"> 
 					<!-- 넘겨주는 값 -->
 					<input type="hidden" name="addresscode" id="addresscode" placeholder="우편번호" readonly> 
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="input_box" style="width:50%;">
+					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="input_box" style="width:50%; background-color: #E1E3F9">
 					
 					<!-- 금액 -->
 					<input type="text" name="price" id="price" class="input_box" placeholder="\">
 					
 					<!-- 내용 -->
-					<textarea class="input_box"  name="content" id="content" placeholder="내용" rows="15px"></textarea>
+					<textarea class="input_box"  name="content" id="content" placeholder="내용" rows="15px" style="border-radius: 0px 0px 6px 6px;"></textarea>
 					
 					<!-- 유저 아이디 -->
 					<input type="hidden"  name="userid" id="userid" value="${sessionScope.userid}"><%-- ${userid} --%>
@@ -366,8 +367,8 @@
 					<input type="hidden" name="flag" id="flag" value="N">
 					
 					<div class="mt-3 float-right" >
-					    <input type="submit" class="btn btn-primary finishBtn" name='submit_image' value="완료"/>
-					    <input type="button" class="btn btn-secondary" name='cancel' value="취소"/>
+					    <input type="submit" class="btn btn-primary finishBtn" name='submit_image' value="완료" />
+					    <button type="button" class="btn btn-secondary" name='cancel' value="취소"><a href="${path }/index">취소</a></button>
 					</div>
 				</form>
 			</div>

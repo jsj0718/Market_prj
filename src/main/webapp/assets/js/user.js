@@ -81,7 +81,7 @@ function soldout() {
 			dataType: "json",
 
 			success: function(data) {
-//				console.log(data);
+				console.log(data);
 				//기존의 게시물을 다 지우고 비동기로 다시 불러오기
 				$("#box").empty();
 				$("#mypage-info").empty();

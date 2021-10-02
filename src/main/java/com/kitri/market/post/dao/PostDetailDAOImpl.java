@@ -1,6 +1,8 @@
 package com.kitri.market.post.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +67,18 @@ public class PostDetailDAOImpl implements PostDetailDAO{
 		return 0;
 	}
 
+  @Override
+  public int updateBuyer(int boardid, String sender) {
+    System.out.println(boardid + ", " + sender);
+    
+    Map<String, String> infoMap = new HashMap<>();
+    infoMap.put("boardid", boardid+"");
+    infoMap.put("sender", sender);
+    
+    return sqlSession.update("post.updateBuyer", infoMap);
+  }
+
+	
 
 	
 	

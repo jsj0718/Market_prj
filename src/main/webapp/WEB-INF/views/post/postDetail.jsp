@@ -152,7 +152,7 @@
 		var views = '${post.views}';
 		var flag = '${post.flag}';
 		var regdate = '${post.regdate}';
-		var userimg = '${report.img}';
+// 		var userimg = '${report.img}';
 		
 		console.log("userid : ", userid);
 		console.log("boardid : ", boardid);
@@ -165,67 +165,113 @@
 		console.log("flag : ", flag);
 		console.log("views : ", views);
 		console.log("regdate : ", regdate);
-		console.log("userImg : ", userimg);	
-	</script>
+// 		console.log("userImg : ", userimg);	
 	
+		function searchBuyerList() {
+			console.log(1);
+			$.ajax({
+					url : "${path}/post/buyerlist",
+					type : "post",
+					data : {"boardid" : boardid},
+					dataType : "json",
+					success : function(data) {
+						for (let i=0; i<data.length; i++) {
+							$('#modalBody')
+							  .append($('<div>')
+								  .attr('class', 'row justify-content-center border')
+							    .append($('<div>')
+							    	.attr('class', 'col-6 text-center')
+										.attr('onclick', "choiceBuyer('"+data[i].sender+"')")
+							    	.text(data[i].sender)
+							    )
+							  )
+						}
+					},
+					error : function(request, status, error) {
+						
+					}
+				});
+		}
+		
+		const choiceBuyer = function(userid) {
+			if (!confirm(userid + "님과 거래를 진행하시겠습니까?")) {
+				return;
+			}
+			
+			$.ajax({
+				url : "${path}/post/choice-buyer",
+				type : "post",
+				data : {"boardid" : boardid, "sender" : userid},
+				dataType : "json",
+				success : function(data) {
+					console.log(data);
+					if (data > 0) {
+						alert(userid + "님과 거래가 성공했습니다.");
+					} else {
+						alert("거래 등록에 실패했습니다.");
+					}
+				},
+				error : function(request, status, error) {
+					console.log('실패');
+				}
+			});
+		}
+	</script>
 </head>
 <body>
 	<!-- navigation  -->
 	<header>
-	  <nav id="navigator" class="navbar navbar-expand-lg navbar fixed-top" style="background-color: #5f0080; height: 70px; color: white;">
-	    <div id="nav" class="container-fluid">
-	      <a class="navbar-brand mt-1 ml-1" href="#">
-	        <img alt="아이콘" style="height: auto; width: 100px" src="#">
-	      </a>
-	      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="navbar-toggler-icon"></span>
-	      </button>
-	      <div class="collapse navbar-collapse align-items-end justify-content-between" id="navbarNav" style="background-color: #5f0080;">
-	        <ul class="nav justify-content-center">
-	          <li class="nav-item">
-	            <a class="nav-link active" aria-current="page" href="#">홈</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">메인</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">동네</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">카테고리</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">채팅</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">관리자</a>
-	          </li>
-	        </ul>
-	        <ul class="navbar-nav">
-	          <li>
-	            <a class="btn">아이콘</a>
-	          </li>
-	          <li class="nav-item dropdown">
-	            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 회원 정보 </a>
-	            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	              <li>
-	                <a class="dropdown-item" href="#">회원 정보</a>
-	              </li>
-	              <li>
-	                <a class="dropdown-item" href="#">회원 수정</a>
-	              </li>
-	              <li class="dropdown-divider"></li>
-	              <li>
-	                <a class="dropdown-item" href="#">로그아웃</a>
-	              </li>
-	            </ul>
-	          </li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-	</header>
-	<div id="space"></div>
+	 	<!-- navigation  -->
+		<div class="nav justify-content-center" style="background-color: #5f0080;">
+          <nav class="navbar navbar-expand-lg navbar">
+<!--       아이콘 -->
+		          <div @click.away="open = false" class="relative" x-data="{ open: false }">
+		              <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+		                  <img src="../assets/img/netchu.png" alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;"> 
+		              </button>
+		          </div>
+              <div class="collapse navbar-collapse">
+                  <ul class="nav justify-content-center" style="background-color: #5f0080; width:1200px; height: 40px; color:white; ">
+                  
+<!--         홈 -->
+                      <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                          <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/index"><span>홈</span></a>
+                          </button>
+                      </div>
+                      
+
+                      
+<!--         채팅        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                             <a href="${path }/chatroom"><span>채팅</span></a>
+                        </button>
+                    </div>
+<!--         마이페이지        -->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                             <a href="${path }/mypage"><span>마이페이지</span></a>
+                        </button>
+                    </div>     
+<!--         관리자        -->                                   
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/admin/report"><span>관리자</span></a>
+                        </button>
+                    </div>                    
+                   </ul>
+<!--         로그아웃        -->
+									<div class="nav justify-content-end" style="margin-right: 0; color:white;">                                   
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            <a href="${path }/login/signin"><span>로그아웃</span></a>
+                        </button>
+                    </div>
+                  </div>		                      
+              </div>
+          </nav>
+     </div>
 	
 	<!-- 상세보기 -->
 	<main>
@@ -240,7 +286,7 @@
 		  	<c:forEach items="${pdList}" var="pdvo" varStatus="status">
 			  	<c:if test="${status.count == 1}">
 				    <div class="carousel-item active">			    		
-						<img class="d-block w-100 h-75" src="${path}/${pdvo.img}" alt="${status.count}">
+						<img class="d-block w-50 h-75" src="${path}/${pdvo.img}" alt="${status.count}" style="margin: 0 auto;">
 						
 				    </div>
 				</c:if>
@@ -280,7 +326,7 @@
 	                        		
 	                        		<div style="width: 50px;">	
 	                        			<c:if test="${empty report.img}">
-			                    			<img src="${path}/assets/img/post/up-arrow-blue.png" alt="${report.img}">
+			                    			<img src="${path}/assets/img/post/up-arrow-blue.png" alt="${report.img}" >
 										</c:if>
 										<c:if test="${not empty report.img}">
 											<img src="${path}/assets/img/post/defaultProfile.png" alt="${report.img}">
@@ -382,10 +428,14 @@
 		                    </div>
                     	</div>
                     </div>
+                    <!-- Button 수정 -->
+                     <c:if test="${sessionScope.userid eq post.userid}">
+                      <button type="button" class="btn btn-primary"><a href="${path}/post/postModify">수정</a></button>
+                    </c:if>
                     
                     <!-- Button trigger modal -->
                     <c:if test="${sessionScope.userid eq post.userid && fn:contains(post.flag, 'N')}">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">거래 완료하기</button>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyerListModal" id="completeBtn" onclick="searchBuyerList();">거래 완료하기</button>
                     </c:if>
                     
                     
@@ -401,14 +451,16 @@
 	</main>
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="buyerListModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">...</div>
+        <div class="modal-body" id="modalBody">
+        
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>

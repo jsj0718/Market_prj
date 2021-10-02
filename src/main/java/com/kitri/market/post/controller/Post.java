@@ -12,8 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kitri.market.chat.service.ChatRoomService;
+import com.kitri.market.chat.vo.ChatRoomVO;
 import com.kitri.market.post.service.PostDetailService;
 import com.kitri.market.post.vo.PostDetailImgVO;
 import com.kitri.market.post.vo.PostDetailReportVO;
@@ -26,6 +30,9 @@ public class Post {
 	@Autowired
 	private PostDetailService postDetailService;
 
+	@Autowired
+	private ChatRoomService crservice;
+	
 	/* 글 작성화면 */
 	@RequestMapping("")
     public String post() {
@@ -190,6 +197,20 @@ public class Post {
 		
         return path;
     }
+	
+	@RequestMapping("/buyerlist")
+	@ResponseBody
+	public List<ChatRoomVO> buyerList(int boardid) {
+	  List<ChatRoomVO> crlist = crservice.searchBuyerList(boardid);
+	  
+	  return crlist;
+	}
+	
+	@RequestMapping("choice-buyer")
+	@ResponseBody
+	public int choiceBuyer(@RequestParam int boardid, @RequestParam String sender) {
+	  return postDetailService.updateBuyer(boardid, sender);
+	}
 	
 	
 }

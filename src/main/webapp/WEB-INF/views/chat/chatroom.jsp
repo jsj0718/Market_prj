@@ -188,7 +188,7 @@
         $('#msg_history').empty();
        
         // 본인 아이디 선언
-        let userId = "${sessionScope.id}";
+        let userId = "${sessionScope.userid}";
 
         // 상대방 아이디 선언
         if(roomNum != 0 && data.length != 0) {
@@ -258,7 +258,7 @@
         $('#msg_history').empty();
         msgContent.value = "";
         
-        let userId = "${sessionScope.id}";
+        let userId = "${sessionScope.userid}";
         
         addDialog(data, userId); // 채팅 추가     
         showChatList(); // 채팅 목록 새로고침
@@ -279,7 +279,7 @@
       success: function(data) {
 //         console.log(data);
         
-        let userId = "${sessionScope.id}";
+        let userId = "${sessionScope.userid}";
         
         // 채팅 목록 초기화        
         $('#inbox_chat').empty();
@@ -410,7 +410,7 @@
         <!--       아이콘 -->
         <div @click.away="open = false" class="relative" x-data="{ open: false }">
           <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-            <img alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;" src="#">
+            <img alt="아이콘" style="height: 30px; width: 100px; color: white; border: 1px solid #5f0080;" src="./assets/img/netchu.png">
           </button>
         </div>
         <div class="collapse navbar-collapse">

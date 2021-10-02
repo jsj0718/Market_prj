@@ -56,20 +56,20 @@
 
 </script>
 </head>
-<body>
+<body style="background-color: #E1E3F9">
+  <div  style="margin: 0 auto;">
+<!--     <img src="../assets/img/netchu.png" alt="로고" style="margin: 0 auto; width: 700px;"> -->
+  </div>
 <section class="flex flex-col md:flex-row h-screen items-center">
 
-  <div class="lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-    <img src="${pageContext.request.contextPath}/resources/img/잔망얼굴.jpg" alt="" class="w-screen h-screen">
-  </div>
 
-  <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
-        flex items-center justify-center">
+  <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 px-6 lg:px-16 xl:px-12
+        flex items-center justify-center rounded-lg shadow-md" style="height: 700px;">
 
-    <div class="w-full h-100">
+    <div class="w-full" >
+			<img src="../assets/img/netchu.png" alt="로고" style="margin: 0 auto; width: 400px;">
 
-
-      <h1 class="text-xl md:text-2xl text-center font-bold leading-tight mt-12">Log in to your account</h1>
+     
 
       <form class="mt-6" action="#" method="POST">
         <div>
@@ -88,13 +88,13 @@
         </div>
 
         <input type="button" id="signInBtn" class="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
-              px-4 py-3 mt-6" value="로그인">
+              px-4 py-3 mt-6" value="로그인" style="background-color: #E0C1F1">
               
         <span id="signInMsg"></span>
       </form>
 
 				<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-				<div id="naver_id_login"></div>
+				<input id="naver_id_login"/>  <!-- div태그에서 일단 input태그로 바꿔놓음 _ 노출안되게 -->
 
 				<!-- 네이버아디디로로그인 초기화 Script -->
 				<script type="text/javascript">
@@ -102,7 +102,7 @@
 							"BS1ec9u_kYL0nHmx8MGJ",
 							"http://localhost:8080/market/login/naverlogin");
 					var state = naver_id_login.getUniqState();
-					naver_id_login.setButton("green", 3, 60);
+					naver_id_login.setButton("#E1E3F9", 3, 60);
 					naver_id_login
 							.setDomain("http://localhost:8080/market/login/signin");
 					naver_id_login.setState(state);
