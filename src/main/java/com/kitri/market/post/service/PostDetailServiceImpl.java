@@ -63,6 +63,11 @@ public class PostDetailServiceImpl implements PostDetailService{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+  @Override
+  public int updateBuyer(int boardid, String sender) {
+    return postBoardDAO.updateBuyer(boardid, sender);
+  }
 	
 	
 

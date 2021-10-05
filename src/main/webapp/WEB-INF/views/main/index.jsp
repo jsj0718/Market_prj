@@ -47,9 +47,9 @@
     </nav>
 
     <!--     중간 네브바 _ 아이콘 -->
-    <div class="container-fluid h-10 mb-20 mt-10">
+    <div class="container-fluid h-10 mb-20 mt-10" style = "padding: 20px;">
       <div class=" h-10 mb-20 mt-10 justify-content-center">
-        <a class="navbar-brand mt-1 ml-1" href="#"> <img src="assets/img/main/1.png" alt="아이콘" style="height: auto; margin: 0 auto; width: 100px" src="#">
+        <a class="navbar-brand mt-1 ml-1" href="#"> <img src="assets/img/netchu.png" alt="아이콘" style="height: auto; margin: 0 auto; width: 200px" height="200px"  src="#">
         </a>
       </div>
     </div>

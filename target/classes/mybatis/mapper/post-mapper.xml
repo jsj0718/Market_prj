@@ -46,4 +46,11 @@
 	<delete id="deletePost" parameterType="int">
 		DELETE FROM BOARD WHERE BOARDID = #{boardid}
 	</delete>
+	
+	<!-- Buyer 선택 시 -->
+	<update id="updateBuyer" parameterType="hashMap">
+		UPDATE BOARD
+		SET FLAG = 'Y', BUYER = #{sender}
+		WHERE BOARDID = #{boardid}
+	</update>
 </mapper>

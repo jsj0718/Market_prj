@@ -105,20 +105,20 @@
     }
 </script>
 </head>
-<body>
+<body style="background-color: #E1E3F9">
 	<div class="font-sans">
 		<div
 			class="relative min-h-screen flex flex-col sm:justify-center items-center">
-			<div class="relative sm:max-w-sm w-full">
-				<div
-					class="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
-				<div
-					class="card bg-black shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+			<div class="relative sm:max-w-sm w-full" style="background-color: white;">
+<!-- 				<div -->
+<!-- 					class="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div> -->
+<!-- 				<div -->
+<!-- 					class="card bg-black shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div> -->
 				<div
 					class="relative w-full rounded-3xl  px-6 py-4 bg-white shadow-md">
-					<label for=""
-						class="block mb-3 mt-2 text-3XL text-gray-700 text-center font-semibold">
-						회원가입 </label>
+					<label 
+						class="block mb-3 mt-2 text-3XL text-gray-700 text-center font-semibold" style="margin: 30px auto; color: #7A457C;">
+						Sign Up </label>
 						
 <%-- 					<form action="${pageContext.request.contextPath}/login/img-regist" --%>
 <!-- 						id="imgForm" method="post" enctype="multipart/form-data"> -->
@@ -132,48 +132,49 @@
 						action="${pageContext.request.contextPath}/login/signup-regist"
 						id="signUpForm" method="post" enctype="multipart/form-data">
 						
-						<div>
+						<div style="margin-top: 50px">
 							<input type="file" name="uploadfile" > 
 <!-- 								<input type="submit" value="이미지업로드" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"> -->
 						</div>
 
-						<div>
+						<div style="margin-top: 20px">
 							<input type="text" name="userid" id="userid" placeholder="아이디"
-								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0" style="background-color: white;">
 						</div>
 
 						<div>
 							<input type="password" name="userpw" id="userpw"
 								placeholder="비밀번호"
-								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
 						</div>
 
 						<div>
 							<input type="text" name="name" id="name" placeholder="이름"
-								class="mt-1 block w-full border- bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
 						</div>
 
 						<div >
 							<input type="text" name="address" id="address" placeholder="우편번호"
-								readonly class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"> <input type="button"
+								readonly class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0"> 
+								<input type="button"
 								onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
-								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
 						</div>
-						<div class="text-center">
+						<div class="text-center" style="margin-top: 10px;">
 						<label><input type="radio" name="gender" value="남" />남</label> <label><input
 							type="radio" name="gender" value="여" />여</label>
 							</div>
 
 						<div>
 							<input type="date" name="birth" id="birth" placeholder="생년월일"
-								class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
+								class= "mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
 						</div>
 						<span id="idCheckMsg"></span>
 					</form>
 
 					<div class="mt-7">
-						<input type="button" id="signUpBtn" value="가입"
-							class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+						<input type="button" id="signUpBtn" value="가입" style="background-color: #E0C1F1"
+							class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-md hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
 					</div>
 				</div>
 			</div>

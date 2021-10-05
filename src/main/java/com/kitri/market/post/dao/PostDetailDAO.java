@@ -28,4 +28,7 @@ public interface PostDetailDAO {
 	public int updatePosting(PostDetailVO pdvo);
 	//게시물 이미지 수정
 	
+	// 구매자 수정
+	public int updateBuyer(int boardid, String sender);
+	
 }

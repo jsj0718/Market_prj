@@ -28,6 +28,7 @@ public interface PostDetailService {
 	//카테고리 보기
 	public List<PostCategoryVO> selectCategory();
 	
-	
+	// 구매자 수정
+	public int updateBuyer(int boardid, String sender);
 	
 }
