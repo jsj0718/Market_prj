@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<%-- <script src="${path}/assets/js/commonizion.js"></script> --%>
 <script>
 	$(document).ready(function() {
 		let signInBtn = $("#signInBtn");
@@ -53,7 +54,21 @@
 		});
 		
 	});
-
+ // 특수문자 방지 함수 (한글과 영문만 입력가능) 
+	function spectial_str_prv(id){
+	 $(id).keyup(function(event){
+		 if(!(event.keyCode >= 37 && event.keyCode <= 40)){
+			 var input_val = $(this).val();
+			 var special_str = /[~!@#$%^&*()_+|<>?:{}]/;
+			 if(special_str.test(input_val)){
+				 $(this).val("");
+				 $(this).val.attr("placeholder","특수문자 입력이 불가합니다.");
+			 }
+		 }
+	 });
+ }
+	
+	
 </script>
 </head>
 <body style="background-color: #E1E3F9">

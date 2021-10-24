@@ -7,8 +7,10 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="${path}/assets/js/commonization.js" ></script>
 <script>
 	$(document).ready(function() {
+		$("#name").attr("placeholder", "이름");
 		$("#signUpBtn").on("click",function() {
 			let userid = $("#userid").val();
 			let userpw = $("#userpw").val();
@@ -16,11 +18,10 @@
 			let address = $("#address").val();
 			let gender = $("#gender").val();
 			let birth = $("#birth").val();
-			//let myFile = $("#img")[0].files[0].name;
 			let myFile = $("#img").val();
-// 			alert(userid);
-// 			alert(myFile);
-
+			//예외처리란 =================================
+			
+			//회원가입 기입란에 값이 입력되어지지 않았을 때
 			if(userid == "") {
 				alert("아이디를 입력하세요.");
 				$("#userid").focus();
@@ -51,14 +52,14 @@
 				return false;
 			}
 			
- 			if(myFile == 0) {
+ 			if(myFile == "") {
  				alert("프로필 사진을 선택해 주세요.");
  				$("#myFile").focus();
  				return false;
  			}
  		
 			$.ajax({
-				url: "${pageContext.request.contextPath}/login/idcheck",
+				url: "${path}/login/idcheck",
 				type: "post",
 				data: {"userid" : userid},
 				dataType: "json",
@@ -79,15 +80,10 @@
 					
 				}
 			});
-// 			$("#img").on("change",function(){
-// 	// 			alert("1");
-// 				var file = $("#img")[0].files[0];
-// 				var fileName = file.name;
-// 				var filePaht = file.path;
-// 	// 			alert(fileName);
-// 			});
+
 		});
 	});
+	
 
 </script>
 
@@ -99,7 +95,8 @@
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     addr = data.bcode;
                 }
-                document.getElementById('address').value = data.bcode;
+                document.getElementById('address').value = data.bcode
+                document.getElementById('address_full').value = data.roadAddress
             }
         }).open();
     }
@@ -149,15 +146,15 @@
 						</div>
 
 						<div>
-							<input type="text" name="name" id="name" placeholder="이름"
-								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
+							<input type="text" name="name" id="name" 
+								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0" onkeyup="special_str_prv(this)">
 						</div>
 
 						<div >
-							<input type="text" name="address" id="address" placeholder="우편번호"
+							<input type="hidden" name="address" id="address"> 
+							<input type="text" name="address_full" id="address_full" placeholder="우편번호"
 								readonly class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0"> 
-								<input type="button"
-								onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
 								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
 						</div>
 						<div class="text-center" style="margin-top: 10px;">
