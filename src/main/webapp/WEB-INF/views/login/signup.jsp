@@ -7,10 +7,15 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="${path}/assets/js/commonization.js" ></script>
+<script src="${path}/assets/js/commonization.js"></script>
+</head>
+<body style="background-color: #E1E3F9">
 <script>
 	$(document).ready(function() {
 		$("#name").attr("placeholder", "이름");
+		register();
+	});
+	function register(){
 		$("#signUpBtn").on("click",function() {
 			let userid = $("#userid").val();
 			let userpw = $("#userpw").val();
@@ -18,7 +23,7 @@
 			let address = $("#address").val();
 			let gender = $("#gender").val();
 			let birth = $("#birth").val();
-			let myFile = $("#img").val();
+			let myFile = $("#uploadfile").val();
 			//예외처리란 =================================
 			
 			//회원가입 기입란에 값이 입력되어지지 않았을 때
@@ -33,10 +38,14 @@
 				$("#userpw").focus();
 				return false;
 			}
+			if(!chk_pw("#userpw", "#pwMsgBox")){
+				return false;
+			}
+		
 			
 			if(name == "") {
 				alert("이름를 입력하세요.");
-				$("#name").focus();
+				$("#name").focus;
 				return false;
 			}
 			
@@ -51,13 +60,13 @@
 				$("#birth").focus();
 				return false;
 			}
-			
- 			if(myFile == "") {
+			// **2021-10-25 윤남경 if문 수정=======
+ 			if(myFile=="") {
  				alert("프로필 사진을 선택해 주세요.");
- 				$("#myFile").focus();
+ 				$("#uploadfile").focus();
  				return false;
  			}
- 		
+ 			// ================================
 			$.ajax({
 				url: "${path}/login/idcheck",
 				type: "post",
@@ -82,12 +91,7 @@
 			});
 
 		});
-	});
-	
-
-</script>
-
-<script>
+	}
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -100,38 +104,45 @@
             }
         }).open();
     }
+
+  //비밀번호 유효성 검사
+    function chk_pw(id,box){
+	  debugger;
+   	let pw = $(id).val();
+   	let num = pw.search(/[0~9]/g);
+   	let eng = pw.search(/[a-zA-Z]/gi);
+   	let spec = pw.search(/[~!@#$%^&*()_+<>?:{}]/);
+   	//비밀번호 자릿수
+   	if( pw.length < 8 || pw.length > 20){
+   		$(box).html("8~20자리 이내로 입력해주십시오.").css("color","red");
+   		return false;
+   	}
+   	if( num < 0 || eng < 0 || spec < 0 ){
+   		$(box).html("영문, 숫자, 특수문자를 혼합하여 입력해주십시오.").css("color","red");
+   		return false;
+   	}else{
+   		$(box).html("");
+   		return true;
+   		
+   	}
+   } 
 </script>
-</head>
-<body style="background-color: #E1E3F9">
 	<div class="font-sans">
 		<div
 			class="relative min-h-screen flex flex-col sm:justify-center items-center">
 			<div class="relative sm:max-w-sm w-full" style="background-color: white;">
-<!-- 				<div -->
-<!-- 					class="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div> -->
-<!-- 				<div -->
-<!-- 					class="card bg-black shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div> -->
 				<div
 					class="relative w-full rounded-3xl  px-6 py-4 bg-white shadow-md">
 					<label 
 						class="block mb-3 mt-2 text-3XL text-gray-700 text-center font-semibold" style="margin: 30px auto; color: #7A457C;">
 						Sign Up </label>
-						
-<%-- 					<form action="${pageContext.request.contextPath}/login/img-regist" --%>
-<!-- 						id="imgForm" method="post" enctype="multipart/form-data"> -->
-<!-- 						<div> -->
-<!-- 							<input type="file" name="uploadfile" > <input -->
-<!-- 								type="submit" value="이미지업로드" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"> -->
-<!-- 						</div> -->
-<!-- 					</form> -->
 
 					<form
 						action="${pageContext.request.contextPath}/login/signup-regist"
 						id="signUpForm" method="post" enctype="multipart/form-data">
 						
 						<div style="margin-top: 50px">
-							<input type="file" name="uploadfile" > 
-<!-- 								<input type="submit" value="이미지업로드" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"> -->
+							<input type="file" name="uploadfile" id="uploadfile"> 
 						</div>
 
 						<div style="margin-top: 20px">
@@ -140,9 +151,9 @@
 						</div>
 
 						<div>
-							<input type="password" name="userpw" id="userpw"
-								placeholder="비밀번호"
+							<input type="password" name="userpw" id="userpw" placeholder="비밀번호"
 								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
+							<div id="pwMsgBox"></div>	
 						</div>
 
 						<div>
