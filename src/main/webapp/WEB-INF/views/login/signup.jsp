@@ -17,6 +17,7 @@
 	});
 	function register(){
 		$("#signUpBtn").on("click",function() {
+			$(".msg").html("");
 			let userid = $("#userid").val();
 			let userpw = $("#userpw").val();
 			let name = $("#name").val();
@@ -92,7 +93,8 @@
 
 		});
 	}
-    function sample6_execDaumPostcode() {
+		//주소검색
+    function regis_address() {
         new daum.Postcode({
             oncomplete: function(data) {
                 var addr = ''; // 주소 변수
@@ -126,6 +128,11 @@
    		
    	}
    } 
+  
+  function chk(){
+	  var chk = $("#birth").val();
+	  console.log(chk);
+  }
 </script>
 	<div class="font-sans">
 		<div
@@ -146,40 +153,45 @@
 						</div>
 
 						<div style="margin-top: 20px">
-							<input type="text" name="userid" id="userid" placeholder="아이디"
+							<input type="text" name="userid" id="userid" placeholder="아이디" onkeyup="chk_hang_spec_str(this,'#idMsgBox')"
 								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0" style="background-color: white;">
+							<div id="idMsgBox" style="font-size: x-small;" class="msg"></div>	
 						</div>
 
 						<div>
 							<input type="password" name="userpw" id="userpw" placeholder="비밀번호"
 								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
-							<div id="pwMsgBox"></div>	
+							<div id="pwMsgBox" style="font-size: x-small;" class="msg"></div>	
 						</div>
 
 						<div>
 							<input type="text" name="name" id="name" 
-								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0" onkeyup="special_str_prv(this)">
+								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0" onkeyup="special_str_prv(this,'#nameMsgBox')">
+							<div id="nameMsgBox" style="font-size: x-small;" class="msg"></div>	
 						</div>
-
+						
 						<div >
 							<input type="hidden" name="address" id="address"> 
-							<input type="text" name="address_full" id="address_full" placeholder="우편번호"
+							<input type="text" name="address_full" id="address_full" placeholder="우편번호" onclick="regis_address()"
 								readonly class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0"> 
-							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+							<input type="button" onclick="regis_address()" value="우편번호 찾기"
 								class="mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
 						</div>
+						
 						<div class="text-center" style="margin-top: 10px;">
-						<label><input type="radio" name="gender" value="남" />남</label> <label><input
-							type="radio" name="gender" value="여" />여</label>
-							</div>
-
+							<label><input type="radio" name="gender" value="남" />남</label> 
+							<label><input type="radio" name="gender" value="여" />여</label>
+						</div>
+						
 						<div>
-							<input type="date" name="birth" id="birth" placeholder="생년월일"
+							<input type="date" name="birth" id="birth" placeholder="생년월일" onclick="chk()"
 								class= "mt-1 block w-full border-none h-11 rounded shadow-md  focus:ring-0">
 						</div>
-						<span id="idCheckMsg"></span>
+						<span id="idCheckMsg" class="msg"></span>
 					</form>
-
+					<div class="text-right mt-2">
+					<a href="${path}/signin" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">로그인</a>
+					</div>
 					<div class="mt-7">
 						<input type="button" id="signUpBtn" value="가입" style="background-color: #E0C1F1"
 							class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-md hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">

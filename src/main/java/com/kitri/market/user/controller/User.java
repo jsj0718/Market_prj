@@ -20,7 +20,7 @@ import com.kitri.market.user.vo.NaverUserVO;
 import com.kitri.market.user.vo.UserAddrVO;
 
 @Controller
-@RequestMapping("/login") // market/login/signin
+@RequestMapping("") // market/login/signin
 public class User {
 	
 	// 네이버 유저 서비스
@@ -64,52 +64,7 @@ public class User {
 		
 		return idCheckFlag;
 	}
-	
-	// 회원가입 등록
-//	@RequestMapping("/signup-regist")
-//	public String signupRegist(UserVO uvo, HttpSession session) {
-		
-		// session으로 file경로 받음
-//		UserAddrVO udvo = new UserAddrVO();
-//		udvo.setUserid(uvo.getUserid());
-//		udvo.setAddresscode(uvo.getAddress());
-//		uvo.setImg((String) session.getAttribute("filePath"));
-//		boolean registCheckFlag = userService.registUser(uvo, udvo);
-//		String path = "";
-		
-		// 성공하면 로그인 페이지로
-//		if(registCheckFlag) {
-//			path = "redirect:/login/signin";
-//		
-//		// 실패하면 그대로 회원가입 페이지로
-//		} else {
-//			path = "redirect:/login/signup";
-//		}
-//		
-//		return path;
-		
-//	}
-	
-//	@RequestMapping("/signup-regist")
-//	public String signupAddrRegist(UserInfoVO uivo, HttpSession session) {
-//		boolean registAddrCheck = userService.registAddr(uivo);
-//		String path = "";
-//		// 성공하면 로그인 페이지로
-//				if(registAddrCheck) {
-//					path = "redirect:/login/signin";
-//				
-//				// 실패하면 그대로 회원가입 페이지로
-//				} else {
-//					path = "redirect:/login/signup";
-//				}
-//				
-//				return path;
-//	}
-	
-	// 사진 맵핑
-//	@RequestMapping("/img-regist")
-//	public String fileupload(UserVO uvo, MultipartFile uploadfile, HttpServletRequest req, HttpSession session) {
-		
+
 	@RequestMapping("/signup-regist")
 	public String signupRegist(UserVO uvo, MultipartFile uploadfile, HttpServletRequest req, HttpSession session) {
 		
@@ -153,45 +108,24 @@ public class User {
 			uploadConfirm = false;
 		}
 		
-		// 가입 확인
-//		String insertImgPath = "";
-		
 		// 여기로 옴
 		if(uploadConfirm) {
 			// 세션에 파일 정보 저장
-			 
 			UserAddrVO udvo = new UserAddrVO();
 			udvo.setUserid(uvo.getUserid());
 			udvo.setAddresscode(uvo.getAddress());
-			
-			
 			// 이미지 set
 			uvo.setImg(File.separator+"upload"+File.separator+saveName);
-			
-			
 			boolean registCheckFlag = userService.registUser(uvo, udvo);
-//			insertImgPath = File.separator+"upload"+File.separator+saveName;
-//			session.setAttribute("filePath", insertImgPath);
-		
-		// 성공하면 로그인 페이지로
-				if(registCheckFlag) {
-					path = "redirect:/login/signin";
-				
-				// 실패하면 그대로 회원가입 페이지로
-				} else {
-					path = "redirect:/login/signup";
-				}
-				
-				
-		 
-//		if (registFlag) {
-//			path = "redirect:/login/signup";
-//		} else {
-//			path = "redirect:/login/signup";
-//
-//		}
-//		 
-//		return path;
+			// 성공하면 로그인 페이지로
+			if(registCheckFlag) {
+				path = "redirect:/login/signin";
+			
+			// 실패하면 그대로 회원가입 페이지로
+			} else {
+				path = "redirect:/login/signup";
+			}
+			
 	}
 		return path;
 	}
@@ -206,19 +140,10 @@ public class User {
 	@RequestMapping("/naverlogincheck")
 	@ResponseBody
 	public NaverUserVO naverLoginCheck(@RequestBody NaverUserVO nuvo, HttpSession session) {
-//		System.out.println(nuvo.getEmail());
-//		System.out.println(nuvo.getName());
-//		System.out.println(nuvo.getBirthday());
-//		System.out.println(nuvo.getMobile());
-		
 		// 이미 등록이 되있는지 조회
 		// 등록이 안되있으면 등록 후 로그인 / 되어있으면 등록없이 로그인
 		NaverUserVO vo = NaverUserService.registNaverUser(nuvo);
 		session.setAttribute("userid", vo.getEmail());
-		
-//		System.out.println(email);
-//		System.out.println(name);
-		
 		return vo;
 		
 	}
