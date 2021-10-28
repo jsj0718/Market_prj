@@ -31,7 +31,7 @@
 							    <a class="nav-link" style="color:black; font-weight: bold; font-size: 20px;" href="${path }/mypage"><span>마이페이지</span></a>
 							  </li>
 							  <li class="nav-item">
-							    <a class="nav-link"" style="color:black; font-weight: bold; font-size: 20px;" href="${path }/login/signin"><span>로그아웃</span></a>
+							    <a class="nav-link"" style="color:black; font-weight: bold; font-size: 20px;" href="${path }/signin"><span>로그아웃</span></a>
 							  </li>
 							  
 							</ul>
