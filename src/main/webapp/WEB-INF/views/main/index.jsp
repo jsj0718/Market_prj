@@ -32,6 +32,7 @@
     <!-- 상단 네브바 -->
     <nav class="navbar navbar-expand-lg navbar fixed-top" style="background-color: white; height: 40px; color: white;">
       <div id="nav" class="container-fluid justify-content-end">
+    		<a class="nav-link"" style="color:black; font-weight: bold; font-size: 20px;" href="${path }/signin"><span>로그아웃</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

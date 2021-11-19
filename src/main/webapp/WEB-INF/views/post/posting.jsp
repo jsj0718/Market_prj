@@ -87,7 +87,7 @@
 	
 	body {
 	  font-family: 'Nanum Gothic', sans-serif;
-	  background-color: #F1F2F5;
+	  background-image: url("./assets/img/post/쇼핑6.png");
 	}
 	
 	#space {
@@ -261,8 +261,6 @@
                           </button>
                       </div>
                       
-
-                      
 <!--         채팅        -->
                     <div @click.away="open = false" class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
@@ -286,7 +284,7 @@
 									<div class="nav justify-content-end" style="margin-right: 0; color:white;">                                   
                     <div @click.away="open = false" class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                            <a href="${path }/login/signin"><span>로그아웃</span></a>
+                            <a href="${path }/signin"><span>로그아웃</span></a>
                         </button>
                     </div>
                   </div>		                      
@@ -296,12 +294,18 @@
 	</header>
 
 	<!-- post -->
+<fieldset style="width: 1200px; margin: 0 auto; background-color:#E4EDDE;">
 	<div class="container shadow-md bg-white" >
 		<div class="mt-1 p-5">
 			<!-- 업로드 -->
 		  	<div class="row">
 		  	
-				<form action="${pageContext.request.contextPath}/post/write" method="post" enctype="multipart/form-data" class="row" >
+				<form action="${path}/post/write" method="post" enctype="multipart/form-data" class="row" >
+					<div class="text-right mt-2" style="margin-bottom: 50px;" >
+					    <input type="submit" class="btn btn-primary finishBtn" name='submit_image' value="완료" />
+					    <button type="button" class="btn btn-secondary" name='cancel' value="취소"><a href="${path }/index">취소</a></button>
+					</div>
+				
 					<!-- 이미지 업로드 -->
 					<div class="mt-2 col-md-2 ">
 						<div class="upload_box">
@@ -320,61 +324,74 @@
 							<!-- 미리보기 내용 -->
 						</div>
 					</div>
-				
 					<!-- 제목 -->
-					<input type="text" class="input_box" name="title" id="post_title" placeholder="제목" style="border-radius: 6px 6px 0px 0px;">
+					<input type="text" class="input_box" name="title" id="post_title" placeholder="제목" style="border-radius: 6px 6px 0px 0px; margin-bottom: 10px;">
 					<!-- 카테고리 -->
+					<div class="col">
+						<div class="row" style="width: 420px;">	
+							<img alt="쇼핑" src="./assets/img/post/쇼핑4.jpg">
+						</div>
+					 	<div class="row">
+							<select class="input_box" name="categoryid" id="categoryid" style="margin-bottom: 10px;">
+								<option value="0" selected="selected" style="display:none">카테고리</option><%-- ${id} ${name} --%>
+								<option value="1">노트북</option>
+								<option value="2">도서</option>
+								<option value="3">가방</option>
+								<option value="4">주방도구</option>
+								<option value="5">뷰티</option>
+								<option value="6">홈인테리어</option>
+								<option value="7">문구/오피스</option>
+								<option value="8">반려동물용품</option>
+								<option value="9">헬스/건강식품</option>
+								<option value="10">생활용품</option>
+								<option value="11">가전디지털</option>
+								<option value="12">음반/DVD</option>
+								<option value="13">식품</option>
+								<option value="14">출산/유아동</option>
+								<option value="15">자동차용품</option>
+							</select>
+						</div>
+						<!-- 지역 -->
+						<!-- 보여주는 값 -->
+						<div class="row">
+							<input type="text" name="address" id="address" placeholder="우편번호" readonly class="input_box" style=" margin-bottom: 10px;"> 
+							<!-- 넘겨주는 값 -->
+							<input type="hidden" name="addresscode" id="addresscode" placeholder="우편번호" readonly> 
+							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="input_box" style=" background-color: #E1E3F9; margin-bottom: 10px;">
+						</div>
+						
+						<div class="row">	
+							<!-- 금액 -->
+							<input type="text" name="price" id="price" class="input_box" placeholder="\">
+						</div>
+					</div>	
 					
-					<select class="input_box" name="categoryid" id="categoryid">
-						<option value="0" selected="selected" style="display:none">카테고리</option><%-- ${id} ${name} --%>
-						<option value="1">노트북</option>
-						<option value="2">도서</option>
-						<option value="3">가방</option>
-						<option value="4">주방도구</option>
-						<option value="5">뷰티</option>
-						<option value="6">홈인테리어</option>
-						<option value="7">문구/오피스</option>
-						<option value="8">반려동물용품</option>
-						<option value="9">헬스/건강식품</option>
-						<option value="10">생활용품</option>
-						<option value="11">가전디지털</option>
-						<option value="12">음반/DVD</option>
-						<option value="13">식품</option>
-						<option value="14">출산/유아동</option>
-						<option value="15">자동차용품</option>
-					</select>
-					
-					<!-- 지역 -->
-					<!-- 보여주는 값 -->
-					<input type="text" name="address" id="address" placeholder="우편번호" readonly class="input_box" style="width:50%;"> 
-					<!-- 넘겨주는 값 -->
-					<input type="hidden" name="addresscode" id="addresscode" placeholder="우편번호" readonly> 
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="input_box" style="width:50%; background-color: #E1E3F9">
-					
-					<!-- 금액 -->
-					<input type="text" name="price" id="price" class="input_box" placeholder="\">
-					
-					<!-- 내용 -->
-					<textarea class="input_box"  name="content" id="content" placeholder="내용" rows="15px" style="border-radius: 0px 0px 6px 6px;"></textarea>
-					
-					<!-- 유저 아이디 -->
-					<input type="hidden"  name="userid" id="userid" value="${sessionScope.userid}"><%-- ${userid} --%>
-					
-					<!-- 조회수 -->
-					<%--<input type="hidden" value=""> ${view} --%>
-					
-					<!-- 판매현황 -->
-					<input type="hidden" name="flag" id="flag" value="N">
-					
-					<div class="mt-3 float-right" >
-					    <input type="submit" class="btn btn-primary finishBtn" name='submit_image' value="완료" />
-					    <button type="button" class="btn btn-secondary" name='cancel' value="취소"><a href="${path }/index">취소</a></button>
+					<div class="col">
+						<!-- 내용 -->
+						<textarea class="input_box"  name="content" id="content" placeholder="내용" rows="27px" cols="70px" style="border-radius: 0px 0px 6px 6px;"></textarea>
+						
+						<!-- 유저 아이디 -->
+						<input type="hidden"  name="userid" id="userid" value="${sessionScope.userid}"><%-- ${userid} --%>
+						
+						<!-- 조회수 -->
+						<%--<input type="hidden" value=""> ${view} --%>
+						
+						<!-- 판매현황 -->
+						<input type="hidden" name="flag" id="flag" value="N">
 					</div>
+<!-- 					<div class="row" style="margin-top: 50px;" > -->
+<!-- 						<div class="col"> -->
+<!-- 					    <input type="submit" class="btn btn-primary finishBtn" name='submit_image' value="완료" /> -->
+<!-- 					  </div> -->
+<!-- 					  <div class="col">   -->
+<%-- 					    <button type="button" class="btn btn-secondary" name='cancel' value="취소"><a href="${path }/index">취소</a></button> --%>
+<!-- 					  </div>   -->
+<!-- 				 </div> -->
 				</form>
 			</div>
 		</div>
 	</div>
-	
+</fieldset>		
 </body>
 
 </html>

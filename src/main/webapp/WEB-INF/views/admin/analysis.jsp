@@ -100,8 +100,6 @@ function chart(ctx,type,labels,data, label,x, bglist, hoverlist=[]){
                           </button>
                       </div>
                       
-
-                      
 <!--         채팅        -->
                     <div @click.away="open = false" class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
@@ -125,7 +123,7 @@ function chart(ctx,type,labels,data, label,x, bglist, hoverlist=[]){
 									<div class="nav justify-content-end" style="margin-right: 0; color:white;">                                   
                     <div @click.away="open = false" class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="nav-item flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                            <a href="${path }/login/signin"><span>로그아웃</span></a>
+                            <a href="${path }/signin"><span>로그아웃</span></a>
                         </button>
                     </div>
                   </div>		                      
