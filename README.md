@@ -24,8 +24,7 @@
 
 ## 1. Project 기능
 
-![image-20220125183045450](https://github.com/jsj0718/Market_prj/tree/master/README.assets/image-20220125183045450.png)
-
+![image-20220125183045450](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183045450.png)
 
 
 ## 2. Project 개발 환경
