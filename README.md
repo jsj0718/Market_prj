@@ -29,19 +29,19 @@
 
 ## 2. Project 개발 환경
 
-![image-20220125183035955](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183035955.png)
+![image-20220125183035955](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183035955.png)
 
 
 
 ## 3. Project DB ERD
 
-![image-20220125183025139](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183025139.png)
+![image-20220125183025139](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183025139.png)
 
 
 
 ## 4. Project 일정
 
-![image-20220125183011739](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183011739.png)
+![image-20220125183011739](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183011739.png)
 
 
 
@@ -51,42 +51,42 @@
 
 ### [로그인 / 회원가입]
 
-![image-20220125182953964](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125182953964.png)
+![image-20220125182953964](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125182953964.png)
 
 
 
 ### [메인화면]
 
-![image-20220125183108307](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183108307.png)
+![image-20220125183108307](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183108307.png)
 
-![image-20220125183115202](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183115202.png)
+![image-20220125183115202](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183115202.png)
 
 
 
 ### [게시글]
 
-![image-20220125183204035](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183204035.png)
+![image-20220125183204035](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183204035.png)
 
-![image-20220125183213218](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183213218.png)
+![image-20220125183213218](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183213218.png)
 
 
 
 ### [채팅]
 
-![image-20220125183233962](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183233962.png)
+![image-20220125183233962](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183233962.png)
 
 
 
 ### [마이페이지]
 
-![image-20220125183302027](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183302027.png)
+![image-20220125183302027](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183302027.png)
 
-![image-20220125183252507](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183252507.png)
+![image-20220125183252507](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183252507.png)
 
 
 
 ### [관리자 페이지]
 
-![image-20220125183317690](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183317690.png)
+![image-20220125183317690](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183317690.png)
 
-![image-20220125183321107](https://github.com/jsj0718/Market_prj/blob/main/README.assets\image-20220125183321107.png)
+![image-20220125183321107](https://github.com/jsj0718/Market_prj/blob/master/README.assets/image-20220125183321107.png)
